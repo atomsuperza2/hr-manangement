@@ -33,6 +33,11 @@ class User extends Authenticatable
  //     return $this->hasMany(Post::class, 'author_id', 'id');
  // }
 
+ public function account_info()
+ {
+     return $this->hasOne('App\AccountInfo');
+ }
+
  public function data()
  {
      return $this->hasOne('App\AccountInfo');

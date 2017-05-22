@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/accounts/index','AccountInfoController@index')->name('index');
+Route::get('/accounts/index','AccountInfoController@index')->name('accounts.index');
 Route::get('/accounts/add','AccountInfoController@create')->name('add');
 Route::post('/accounts/add','AccountInfoController@store')->name('add');
 // Route::resource('accounts', 'AccountInfoController') ;

@@ -20,7 +20,8 @@ class CreateAccountinfoTable extends Migration
             $table->string('lastname');
             $table->date('birthday');
             $table->string('Gender');
-            $table->string('email')->unique();
+            $table->string('email');
+            // ->unique();
             $table->integer('phone');
             $table->string('address');
             $table->integer('employeeID');

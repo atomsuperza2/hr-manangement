@@ -1,0 +1,11 @@
+DB_CONNECTION=mysql
+
+DB_HOST=ap-cdbr-azure-southeast-b.cloudapp.net
+
+DB_PORT=3306
+
+DB_DATABASE=acsm_52417b34dbb348e
+
+DB_USERNAME=bb1f34cd5baa8f
+
+DB_PASSWORD=d00f6ac9

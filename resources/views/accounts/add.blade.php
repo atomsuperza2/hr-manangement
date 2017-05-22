@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Create Question</div>
+                <div class="panel-heading">New Account</div>
 
                 <div class = "panel-body">
                 <form class = "" method = "POST" action = "{{URL('/accounts/add')}}">

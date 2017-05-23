@@ -4,15 +4,28 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+
 class AccountInfo extends Model
 {
   protected $table = 'accountinfo';
 
   protected $guarded = ['username', 'password'];
 
-  // public function data()
-  // {
-  //     return $this->hasOne('App\User');
-  // }
+   public function emdesignation()
+   {
+      return $this->hasOne('App\DesignationModel');
+  }
 
+  public function scopeFilter($query, $keywords)
+  {
+    if ($keywords->firstname) {
+      $query->where('firstname', 'LIKE', '%'.$keywords->firstname.'%');
+    }
+
+    if ($keywords->lastname) {
+      $query->where('lastname', 'LIKE', '%'.$keywords->lastname.'%');
+    }
+
+    return $query;
+  }
 }

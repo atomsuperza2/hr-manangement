@@ -14,10 +14,8 @@
                 <form class = "" method = "POST" action = "{{URL('/designation/add')}}">
 
                   <div class="form-group">
-                    {!! Form::label('department_id', 'Department', ['class'=>'control-label col-md-4']) !!}
-                      <div class="col-md-6">
-                      {!! Form::select('department_id', $department, null, ['placeholder' => 'Select Department', 'class'=>'form-control']) !!}
-                      </div>
+                    <!-- {!! Form::label('department_id', 'Department', ['class'=>'control-label col-md-4']) !!} -->
+                    {!! Form::select('department_id', $department, null, ['placeholder' => 'Select Department', 'class'=>'form-control']) !!}
                   </div>
 
                   <input type= "text" class = "form-control" name="designationName" placeholder="Designation"><br>

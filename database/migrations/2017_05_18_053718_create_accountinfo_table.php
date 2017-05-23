@@ -27,8 +27,8 @@ class CreateAccountinfoTable extends Migration
             $table->integer('employeeID');
             // $table->integer('department_id');
             // $table->integer('designation_id');
-            $table->date('shiftStart');
-            $table->date('shiftEnd');
+            $table->time('shiftStart');
+            $table->time('shiftEnd');
             $table->date('hiredDate');
             $table->date('exitDate');
             $table->double('salary');

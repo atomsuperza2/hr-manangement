@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+
+
 @section('content')
 
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 <div class="container">
     <div class="row">
@@ -11,15 +14,20 @@
                 <div class="panel-heading">Employee Designation</div>
 
                 <div class = "panel-body">
-                <form class = "" method = "POST" action = "{{URL('/emdesignation/add')}}">
+                <form class = "" method = "POST" action = "{{route('emdesignation.store')}}">
 
                   <div class="form-group">
-                     <!-- {!! Form::text('search_text', null, array('placeholder' => 'Search Text','class' => 'form-control','id'=>'q')) !!} -->
-                     <input type="text" class = "form-control" name="term" id = "q" data-action="{{ route('search-autocomplete') }}">
+
+                  	<input class="form-control" id="searchname" name="searchname" type="text" placeholder="Employee">
+                  	<input id="user_id" name="user_id" type="hidden">
+
                   </div>
 
+
+
+
                   <div class="form-group">
-                    <!-- {!! Form::label('designation_id', 'Designation', ['class'=>'control-label col-md-4']) !!} -->
+
                     {!! Form::select('designation_id', $designation, null, ['placeholder' => 'Select designation', 'class'=>'form-control']) !!}
                   </div>
 
@@ -28,31 +36,36 @@
                   <input type= "date" class = "form-control" name="dateEnd" placeholder="Date End"><br>
                   <input type= "time" class = "form-control" name="shiftStart" placeholder="Shift Start"><br>
                   <input type= "time" class = "form-control" name="shiftEnd" placeholder="Shift Start"><br>
-                    <!-- <input type= "text" class = "form-control" name="UserQId" placeholder="UserQId"><br> -->
+
                 <button type="submit" class="btn btn-primary">Add</button>
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
+              </form>
             </div>
         </div>
     </div>
 </div>
-@endsection
-@section('script')
-<script>
-$(function()
-{
-$('#q').each(function() {
-     var $this = $(this);
-     var src = $this.data('action');
+</div>
 
-     $this.autocomplete({
-         source: src,
-         minLength: 2,
-         select: function(event, ui) {
-             $this.val(ui.item.value);
-             $('#id').val(ui.item.id);
-         }
-     });
- });
-});
-</script>
+@endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+
+<script type="text/javascript">
+
+  		$(function () {
+          $('#searchname').autocomplete({
+            source : '{!!URL::route('autocomplete')!!}',
+            minLength:1,
+
+            select:function(e,ui){
+              $('#user_id').val(ui.item.id);
+              $('#firstname').val(ui.item.value);
+            }
+          });
+  })
+
+  </script>
 @endsection

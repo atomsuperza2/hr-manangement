@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('style')
 </head>
 <body>
     <div id="app">
@@ -74,13 +75,12 @@
         @yield('content')
     </div>
 
-
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="http://itsbetahere.com/larahrm/public/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
     <script src="http://demo.expertphp.in/js/jquery.js"></script>
-    <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script>
+    <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script> -->
+      @yield('script')
 </body>
 </html>

@@ -19,6 +19,19 @@ class EmDesignationController extends Controller
      return view('emdesignation.index', ['emdesignations' => $emdesignations]);
     }
 
+
+    public function autocomplete(Request $request)
+    {
+      $term = $request->term;
+      $data = AccountInfo::where('firstname','LIKE','%'.$term.'%')
+      ->take(10)
+      ->get();
+      $results = array();
+      foreach ($data as $key => $v) {
+        $results[] = ['id'=>$v->id,'value'=>$v->firstname];
+      }
+      return response()->json($results);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -32,11 +45,6 @@ class EmDesignationController extends Controller
 
     // atucomplete
 
-    public function autocomplete() {
-      $term = request('term');
-      $result = AccountInfo::whereFirstname($term)->orWhere('firstname', 'LIKE', '%' . $term . '%')->get(['id', 'firstname as value']);
-      return response()->json($term);
-       }
     /**
      * Store a newly created resource in storage.
      *
@@ -45,7 +53,7 @@ class EmDesignationController extends Controller
      */
     public function store(Request $request)
     {
-      $emdesignation = new EmDesignationModel($request->all());
+      $emdesignation = new EmDesignationModel($request->except(['searchname']));
 
       $emdesignation->save();
       return redirect()->route('emdesignation.index')->with('alert-succress','Add new designation success.');

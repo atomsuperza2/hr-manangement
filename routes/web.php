@@ -29,36 +29,11 @@ Route::get('/designation/index','DesignationController@index')->name('designatio
 Route::get('/designation/add','DesignationController@create')->name('designation.create');
 Route::post('/designation/add','DesignationController@store')->name('designation.store');
 Route::get('/emdesignation/index','EmDesignationController@index')->name('emdesignation.index');
-Route::get('/emdesignation/add','EmDesignationController@create')->name('emdesignation.create');
+Route::get('/emdesignation/add', array('as'=>'user','uses'=>'EmDesignationController@create'));
+Route::get('/emdesignation/autocomplete',array('as' => 'autocomplete','uses'=>'EmDesignationController@autocomplete'));
+// Route::get('/emdesignation/add','EmDesignationController@create')->name('emdesignation.create');
 Route::post('/emdesignation/add','EmDesignationController@store')->name('emdesignation.store');
 ////////////////////////////////////////////////////
-// Route::any('getdata', 'API\AccountInfoController@filter');
 
-Route::get('/emdesignation/autocomplete', ['as' => 'search-autocomplete', 'uses' => 'EmDesignationController@autocomplete']);
-/////////////////////////
 
-// Route::POST('emdesignation/add', function(){
-//   $keyword = Request::all();
-//   $models = AccountInfo::where('firstname', "=", $keyword)->orderby('firstname')->take(10)->skip(0)->get();
-//   $count = count($models);
-//   return View::make('emdesignation.add')->with("contents", $models)->with("counts", $count);
-// });
-
-// Route::POST('emdesignation/add', function(){
-//   $keyword = Str::lower(Input::get('auto'));
-//   $models = AccountInfo::where('firstname', "=", $keyword)->orderby('word')->take(10)->skip(0)->get();
-//   $count = count($models);
-//   return View::make('emdesignation.add')->with("contents", $models)->with("counts", $count);
-// });
-
-// Route::any('getdata', function(){
-//   $term = Str::lower(Request::get('term'));
-//   $data = DB::table("accountinfo")->distinct()->select('firstname')->where('firstname','LIKE', $term. '%')->groupBy('firstname')->take(10)->get();
-//   foreach ($data as $v) {
-//     $return_array[] =  array('value' => $v->firstname );
-//     # code...
-//   }
-//   return Response::json($return_array);
-// });
-/////////////////////////////////////////////////
 // Route::resource('accounts', 'AccountInfoController') ;

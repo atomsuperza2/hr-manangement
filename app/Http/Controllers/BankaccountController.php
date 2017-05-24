@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\EmDesignationModel;
-use App\DesignationModel;
-use App\AccountInfo;
-use DB;
-class EmDesignationController extends Controller
+
+class BankaccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,24 +13,11 @@ class EmDesignationController extends Controller
      */
     public function index()
     {
-      $emdesignations = EmDesignationModel::get();
+      $bankaccounts = BankaccountModel::get();
 
-      return view('emdesignation.index', ['emdesignations' => $emdesignations]);
+      return view('bankaccount.index', ['bankaccounts' => $bankaccounts]);
     }
 
-
-    public function autocomplete(Request $request)
-    {
-      $term = $request->term;
-      $data = AccountInfo::where('firstname','LIKE','%'.$term.'%')
-      ->take(10)
-      ->get();
-      $results = array();
-      foreach ($data as $key => $v) {
-        $results[] = ['id'=>$v->id,'value'=>$v->firstname];
-      }
-      return response()->json($results);
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -41,11 +25,8 @@ class EmDesignationController extends Controller
      */
     public function create()
     {
-      $designation = DesignationModel::pluck('designationName','id');
-      return view('emdesignation.add', ['designation' => $designation]);
+        //
     }
-
-    // atucomplete
 
     /**
      * Store a newly created resource in storage.
@@ -55,10 +36,7 @@ class EmDesignationController extends Controller
      */
     public function store(Request $request)
     {
-      $emdesignation = new EmDesignationModel($request->except(['searchname']));
-
-      $emdesignation->save();
-      return redirect()->route('emdesignation.index')->with('alert-succress','Add new designation success.');
+        //
     }
 
     /**

@@ -13,16 +13,18 @@ class AccountInfo extends Model
 
    public function emdesignation()
    {
-      return $this->hasOne('App\DesignationModel');
+      return $this->hasOne('App\EmDesignationModel');
   }
-
+ public function bankaccount()
+ {
+   return $this->hasOne('App\BankaccountModel');
+ }
   public function scopeFilter($query, $keywords)
   {
-    if ($keywords->firstname) {
+  if ($keywords->firstname) {
       $query->where('firstname', 'LIKE', '%'.$keywords->firstname.'%');
-    }
-
-    if ($keywords->lastname) {
+  }
+  if ($keywords->lastname) {
       $query->where('lastname', 'LIKE', '%'.$keywords->lastname.'%');
     }
 

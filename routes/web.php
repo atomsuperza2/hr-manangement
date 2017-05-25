@@ -19,7 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/accounts/index','AccountInfoController@index')->name('accounts.index');
+Route::get('/accounts','AccountInfoController@index')->name('accounts.index');
 Route::get('/accounts/add','AccountInfoController@create')->name('accounts.create');
 Route::post('/accounts/add','AccountInfoController@store')->name('account.store');
 

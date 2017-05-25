@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 <div class="container">
     @foreach ($accounts as $user)
         {{ $user->firstname }}
@@ -10,3 +12,4 @@
         {{ $user->address}}
     @endforeach
 </div>
+@endsection

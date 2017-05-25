@@ -15,10 +15,12 @@ class AccountInfo extends Model
   {
       return $this->hasOne('App\EmDesignationModel');
   }
+
   public function bankaccount()
   {
       return $this->hasOne('App\BankaccountModel');
   }
+
   public function scopeFilter($query, $keywords)
   {
   if ($keywords->firstname) {

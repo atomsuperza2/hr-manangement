@@ -22,17 +22,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/accounts/index','AccountInfoController@index')->name('accounts.index');
 Route::get('/accounts/add','AccountInfoController@create')->name('accounts.create');
 Route::post('/accounts/add','AccountInfoController@store')->name('account.store');
+
 Route::get('/department/index','DepartmentController@index')->name('department.index');
 Route::get('/department/add','DepartmentController@create')->name('department.create');
 Route::post('/department/add','DepartmentController@store')->name('department.store');
+
 Route::get('/designation/index','DesignationController@index')->name('designation.index');
 Route::get('/designation/add','DesignationController@create')->name('designation.create');
 Route::post('/designation/add','DesignationController@store')->name('designation.store');
+
 Route::get('/emdesignation/index','EmDesignationController@index')->name('emdesignation.index');
 Route::get('/emdesignation/add', array('as'=>'user','uses'=>'EmDesignationController@create'));
 Route::get('/emdesignation/autocomplete',array('as' => 'autocomplete','uses'=>'EmDesignationController@autocomplete'));
 // Route::get('/emdesignation/add','EmDesignationController@create')->name('emdesignation.create');
 Route::post('/emdesignation/add','EmDesignationController@store')->name('emdesignation.store');
+
+Route::get('/bankaccount/index','BankaccountController@index')->name('bankaccount.index');
+Route::get('/bankaccount/add', array('as'=>'bankaccount.create','uses'=>'BankaccountController@create'));
+Route::post('/bankaccount/add','BankaccountController@store')->name('bankaccount.store');
 ////////////////////////////////////////////////////
 
 

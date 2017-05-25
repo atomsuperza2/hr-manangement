@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\BankaccountModel;
 class BankaccountController extends Controller
 {
     /**
@@ -25,7 +25,7 @@ class BankaccountController extends Controller
      */
     public function create()
     {
-        //
+      return view('bankaccount.add');
     }
 
     /**
@@ -36,7 +36,10 @@ class BankaccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $bankaccount = new BankaccountModel($request->except(['searchname']));
+
+      $bankaccount->save();
+      return redirect()->route('bankaccount.index')->with('alert-succress','Add new bankaccount success.');
     }
 
     /**

@@ -38,24 +38,28 @@ class AccountInfoController extends Controller
      */
     public function store(Request $request)
     {
-          $user = User::create(['username' => $request -> username, 'password' => $request -> password]);
-          $user->account_info()->create($request->except(['username', 'password']));
-          // $account = new AccountInfo;
-          //
-          // $account->firstname =$request -> firstname;
-          // $account->lastname = $request -> lastname;
-          // $account->birthday = $request -> birthday;
-          // $account->Gender = $request -> Gender;
-          // $account->email = $request -> email;
-          // $account->phone = $request -> phone;
-          // $account->address = $request -> address;
-          // $account->employeeID = $request -> employeeID;
-          // $account->shiftStart =  $request -> shiftStart;
-          // $account->shiftEnd = $request -> shiftEnd;
-          // $account->hiredDate = $request -> hiredDate;
-          // $account->exitDate = $request -> exitDate;
-          // $account->salary = $request -> salary;
-          // $account->user_id = $user->id;
+      // dd($request->all());
+          //  $data = ['birthday' => $request->birthday,
+          //            'password' => $request->birthday];
+          $user = User::create(['username' => $request -> username,
+                                'password' => $request -> birthday]);
+
+          $user->accountinfo = AccountInfo::create([
+            'name' => $request -> name,
+            'birthday' => $request -> birthday,
+            'Gender' => $request -> Gender,
+            'email' => $request -> email,
+            'phone' => $request -> phone,
+            'address' => $request -> address,
+            'employeeID' => $request -> employeeID,
+            'hiredDate' => $request -> hiredDate,
+            'exitDate' => $request -> exitDate,
+            'salary' => $request -> salary,
+            'user_id' => $user->id,
+          ]);
+
+          // $user->account_info()->create($request->except(['username', 'password']), $data);
+
 
           // $user->save();
           // $account->save();
@@ -82,7 +86,9 @@ class AccountInfoController extends Controller
      */
     public function edit($id)
     {
-        //
+
+      $accounts = AccountInfo::find($id);
+      return view('accounts.edit', compact('accounts'));
     }
 
     /**
@@ -94,7 +100,27 @@ class AccountInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->username = $request -> username;
+
+        $account = AccountInfo::find($id);
+
+        $account->name = $request -> name;
+        $account->birthday= $request -> birthday;
+        $account->Gender = $request -> Gender;
+        $account->email = $request -> email;
+        $account->phone = $request -> phone;
+        $account->address = $request -> address;
+        $account->employeeID = $request -> employeeID;
+        $account->hiredDate = $request -> hiredDate;
+        $account->exitDate = $request -> exitDate;
+        $account->salary = $request -> salary;
+
+        $account->save();
+        $user->save();
+        session()->flash('message','Updated Successfully');
+        return redirect('/accounts');
+
     }
 
     /**
@@ -105,6 +131,9 @@ class AccountInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $account = AccountInfo::find($id);
+        $account->delete();
+        session()->flash('message','Delete Successfully');
+        return redirect('/accounts');
     }
 }

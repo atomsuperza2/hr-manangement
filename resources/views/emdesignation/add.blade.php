@@ -54,7 +54,6 @@
 
 
 <script type="text/javascript">
-
   		$(function () {
           $('#searchname').autocomplete({
             source : '{!!URL::route('autocomplete')!!}',
@@ -62,10 +61,10 @@
 
             select:function(e,ui){
               $('#user_id').val(ui.item.id);
-              $('#firstname').val(ui.item.value);
+              $('#name').val(ui.item.value);
             }
           });
-  })
+  });
 
-  </script>
+   </script>
 @endsection

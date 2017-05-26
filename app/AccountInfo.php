@@ -15,7 +15,10 @@ class AccountInfo extends Model
   {
       return $this->hasOne('App\EmDesignationModel');
   }
-
+  public function user()
+  {
+      return $this->belongsTo('App\User');
+  }
   public function bankaccount()
   {
       return $this->hasOne('App\BankaccountModel');
@@ -23,12 +26,12 @@ class AccountInfo extends Model
 
   public function scopeFilter($query, $keywords)
   {
-  if ($keywords->firstname) {
-      $query->where('firstname', 'LIKE', '%'.$keywords->firstname.'%');
+  if ($keywords->name) {
+      $query->where('name', 'LIKE', '%'.$keywords->name.'%');
     }
-  if ($keywords->lastname) {
-      $query->where('lastname', 'LIKE', '%'.$keywords->lastname.'%');
-    }
+  // if ($keywords->lastname) {
+  //     $query->where('name', 'LIKE', '%'.$keywords->lastname.'%');
+  //   }
 
     return $query;
   }

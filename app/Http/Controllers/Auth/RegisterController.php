@@ -69,8 +69,8 @@ class RegisterController extends Controller
 
         $user->accountInfo = AccountInfo::create([
 
-           'firstname' => $data['firstname'],
-           'lastname' => $data['lastname'],
+           'name' => $data['name'],
+
            'birthday' => $data['birthday'],
            'Gender' => $data['Gender'],
            'email' => $data['email'],

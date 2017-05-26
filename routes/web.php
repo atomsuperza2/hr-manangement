@@ -22,6 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/accounts','AccountInfoController@index')->name('accounts.index');
 Route::get('/accounts/add','AccountInfoController@create')->name('accounts.create');
 Route::post('/accounts/add','AccountInfoController@store')->name('account.store');
+Route::get('/accounts/{user}/edit','AccountInfoController@edit')->name('accounts.edit');
+Route::get('/accounts/{accounts}',array('as' => 'accounts.update', 'uses' => 'AccountInfoController@update'));
+Route::delete('/accounts/{user}','AccountInfoController@destroy')->name('accounts.destroy');
 
 Route::get('/department/index','DepartmentController@index')->name('department.index');
 Route::get('/department/add','DepartmentController@create')->name('department.create');

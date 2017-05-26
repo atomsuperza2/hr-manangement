@@ -25,12 +25,12 @@ class EmDesignationController extends Controller
     public function autocomplete(Request $request)
     {
       $term = $request->term;
-      $data = AccountInfo::where('firstname','LIKE','%'.$term.'%')
+      $data = AccountInfo::where('name','LIKE','%'.$term.'%')
       ->take(10)
       ->get();
       $results = array();
       foreach ($data as $key => $v) {
-        $results[] = ['id'=>$v->id,'value'=>$v->firstname];
+        $results[] = ['id'=>$v->id,'value'=>$v->name];
       }
       return response()->json($results);
     }

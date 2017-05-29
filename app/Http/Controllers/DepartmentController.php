@@ -18,7 +18,7 @@ class DepartmentController extends Controller
      return view('department.index', ['departments' => $departments]);
     }
 
-  
+
     /**
      * Show the form for creating a new resource.
      *
@@ -65,7 +65,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+      $department = DepartmentModel::find($id);
+      return view('department.edit', compact('department'));
     }
 
     /**
@@ -77,7 +78,13 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $department = DepartmentModel::find($id);
+       $department->departmentName = $request->departmentName;
+       $department->save();
+
+       session()->flash('message','Updated Successfully');
+       return redirect('/department');
+
     }
 
     /**
@@ -88,6 +95,9 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $department = DepartmentModel::find($id);
+      $department->delete();
+      session()->flash('message','Delete Successfully');
+      return redirect('/department');
     }
 }

@@ -11,31 +11,21 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Employee Designation</div>
+                <div class="panel-heading">Bank account</div>
 
                 <div class = "panel-body">
-                <form class = "" method = "GET" action = "{{route('emdesignation.update', $emdesignation->id)}}">
+                <form class = "" method = "GET" action = "{{route('bankaccount.update', $bankaccount->id)}}">
 
                   <div class="form-group">
 
-                  	<input class="form-control" name="name" type="text" value= "{{$emdesignation->accountinfo->name}}" disabled>
-                  	<input class = "form-control" name="user_id" value= "{{$emdesignation->user_id}}" type="hidden">
+                  	<input class="form-control" name="name" type="text" value= "{{$bankaccount->accountinfo->name}}" disabled>
+                  	<input class = "form-control" name="user_id" value= "{{$bankaccount->user_id}}" type="hidden">
 
                   </div>
 
-
-
-
-                  <div class="form-group">
-
-                    {!! Form::select('designation_id', $designation, $emdesignation->designation_id, ['placeholder' => 'Select designation', 'class'=>'form-control']) !!}
-                  </div>
-
-
-                  <input type= "date" class = "form-control" name="dateStart" value = "{{$emdesignation->dateStart}}" placeholder="Date Start"><br>
-                  <input type= "date" class = "form-control" name="dateEnd" value = "{{$emdesignation->dateEnd}}" placeholder="Date End"><br>
-                  <input type= "time" class = "form-control" name="shiftStart" value = "{{$emdesignation->shiftStart}}" placeholder="Shift Start"><br>
-                  <input type= "time" class = "form-control" name="shiftEnd" value = "{{$emdesignation->shiftEnd}}" placeholder="Shift Start"><br>
+                  <input type= "text" class = "form-control" name="account_name" value = "{{$bankaccount->account_name}}" placeholder="Account name"><br>
+                  <input type= "text" class = "form-control" name="account_number" value = "{{$bankaccount->account_number}}" placeholder="Account number"><br>
+                  <input type= "text" class = "form-control" name="bank_name" value = "{{$bankaccount->bank_name}}" placeholder="Bank name"><br>
 
                 <button type="submit" class="btn btn-primary">Edit</button>
                 <input type="hidden" name="_token" value="{{csrf_token()}}">

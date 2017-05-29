@@ -26,23 +26,35 @@ Route::get('/accounts/{user}/edit','AccountInfoController@edit')->name('accounts
 Route::get('/accounts/{accounts}',array('as' => 'accounts.update', 'uses' => 'AccountInfoController@update'));
 Route::delete('/accounts/{user}','AccountInfoController@destroy')->name('accounts.destroy');
 
-Route::get('/department/index','DepartmentController@index')->name('department.index');
+Route::get('/department','DepartmentController@index')->name('department.index');
 Route::get('/department/add','DepartmentController@create')->name('department.create');
 Route::post('/department/add','DepartmentController@store')->name('department.store');
+Route::get('/department/{department}/edit','DepartmentController@edit')->name('department.edit');
+Route::get('/department/{department}',array('as' => 'department.update', 'uses' => 'DepartmentController@update'));
+Route::delete('/department/{department}','DepartmentController@destroy')->name('department.destroy');
 
-Route::get('/designation/index','DesignationController@index')->name('designation.index');
+Route::get('/designation','DesignationController@index')->name('designation.index');
 Route::get('/designation/add','DesignationController@create')->name('designation.create');
 Route::post('/designation/add','DesignationController@store')->name('designation.store');
+Route::get('/designation/{designation}/edit','DesignationController@edit')->name('designation.edit');
+Route::get('/designation/{designation}',array('as' => 'designation.update', 'uses' => 'DesignationController@update'));
+Route::delete('/designation/{designation}','DesignationController@destroy')->name('designation.destroy');
 
-Route::get('/emdesignation/index','EmDesignationController@index')->name('emdesignation.index');
+Route::get('/emdesignation','EmDesignationController@index')->name('emdesignation.index');
 Route::get('/emdesignation/add', array('as'=>'user','uses'=>'EmDesignationController@create'));
 Route::get('/emdesignation/autocomplete',array('as' => 'autocomplete','uses'=>'EmDesignationController@autocomplete'));
 // Route::get('/emdesignation/add','EmDesignationController@create')->name('emdesignation.create');
 Route::post('/emdesignation/add','EmDesignationController@store')->name('emdesignation.store');
+Route::get('/emdesignation/{emdesignation}/edit','EmDesignationController@edit')->name('emdesignation.edit');
+Route::get('/emdesignation/{emdesignation}',array('as' => 'emdesignation.update', 'uses' => 'EmDesignationController@update'));
+Route::delete('/emdesignation/{emdesignation}','EmDesignationController@destroy')->name('emdesignation.destroy');
 
-Route::get('/bankaccount/index','BankaccountController@index')->name('bankaccount.index');
+Route::get('/bankaccount','BankaccountController@index')->name('bankaccount.index');
 Route::get('/bankaccount/add', array('as'=>'bankaccount.create','uses'=>'BankaccountController@create'));
 Route::post('/bankaccount/add','BankaccountController@store')->name('bankaccount.store');
+Route::get('/bankaccount/{bankaccount}/edit','BankaccountController@edit')->name('bankaccount.edit');
+Route::get('/bankaccount/{bankaccount}',array('as' => 'bankaccount.update', 'uses' => 'BankaccountController@update'));
+Route::delete('/bankaccount/{bankaccount}','BankaccountController@destroy')->name('bankaccount.destroy');
 ////////////////////////////////////////////////////
 
 

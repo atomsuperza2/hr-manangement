@@ -80,7 +80,9 @@ class EmDesignationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $designation = DesignationModel::pluck('designationName','id');
+        $emdesignation = EmDesignationModel::find($id);
+        return view('emdesignation.edit', ['designation' => $designation] ,compact('emdesignation'));
     }
 
     /**
@@ -92,7 +94,16 @@ class EmDesignationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $emdesignation = EmDesignationModel::find($id);
+        $emdesignation->user_id = $request->user_id;
+        $emdesignation->designation_id = $request->designation_id;
+        $emdesignation->dateStart = $request->dateStart;
+        $emdesignation->dateEnd = $request->dateEnd;
+        $emdesignation->shiftStart = $request->shiftStart;
+        $emdesignation->shiftEnd = $request->shiftEnd;
+        $emdesignation->save();
+        session()->flash('message','Updated Successfully');
+        return redirect('/emdesignation');
     }
 
     /**
@@ -103,6 +114,9 @@ class EmDesignationController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $emdesignation = EmDesignationModel::find($id);
+      $emdesignation->delete();
+      session()->flash('message','Delete Successfully');
+      return redirect('/emdesignation');
     }
 }

@@ -63,7 +63,9 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        //
+      $department = DepartmentModel::pluck('departmentName','id');
+      $designation = DesignationModel::find($id);
+      return view('designation.edit', ['department' => $department], compact('designation'));
     }
 
     /**
@@ -75,7 +77,13 @@ class DesignationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $designation = DesignationModel::find($id);
+      $designation->department_id = $request->department_id;
+      $designation->designationName = $request->designationName;
+      $designation->save();
+
+      session()->flash('message','Updated Successfully');
+      return redirect('/designation');
     }
 
     /**
@@ -86,6 +94,9 @@ class DesignationController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $designation = DesignationModel::find($id);
+      $designation->delete();
+      session()->flash('message','Delete Successfully');
+      return redirect('/designation');
     }
 }

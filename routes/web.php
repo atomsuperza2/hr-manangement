@@ -55,6 +55,13 @@ Route::post('/bankaccount/add','BankaccountController@store')->name('bankaccount
 Route::get('/bankaccount/{bankaccount}/edit','BankaccountController@edit')->name('bankaccount.edit');
 Route::get('/bankaccount/{bankaccount}',array('as' => 'bankaccount.update', 'uses' => 'BankaccountController@update'));
 Route::delete('/bankaccount/{bankaccount}','BankaccountController@destroy')->name('bankaccount.destroy');
+
+Route::get('/events', 'EventController@index')->name('events.index');
+Route::get('/events/add', 'EventController@create')->name('events.create');
+Route::post('/events/add', 'EventController@store')->name('events.store');
+Route::get('/events/{event}/edit', 'EventController@edit')->name('events.edit');
+Route::get('/events/{events}', array('as' => 'events.update', 'uses' => 'EventController@update'));
+Route::delete('/events/{event}', 'EventController@destroy')->name('events.destroy');
 ////////////////////////////////////////////////////
 
 

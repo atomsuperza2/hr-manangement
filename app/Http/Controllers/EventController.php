@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DepartmentModel;
-
-class DepartmentController extends Controller
+use App\EventModel;
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-      $departments = DepartmentModel::all();
-     return view('department.index', ['departments' => $departments]);
+      $events = EventModel::all();
+     return view('events.index', ['events' => $events]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +24,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('department.add');
+        return view('events.add');
     }
 
     /**
@@ -37,13 +35,9 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-      $department = new DepartmentModel;
-
-      $department->departmentName =$request -> departmentName;
-
-      $department->save();
-
-      return redirect()->route('department.index')->with('alert-succress','Add new department success.');
+        $events = new EventModel($request->all());
+        $events->save();
+        return redirect()->route('events.index')->with('alert-succress','Add new event success.');
     }
 
     /**
@@ -65,8 +59,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-      $department = DepartmentModel::find($id);
-      return view('department.edit', compact('department'));
+        $events = EventModel::find($id);
+        return view('events.edit', compact('events'));
     }
 
     /**
@@ -78,13 +72,14 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $department = DepartmentModel::find($id);
-       $department->departmentName = $request->departmentName;
-       $department->save();
-
-       session()->flash('message','Updated Successfully');
-       return redirect('/department');
-
+      $events = EventModel::find($id);
+      $events->event_name = $request->event_name;
+      $events->event_description = $request->event_description;
+      $events->eventStart = $request->eventStart;
+      $events->eventEnd = $request->eventEnd;
+      $events->save();
+      session()->flash('message','Updated Successfully');
+      return redirect('/events');
     }
 
     /**
@@ -95,9 +90,9 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-      $department = DepartmentModel::find($id);
-      $department->delete();
-      session()->flash('message','Delete Successfully');
-      return redirect('/department');
+        $events = EventModel::find($id);
+        $events->delete();
+        session()->flash('message','Delete Successfully');
+        return redirect('/events');
     }
 }

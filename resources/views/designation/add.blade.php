@@ -20,7 +20,7 @@
 
                   <input type= "text" class = "form-control" name="designationName" placeholder="Designation"><br>
 
-                    <!-- <input type= "text" class = "form-control" name="UserQId" placeholder="UserQId"><br> -->
+                    
                 <button type="submit" class="btn btn-primary">Add</button>
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
             </div>

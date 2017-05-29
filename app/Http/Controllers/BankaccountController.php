@@ -61,7 +61,9 @@ class BankaccountController extends Controller
      */
     public function edit($id)
     {
-        //
+
+      $bankaccount = BankaccountModel::find($id);
+      return view('bankaccount.edit', compact('bankaccount'));
     }
 
     /**
@@ -73,7 +75,14 @@ class BankaccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bankaccount = BankaccountModel::find($id);
+        $bankaccount->user_id = $request->user_id;
+        $bankaccount->account_name = $request->account_name;
+        $bankaccount->account_number = $request->account_number;
+        $bankaccount->bank_name = $request->bank_name;
+        $bankaccount->save();
+        session()->flash('message','Updated Successfully');
+        return redirect('/bankaccount');
     }
 
     /**
@@ -84,6 +93,9 @@ class BankaccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $bankaccount = BankaccountModel::find($id);
+      $bankaccount->delete();
+      session()->flash('message','Delete Successfully');
+      return redirect('/bankaccount');
     }
 }

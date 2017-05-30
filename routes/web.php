@@ -62,6 +62,13 @@ Route::post('/events/add', 'EventController@store')->name('events.store');
 Route::get('/events/{event}/edit', 'EventController@edit')->name('events.edit');
 Route::get('/events/{events}', array('as' => 'events.update', 'uses' => 'EventController@update'));
 Route::delete('/events/{event}', 'EventController@destroy')->name('events.destroy');
+
+Route::get('/holidays', 'HolidaysController@index')->name('holidays.index');
+Route::get('/holidays/add', 'HolidaysController@create')->name('holidays.create');
+Route::post('/holidays/add', 'HolidaysController@store')->name('holidays.store');
+Route::get('/holidays/{holiday}/edit', 'HolidaysController@edit')->name('holidays.edit');
+Route::get('/holidays/{holidays}', array('as' => 'holidays.update', 'uses' => 'HolidaysController@update'));
+Route::delete('/holidays/{holiday}', 'HolidaysController@destroy')->name('holidays.destroy');
 ////////////////////////////////////////////////////
 
 

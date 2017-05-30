@@ -29,6 +29,9 @@ class AccountInfo extends Model
     return $this->hasMany('App\AwardsModel');
   }
 
+  public function training(){
+    return $this->hasMany('App\TrainingModel');
+  }
 
   public function scopeFilter($query, $keywords)
   {

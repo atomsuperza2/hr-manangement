@@ -69,6 +69,13 @@ Route::post('/holidays/add', 'HolidaysController@store')->name('holidays.store')
 Route::get('/holidays/{holiday}/edit', 'HolidaysController@edit')->name('holidays.edit');
 Route::get('/holidays/{holidays}', array('as' => 'holidays.update', 'uses' => 'HolidaysController@update'));
 Route::delete('/holidays/{holiday}', 'HolidaysController@destroy')->name('holidays.destroy');
+
+Route::get('/awards', 'AwardsController@index')->name('awards.index');
+Route::get('/awards/add', array('as'=>'awards.create','uses'=>'AwardsController@create'));
+Route::post('/awards/add', 'AwardsController@store')->name('awards.store');
+Route::get('/awards/{award}/edit', 'AwardsController@edit')->name('awards.edit');
+Route::get('/awards/{awards}', array('as' => 'awards.update', 'uses' => 'AwardsController@update'));
+Route::delete('/awards/{award}', 'AwardsController@destroy')->name('awards.destroy');
 ////////////////////////////////////////////////////
 
 

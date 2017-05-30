@@ -24,6 +24,12 @@ class AccountInfo extends Model
       return $this->hasOne('App\BankaccountModel');
   }
 
+  public function awards()
+  {
+    return $this->hasMany('App\AwardsModel');
+  }
+
+
   public function scopeFilter($query, $keywords)
   {
   if ($keywords->name) {

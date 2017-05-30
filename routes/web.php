@@ -76,6 +76,20 @@ Route::post('/awards/add', 'AwardsController@store')->name('awards.store');
 Route::get('/awards/{award}/edit', 'AwardsController@edit')->name('awards.edit');
 Route::get('/awards/{awards}', array('as' => 'awards.update', 'uses' => 'AwardsController@update'));
 Route::delete('/awards/{award}', 'AwardsController@destroy')->name('awards.destroy');
+
+Route::get('/trainingprogram', 'TrainingprogramController@index')->name('trainingprogram.index');
+Route::get('/trainingprogram/add', array('as'=>'trainingprogram.create','uses'=>'TrainingprogramController@create'));
+Route::post('/trainingprogram/add', 'TrainingprogramController@store')->name('trainingprogram.store');
+Route::get('/trainingprogram/{trainingprograms}/edit', 'TrainingprogramController@edit')->name('trainingprogram.edit');
+Route::get('/trainingprogram/{trainingprogram}', array('as' => 'trainingprogram.update', 'uses' => 'TrainingprogramController@update'));
+Route::delete('/trainingprogram/{trainingprograms}', 'TrainingprogramController@destroy')->name('trainingprogram.destroy');
+
+Route::get('/training', 'TrainingController@index')->name('training.index');
+Route::get('/training/add', array('as'=>'training.create','uses'=>'TrainingController@create'));
+Route::post('/training/add', 'TrainingController@store')->name('training.store');
+Route::get('/training/{training}/edit', 'TrainingController@edit')->name('training.edit');
+Route::get('/training/{training}', array('as' => 'training.update', 'uses' => 'TrainingController@update'));
+Route::delete('/training/{training}', 'TrainingController@destroy')->name('training.destroy');
 ////////////////////////////////////////////////////
 
 

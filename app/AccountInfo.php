@@ -37,6 +37,10 @@ class AccountInfo extends Model
     return $this->hasMany('App\LeavesModel');
   }
 
+  public function attendance(){
+    return $this->hasMany('App\AttendanceModel');
+  }
+
   public function scopeFilter($query, $keywords)
   {
   if ($keywords->name) {

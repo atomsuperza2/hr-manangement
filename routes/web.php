@@ -111,6 +111,13 @@ Route::post('/cutoff/add', 'CutoffController@store')->name('cutoff.store');
 Route::get('/cutoff/{cutoffs}/edit', 'CutoffController@edit')->name('cutoff.edit');
 Route::get('/cutoff/{cutoffs}', array('as' => 'cutoff.update', 'uses' => 'CutoffController@update'));
 Route::delete('/cutoff/{cutoffs}', 'CutoffController@destroy')->name('cutoff.destroy');
+
+Route::get('/attendance', 'AttendanceController@index')->name('attendance.index');
+Route::get('/attendance/add', 'AttendanceController@create')->name('attendance.create');
+Route::post('/attendance/add', 'AttendanceController@store')->name('attendance.store');
+Route::get('/attendance/{attendance}/edit', 'AttendanceController@edit')->name('attendance.edit');
+Route::get('/attendance/{attendance}', array('as' => 'attendance.update', 'uses' => 'AttendanceController@update'));
+Route::delete('/attendance/{attendance}', 'AttendanceController@destroy')->name('attendance.destroy');
 ////////////////////////////////////////////////////
 
 

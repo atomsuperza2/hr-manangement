@@ -104,6 +104,13 @@ Route::post('/leaves/add', 'LeavesController@store')->name('leaves.store');
 Route::get('/leaves/{leaves}/edit', 'LeavesController@edit')->name('leaves.edit');
 Route::get('/leaves/{leaves}', array('as' => 'leaves.update', 'uses' => 'LeavesController@update'));
 Route::delete('/leaves/{leaves}', 'LeavesController@destroy')->name('leaves.destroy');
+
+Route::get('/cutoff', 'CutoffController@index')->name('cutoff.index');
+Route::get('/cutoff/add', 'CutoffController@create')->name('cutoff.create');
+Route::post('/cutoff/add', 'CutoffController@store')->name('cutoff.store');
+Route::get('/cutoff/{cutoffs}/edit', 'CutoffController@edit')->name('cutoff.edit');
+Route::get('/cutoff/{cutoffs}', array('as' => 'cutoff.update', 'uses' => 'CutoffController@update'));
+Route::delete('/cutoff/{cutoffs}', 'CutoffController@destroy')->name('cutoff.destroy');
 ////////////////////////////////////////////////////
 
 

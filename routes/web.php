@@ -90,6 +90,20 @@ Route::post('/training/add', 'TrainingController@store')->name('training.store')
 Route::get('/training/{training}/edit', 'TrainingController@edit')->name('training.edit');
 Route::get('/training/{training}', array('as' => 'training.update', 'uses' => 'TrainingController@update'));
 Route::delete('/training/{training}', 'TrainingController@destroy')->name('training.destroy');
+
+Route::get('/leavestype', 'LeavestypeController@index')->name('leavestype.index');
+Route::get('/leavestype/add', 'LeavestypeController@create')->name('leavestype.create');
+Route::post('/leavestype/add', 'LeavestypeController@store')->name('leavestype.store');
+Route::get('/leavestype/{leavestypes}/edit', 'LeavestypeController@edit')->name('leavestype.edit');
+Route::get('/leavestype/{leavestypes}', array('as' => 'leavestype.update', 'uses' => 'LeavestypeController@update'));
+Route::delete('/leavestype/{leavestypes}', 'LeavestypeController@destroy')->name('leavestype.destroy');
+
+Route::get('/leaves', 'LeavesController@index')->name('leaves.index');
+Route::get('/leaves/add', 'LeavesController@create')->name('leaves.create');
+Route::post('/leaves/add', 'LeavesController@store')->name('leaves.store');
+Route::get('/leaves/{leaves}/edit', 'LeavesController@edit')->name('leaves.edit');
+Route::get('/leaves/{leaves}', array('as' => 'leaves.update', 'uses' => 'LeavesController@update'));
+Route::delete('/leaves/{leaves}', 'LeavesController@destroy')->name('leaves.destroy');
 ////////////////////////////////////////////////////
 
 

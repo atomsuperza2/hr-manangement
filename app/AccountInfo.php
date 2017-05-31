@@ -37,6 +37,10 @@ class AccountInfo extends Model
     return $this->hasMany('App\LeavesModel');
   }
 
+  public function absences(){
+    return $this->hasMany('App\AbsencesModel');
+  }
+
   public function attendance(){
     return $this->hasMany('App\AttendanceModel');
   }

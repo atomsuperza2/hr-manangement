@@ -118,6 +118,13 @@ Route::post('/attendance/add', 'AttendanceController@store')->name('attendance.s
 Route::get('/attendance/{attendance}/edit', 'AttendanceController@edit')->name('attendance.edit');
 Route::get('/attendance/{attendance}', array('as' => 'attendance.update', 'uses' => 'AttendanceController@update'));
 Route::delete('/attendance/{attendance}', 'AttendanceController@destroy')->name('attendance.destroy');
+
+Route::get('/absences', 'AbsencesController@index')->name('absences.index');
+Route::get('/absences/add', 'AbsencesController@create')->name('absences.create');
+Route::post('/absences/add', 'AbsencesController@store')->name('absences.store');
+Route::get('/absences/{absences}/edit', 'AbsencesController@edit')->name('absences.edit');
+Route::get('/absences/{absences}', array('as' => 'absences.update', 'uses' => 'AbsencesController@update'));
+Route::delete('/absences/{absences}', 'AbsencesController@destroy')->name('absences.destroy');
 ////////////////////////////////////////////////////
 
 

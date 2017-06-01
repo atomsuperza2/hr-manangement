@@ -11,7 +11,7 @@ class EmDesignationModel extends Model
 
   public function designation()
   {
-      return $this->belongsTo('App\DesignationModel');
+      return $this->belongsTo('App\DesignationModel','designation_id');
   }
 
   public function accountinfo()

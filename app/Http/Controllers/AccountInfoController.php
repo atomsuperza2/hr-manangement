@@ -5,6 +5,8 @@ use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\AccountInfo;
+use App\DepartmentModel;
+use App\DesignationModel;
 use Auth;
 class AccountInfoController extends Controller
 {
@@ -27,7 +29,9 @@ class AccountInfoController extends Controller
      */
     public function create()
     {
-          return view('accounts.add');
+          $designation = DesignationModel::pluck('designationName','id');
+          $department = DepartmentModel::pluck('departmentName','id');
+          return view('accounts.add', ['designation' => $designation],['department' => $department]);
     }
 
     /**
@@ -55,6 +59,8 @@ class AccountInfoController extends Controller
             'hiredDate' => $request -> hiredDate,
             'exitDate' => $request -> exitDate,
             'salary' => $request -> salary,
+            'designation_id' => $request -> designation_id,
+            'department_id' => $request -> department_id,
             'user_id' => $user->id,
           ]);
 
@@ -75,7 +81,8 @@ class AccountInfoController extends Controller
      */
     public function show($id)
     {
-        //
+      $accounts = AccountInfo::find($id);
+      return view('accounts.profile', compact('accounts'));
     }
 
     /**

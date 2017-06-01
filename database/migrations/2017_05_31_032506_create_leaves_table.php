@@ -20,7 +20,7 @@ class CreateLeavesTable extends Migration
             $table->date('dateFrom');
             $table->date('dateTo');
             $table->date('dateApplied');
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }

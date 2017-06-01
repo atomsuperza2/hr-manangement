@@ -69,7 +69,7 @@ class EmDesignationController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

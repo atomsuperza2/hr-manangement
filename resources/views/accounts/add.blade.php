@@ -121,6 +121,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
+                            <label for="department_id" class="col-md-4 control-label">Department</label>
+
+                            <div class="col-md-6">
+                                {!! Form::select('department_id', $department, null, ['placeholder' => 'Select department', 'class'=>'form-control']) !!}
+
+                                @if ($errors->has('department_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('department_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('designation_id') ? ' has-error' : '' }}">
+                            <label for="designation_id" class="col-md-4 control-label">Designation</label>
+
+                            <div class="col-md-6">
+                                  {!! Form::select('designation_id', $designation, null, ['placeholder' => 'Select designation', 'class'=>'form-control']) !!}
+
+                                @if ($errors->has('designation_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('designation_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <!-- <div class="form-group{{ $errors->has('shiftStart') ? ' has-error' : '' }}">
                             <label for="shiftStart" class="col-md-4 control-label">Shift Start</label>
 

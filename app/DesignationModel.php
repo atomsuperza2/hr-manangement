@@ -14,6 +14,11 @@ class DesignationModel extends Model
       return $this->hasMany('App\EmDesignationModel');
   }
 
+  public function accountinfo()
+  {
+      return $this->hasMany('App\AccountInfo');
+  }
+
   public function department()
   {
       return $this->belongsTo('App\DepartmentModel');

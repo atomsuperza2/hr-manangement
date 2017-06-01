@@ -25,6 +25,7 @@ Route::post('/accounts/add','AccountInfoController@store')->name('account.store'
 Route::get('/accounts/{user}/edit','AccountInfoController@edit')->name('accounts.edit');
 Route::get('/accounts/{accounts}',array('as' => 'accounts.update', 'uses' => 'AccountInfoController@update'));
 Route::delete('/accounts/{user}','AccountInfoController@destroy')->name('accounts.destroy');
+Route::get('/accounts/{accounts}/profile', 'AccountInfoController@show')->name('accounts.show');
 
 Route::get('/department','DepartmentController@index')->name('department.index');
 Route::get('/department/add','DepartmentController@create')->name('department.create');
@@ -48,6 +49,7 @@ Route::post('/emdesignation/add','EmDesignationController@store')->name('emdesig
 Route::get('/emdesignation/{emdesignation}/edit','EmDesignationController@edit')->name('emdesignation.edit');
 Route::get('/emdesignation/{emdesignation}',array('as' => 'emdesignation.update', 'uses' => 'EmDesignationController@update'));
 Route::delete('/emdesignation/{emdesignation}','EmDesignationController@destroy')->name('emdesignation.destroy');
+
 
 Route::get('/bankaccount','BankaccountController@index')->name('bankaccount.index');
 Route::get('/bankaccount/add', array('as'=>'bankaccount.create','uses'=>'BankaccountController@create'));

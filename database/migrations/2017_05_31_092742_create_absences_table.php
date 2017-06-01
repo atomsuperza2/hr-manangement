@@ -17,7 +17,7 @@ class CreateAbsencesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('leavetype_id');
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->date('date');
             $table->timestamps();
         });

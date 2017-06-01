@@ -15,13 +15,24 @@ class AccountInfo extends Model
   {
       return $this->hasOne('App\EmDesignationModel');
   }
+
+  public function designation()
+  {
+      return $this->belongsTo('App\DesignationModel','designation_id');
+  }
+
+  public function department()
+  {
+      return $this->belongsTo('App\DepartmentModel');
+  }
+
   public function user()
   {
       return $this->belongsTo('App\User');
   }
   public function bankaccount()
   {
-      return $this->hasOne('App\BankaccountModel');
+      return $this->hasOne('App\BankaccountModel','user_id','id');
   }
 
   public function awards()

@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\AccountInfo;
 use App\DepartmentModel;
 use App\DesignationModel;
+use App\BankaccountModel;
 use Auth;
+
 class AccountInfoController extends Controller
 {
     /**
@@ -63,6 +65,9 @@ class AccountInfoController extends Controller
             'department_id' => $request -> department_id,
             'user_id' => $user->id,
           ]);
+            $user->accountinfo->bankaccount = BankaccountModel::create([
+            'user_id' => $user->accountinfo->id,
+          ]);
 
           // $user->account_info()->create($request->except(['username', 'password']), $data);
 
@@ -93,9 +98,10 @@ class AccountInfoController extends Controller
      */
     public function edit($id)
     {
-
+      $designation = DesignationModel::pluck('designationName','id');
+      $department = DepartmentModel::pluck('departmentName','id');
       $accounts = AccountInfo::find($id);
-      return view('accounts.edit', compact('accounts'));
+      return view('accounts.edit', ['department' => $department, 'designation' => $designation, 'accounts' => $accounts]);
     }
 
     /**
@@ -119,6 +125,8 @@ class AccountInfoController extends Controller
         $account->phone = $request -> phone;
         $account->address = $request -> address;
         $account->employeeID = $request -> employeeID;
+        $account->department_id = $request -> department_id;
+        $account->designation_id = $request -> designation_id;
         $account->hiredDate = $request -> hiredDate;
         $account->exitDate = $request -> exitDate;
         $account->salary = $request -> salary;

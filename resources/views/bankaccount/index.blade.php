@@ -28,7 +28,7 @@
   @foreach ($bankaccounts as $bankaccount)
     <tr>
       <td>{{ $bankaccount->id }}</td>
-        <td>{{ $bankaccount->accountinfo->name}}</td>
+        <td><a href="{{route('accounts.show', $bankaccount->user_id)}}">{{ $bankaccount->accountinfo->name}}</a></td>
         <td>{{ $bankaccount->account_name}}</td>
         <td>{{ $bankaccount->account_number}}</td>
         <td>{{ $bankaccount->bank_name}}</td>

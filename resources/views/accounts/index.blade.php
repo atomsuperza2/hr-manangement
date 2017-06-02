@@ -18,12 +18,11 @@
 <th>Name</th>
 <th>Birthday</th>
 <th>Gender</th>
-<th>Email</th>
+<!-- <th>Email</th> -->
 <th>Phone</th>
-<th>Address</th>
+<!-- <th>Address</th> -->
 <th>EmployeeID</th>
-<th>Department</th>
-<th>Designation</th>
+
 <th>HiredDate</th>
 <th>ExitDate</th>
 <th>Salary</th>
@@ -35,12 +34,11 @@
         <td><a href="{{route('accounts.show', $user->id)}}">{{ $user->name}}</a></td>
         <td>{{ $user->birthday}}</td>
         <td>{{ $user->Gender}}</td>
-        <td>{{ $user->email}}</td>
+        <!-- <td>{{ $user->email}}</td> -->
         <td>{{ $user->phone}}</td>
-        <td>{{ $user->address}}</td>
+        <!-- <td>{{ $user->address}}</td> -->
         <td>{{ $user->employeeID}}</td>
-        <td>{{ $user->department->departmentName}}</td>
-        <td>{{ $user->designation->designationName}}</td>
+
         <td>{{ $user->hiredDate}}</td>
         <td>{{ $user->exitDate}}</td>
         <td>{{ $user->salary}}</td>

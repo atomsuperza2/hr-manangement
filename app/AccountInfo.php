@@ -37,7 +37,7 @@ class AccountInfo extends Model
 
   public function awards()
   {
-    return $this->hasMany('App\AwardsModel');
+    return $this->hasMany('App\AwardsModel', 'user_id', 'id');
   }
 
   public function training(){

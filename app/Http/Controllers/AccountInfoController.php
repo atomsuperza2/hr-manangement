@@ -12,6 +12,7 @@ use App\CutoffModel;
 use Auth;
 use App\AttendanceModel;
 use App\Http\Controllers\Api\DaterangeController;
+use Image;
 
 class AccountInfoController extends Controller
 {
@@ -79,6 +80,20 @@ class AccountInfoController extends Controller
           // $account->save();
 
           return redirect()->route('accounts.index')->with('alert-succress','Add new account success.');
+    }
+
+    public function update_avatar(Request $request, $id){
+
+      if($request->hasFile('avatar')){
+        $avatar = $request->file('avatar');
+        $filename = time() . '.' . $avatar->getClientOriginalExtension();
+        Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatars/' . $filename));
+
+        $user = AccountInfo::find($id);
+        $user->avatar = $filename;
+        $user->save();
+      }
+      return redirect("/accounts/$id/profile");
     }
 
     /**

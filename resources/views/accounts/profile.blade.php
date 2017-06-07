@@ -6,19 +6,26 @@
   <div class="form-group">
       <div class="col-md-2 ">
         <a class="btn btn-primary" href="{{ route('accounts.edit', $accounts->id) }}">Edit profile</a>
-
         <a class="btn btn-primary" id="selectCutoff">Attendance</a>
         <a class="btn btn-primary" href="{{route('absences.usercreateabsences', $accounts->id) }}">Absences</a>
         <a class="btn btn-primary" href="{{ route('bankaccount.edit', $accounts->id) }}">Bank account</a>
         <a class="btn btn-primary" href="{{ route('awards.usercreateaward', $accounts->id)}}">Awards</a>
         <a class="btn btn-primary" href="{{ route('training.usertraining', $accounts->id)}}">Training</a>
         <a class="btn btn-primary" href="{{ route('leaves.userleave', $accounts->id)}}">Leave</a>
+        <img src="/uploads/avatars/{{$accounts->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+        <form enctype="multipart/form-data" action="{{ route('accounts.update_avatar', $accounts->id) }} " method="POST">
+          <label>Update Profile Image</label>
+            <input type="file" name="avatar">
+            <input type="hidden" name="_token" value="{{csrf_token() }}">
+            <input type="submit" class="pull-right btn btn-sm btn-primary">
+        </form>
       </div>
   </div>
 
   </div>
   </div>
   <br>
+
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
 

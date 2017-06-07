@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AwardsModel;
+use App\AccountInfo;
 
 class AwardsController extends Controller
 {
@@ -41,6 +42,28 @@ class AwardsController extends Controller
       return redirect()->route('awards.index')->with('alert-succress','Add new awards success.');
     }
 
+    public function usercreateaward($id)
+    {
+
+      $accounts = AccountInfo::find($id);
+      return view('awards.adduseraward', compact('accounts'));
+    }
+
+    public function storeaward(Request $request, $id){
+      $accounts = AccountInfo::find($id);
+
+      $awards = new AwardsModel();
+      $awards->user_id = $request->user_id;
+      $awards->awardName = $request->awardName;
+      $awards->giftItem = $request->giftItem;
+      $awards->cashPrice = $request->cashPrice;
+      $awards->save();
+
+
+
+      return redirect("/accounts/$id/profile");
+
+    }
     /**
      * Display the specified resource.
      *

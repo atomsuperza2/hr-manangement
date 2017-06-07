@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -8,7 +7,7 @@
 @endif
 
 <div class="container">
-  <a href="/absences/add" class="btn btn-primary">New Absences</a>
+  <a href="/absences/add" class="btn btn-primary">New absences</a>
 <div class="col-md-12">
     <div class="panel panel-default">
     <div class="panel-heading">Absences</div>
@@ -24,15 +23,16 @@
 <th>Action</th>
 </tr>
 <div class="container">
-  @foreach ($absencess as $absences)
+    @foreach ($absencess as $absences)
     <tr>
-      <td>{{ $absences->id }}</td>
-        <td>{{ $absences->accountinfo->name}}</td>
-        <td>{{ $absences->leavestype->leavestype}}</td>
-        <td>{{ $absences->date}}</td>
-        <td>{{ $absences->reason}}</td>
+        <td>{{$absences->id}}</td>
+        <td>{{$absences->accountinfo->name}}</td>
+        <td>{{$absences->leavetype->leavestype}}</td>
+        <td>{{$absences->date}}</td>
+        <td>{{$absences->reason}}</td>
+
         <td>
-          {!! Form::open(['method'=>'DELETE', 'route'=>['absences.destroy', $absences->id]]) !!}
+          {!! Form::open(['method'=>'DELETE', 'route'=>['absences.destroy',$absences->id]]) !!}
 									<a class="btn btn-primary" href="{{ route('absences.edit', $absences->id) }}">Edit</a>
 									{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 									{!! Form::close() !!}

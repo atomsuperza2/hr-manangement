@@ -26,7 +26,7 @@
     @foreach ($attendances as $attendance)
     <tr>
       <td>{{ $attendance->id}}</td>
-        <td>{{ $attendance->accountinfo->name}}</td>
+        <td>{{$attendance->accountinfo->name}}</td>
         <td>{{$attendance->date}}</td>
         <td>{{$attendance->timeIn}}</td>
         <td>{{$attendance->timeOut}}</td>

@@ -8,7 +8,10 @@ use App\AccountInfo;
 use App\DepartmentModel;
 use App\DesignationModel;
 use App\BankaccountModel;
+use App\CutoffModel;
 use Auth;
+use App\AttendanceModel;
+use App\Http\Controllers\Api\DaterangeController;
 
 class AccountInfoController extends Controller
 {
@@ -86,9 +89,62 @@ class AccountInfoController extends Controller
      */
     public function show($id)
     {
+      $cutoff = CutoffModel::pluck('dateStart', 'id');
       $accounts = AccountInfo::find($id);
-      return view('accounts.profile', compact('accounts'));
+      return view('accounts.profile', ['cutoff' => $cutoff], compact('accounts'));
     }
+
+    public function checkAttendance(Request $request, $id)
+    {
+
+      $accounts = AccountInfo::find($id);
+      $cutoff = CutoffModel::find($request->cutoffId);
+      // dd($cutoff);
+      $ranges = DaterangeController::dateRange($cutoff->dateStart, $cutoff->dateEnd);
+
+      return view('checkAttendance.check', ['cutoff' => $cutoff, 'ranges' => $ranges], compact('accounts'));
+    }
+
+    public function submitAttendance(Request $request, $id){
+      $user_id = $request->user_id;
+      $date = $request->date;
+      $timeIn = $request->timeIn;
+      $timeOut = $request->timeOut;
+
+// dd($request->all());
+       foreach ($request->date as $key => $date) {
+
+          // echo $timeIn[$key];
+          if (($timeIn[$key] !== null && $timeOut[$key] !== null) || ($timeIn[$key] !== null && $timeOut[$key] == null) || ($timeIn[$key] == null && $timeOut[$key] !== null)){
+              // if ($request->a_id == null) {
+
+                $attendance = new AttendanceModel();
+                $attendance->user_id = $id;
+                $attendance->date = $date;
+                $attendance->timeIn = $timeIn[$key];
+                $attendance->timeOut = $timeOut[$key];
+                $attendance->save();
+              }
+
+              // if($request->a_id !== null){
+              //   $attendance = AttendanceModel::find($request->a_id)->update([
+              //     'user_id'=> $request -> user_id,
+              //     'date' => $request -> date,
+              //     'timeIn'=> $request -> timeIn,
+              //     'timeOut' => $request -> timeOut,
+              //   ]);
+              //
+              // }
+
+          }
+
+          return redirect("/accounts/$id/profile");
+
+          // dd($attendance);
+      }
+
+
+      // return view('accounts.submitAttendance', ['result' => $request->all()]);
 
     /**
      * Show the form for editing the specified resource.

@@ -15,10 +15,10 @@ class CreateAbsencesTable extends Migration
     {
         Schema::create('absences', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('leavetype_id');
+            $table->integer('user_id')->nullable();
+            $table->integer('leavetype_id')->nullable();
             $table->string('reason')->nullable();
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }

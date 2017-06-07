@@ -1,22 +1,21 @@
 @extends('layouts.app')
-
+@include('accounts.selectCutoff')
 @section('content')
 <div class="container">
   <div class="col-md-12 col-md-offset-2">
   <div class="form-group">
       <div class="col-md-2 ">
         <a class="btn btn-primary" href="{{ route('accounts.edit', $accounts->id) }}">Edit profile</a>
-      </div>
-  </div>
-  <div class="form-group">
-      <div class="col-md-2 ">
+
+        <a class="btn btn-primary" id="selectCutoff">Attendance</a>
+        <a class="btn btn-primary" href="{{route('absences.usercreateabsences', $accounts->id) }}">Absences</a>
         <a class="btn btn-primary" href="{{ route('bankaccount.edit', $accounts->id) }}">Bank account</a>
+        <a class="btn btn-primary" href="{{ route('awards.usercreateaward', $accounts->id)}}">Awards</a>
+        <a class="btn btn-primary" href="{{ route('training.usertraining', $accounts->id)}}">Training</a>
+        <a class="btn btn-primary" href="{{ route('leaves.userleave', $accounts->id)}}">Leave</a>
       </div>
   </div>
-  <div class="form-group">
-      <div class="col-md-2 ">
-        <a class="btn btn-primary" href="{{ route('awards.create')}}">Awards</a>
-      </div>
+
   </div>
   </div>
   <br>
@@ -151,4 +150,11 @@
     </div>
 
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+$('#selectCutoff').on('click',function(){
+  $('#selectCut').modal('show')
+});
+</script>
 @endsection

@@ -13,4 +13,5 @@ class AttendanceModel extends Model
   {
     return $this->belongsTo('App\AccountInfo', 'user_id');
   }
+
 }

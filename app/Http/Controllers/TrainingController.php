@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TrainingModel;
 use App\TrainingprogramModel;
+use App\AccountInfo;
 
 class TrainingController extends Controller
 {
@@ -44,6 +45,30 @@ class TrainingController extends Controller
       return redirect()->route('training.index')->with('alert-succress','Add new training success.');
     }
 
+    public function usertraining($id)
+    {
+      $trainingprogram = TrainingprogramModel::pluck('trainingP','id');
+      $accounts = AccountInfo::find($id);
+      return view('training.usertraining',['trainingprogram' => $trainingprogram], compact('accounts'));
+    }
+
+    public function storetraining(Request $request, $id){
+      $accounts = AccountInfo::find($id);
+
+      $training = new TrainingModel();
+      $training->user_id = $request->user_id;
+      $training->trainingprogram_id = $request->trainingprogram_id;
+      $training->dateStart = $request->dateStart;
+      $training->dateEnd = $request->dateEnd;
+      $training->shiftStart = $request->shiftStart;
+      $training->shiftEnd = $request->shiftEnd;
+      $training->save();
+
+
+
+      return redirect("/accounts/$id/profile");
+
+    }
     /**
      * Display the specified resource.
      *

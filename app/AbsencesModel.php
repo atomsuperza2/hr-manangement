@@ -9,7 +9,7 @@ class AbsencesModel extends Model
   protected $table = 'absences';
   protected $guarded = [ ];
 
-  public function leavestype()
+  public function leavetype()
   {
       return $this->belongsTo('App\LeavestypeModel', 'leavetype_id');
   }

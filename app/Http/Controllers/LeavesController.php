@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LeavesModel;
 use App\LeavestypeModel;
+use App\AccountInfo;
 
 class LeavesController extends Controller
 {
@@ -43,6 +44,33 @@ class LeavesController extends Controller
       return redirect()->route('leaves.index')->with('alert-succress','Add new leave success.');
     }
 
+    public function userleave($id)
+    {
+      $leavestypes = LeavestypeModel::pluck('leavestype','id');
+      $accounts = AccountInfo::find($id);
+      return view('leaves.userleave', ['leavestypes' => $leavestypes], compact('accounts'));
+    }
+
+    public function storeleave(Request $request, $id)
+    {
+      $accounts = AccountInfo::find($id);
+      // $absences = AbsencesModel::create(['user_id' => $accounts->id, 'leavetype_id' => $request -> leavetype_id,
+      //                                             'reason' => $request -> reason, 'date' => $request -> date]);
+      $leaves = new LeavesModel();
+      $leaves->user_id = $request->user_id;
+      $leaves->leavetype_id = $request->leavetype_id;
+      $leaves->dateFrom = $request->dateFrom;
+      $leaves->dateTo = $request->dateTo;
+      $leaves->dateApplied = $request->dateApplied;
+      $leaves->reason = $request->reason;
+      $leaves->save();
+
+
+
+
+      return redirect("/accounts/$id/profile");
+
+    }
     /**
      * Display the specified resource.
      *

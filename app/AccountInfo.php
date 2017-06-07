@@ -49,11 +49,11 @@ class AccountInfo extends Model
   }
 
   public function absences(){
-    return $this->hasMany('App\AbsencesModel');
+    return $this->hasMany('App\AbsencesModel', 'user_id', 'id');
   }
 
   public function attendance(){
-    return $this->hasMany('App\AttendanceModel');
+    return $this->hasMany('App\AttendanceModel','user_id', 'id');
   }
 
   public function scopeFilter($query, $keywords)

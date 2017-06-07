@@ -17,10 +17,10 @@ class CreateTrainingTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('trainingprogram_id');
-            $table->date('dateStart');
-            $table->time('shiftStart');
-            $table->date('dateEnd');
-            $table->time('shiftEnd');
+            $table->date('dateStart')->nullable();
+            $table->time('shiftStart')->nullable();
+            $table->date('dateEnd')->nullable();
+            $table->time('shiftEnd')->nullable();
             $table->timestamps();
         });
     }

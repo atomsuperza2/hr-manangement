@@ -5,7 +5,14 @@ use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\AccountInfo;
+use App\DepartmentModel;
+use App\DesignationModel;
+use App\BankaccountModel;
+use App\CutoffModel;
 use Auth;
+use App\AttendanceModel;
+use App\Http\Controllers\Api\DaterangeController;
+
 class AccountInfoController extends Controller
 {
     /**
@@ -27,7 +34,9 @@ class AccountInfoController extends Controller
      */
     public function create()
     {
-          return view('accounts.add');
+          $designation = DesignationModel::pluck('designationName','id');
+          $department = DepartmentModel::pluck('departmentName','id');
+          return view('accounts.add', ['designation' => $designation],['department' => $department]);
     }
 
     /**
@@ -55,7 +64,12 @@ class AccountInfoController extends Controller
             'hiredDate' => $request -> hiredDate,
             'exitDate' => $request -> exitDate,
             'salary' => $request -> salary,
+            'designation_id' => $request -> designation_id,
+            'department_id' => $request -> department_id,
             'user_id' => $user->id,
+          ]);
+            $user->accountinfo->bankaccount = BankaccountModel::create([
+            'user_id' => $user->accountinfo->id,
           ]);
 
           // $user->account_info()->create($request->except(['username', 'password']), $data);
@@ -75,8 +89,62 @@ class AccountInfoController extends Controller
      */
     public function show($id)
     {
-        //
+      $cutoff = CutoffModel::pluck('dateStart', 'id');
+      $accounts = AccountInfo::find($id);
+      return view('accounts.profile', ['cutoff' => $cutoff], compact('accounts'));
     }
+
+    public function checkAttendance(Request $request, $id)
+    {
+
+      $accounts = AccountInfo::find($id);
+      $cutoff = CutoffModel::find($request->cutoffId);
+      // dd($cutoff);
+      $ranges = DaterangeController::dateRange($cutoff->dateStart, $cutoff->dateEnd);
+
+      return view('checkAttendance.check', ['cutoff' => $cutoff, 'ranges' => $ranges], compact('accounts'));
+    }
+
+    public function submitAttendance(Request $request, $id){
+      $user_id = $request->user_id;
+      $date = $request->date;
+      $timeIn = $request->timeIn;
+      $timeOut = $request->timeOut;
+
+// dd($request->all());
+       foreach ($request->date as $key => $date) {
+
+          // echo $timeIn[$key];
+          if (($timeIn[$key] !== null && $timeOut[$key] !== null) || ($timeIn[$key] !== null && $timeOut[$key] == null) || ($timeIn[$key] == null && $timeOut[$key] !== null)){
+              // if ($request->a_id == null) {
+
+                $attendance = new AttendanceModel();
+                $attendance->user_id = $id;
+                $attendance->date = $date;
+                $attendance->timeIn = $timeIn[$key];
+                $attendance->timeOut = $timeOut[$key];
+                $attendance->save();
+              }
+
+              // if($request->a_id !== null){
+              //   $attendance = AttendanceModel::find($request->a_id)->update([
+              //     'user_id'=> $request -> user_id,
+              //     'date' => $request -> date,
+              //     'timeIn'=> $request -> timeIn,
+              //     'timeOut' => $request -> timeOut,
+              //   ]);
+              //
+              // }
+
+          }
+
+          return redirect("/accounts/$id/profile");
+
+          // dd($attendance);
+      }
+
+
+      // return view('accounts.submitAttendance', ['result' => $request->all()]);
 
     /**
      * Show the form for editing the specified resource.
@@ -86,9 +154,10 @@ class AccountInfoController extends Controller
      */
     public function edit($id)
     {
-
+      $designation = DesignationModel::pluck('designationName','id');
+      $department = DepartmentModel::pluck('departmentName','id');
       $accounts = AccountInfo::find($id);
-      return view('accounts.edit', compact('accounts'));
+      return view('accounts.edit', ['department' => $department, 'designation' => $designation, 'accounts' => $accounts]);
     }
 
     /**
@@ -112,6 +181,8 @@ class AccountInfoController extends Controller
         $account->phone = $request -> phone;
         $account->address = $request -> address;
         $account->employeeID = $request -> employeeID;
+        $account->department_id = $request -> department_id;
+        $account->designation_id = $request -> designation_id;
         $account->hiredDate = $request -> hiredDate;
         $account->exitDate = $request -> exitDate;
         $account->salary = $request -> salary;

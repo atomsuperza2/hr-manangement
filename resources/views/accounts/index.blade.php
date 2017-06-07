@@ -18,10 +18,11 @@
 <th>Name</th>
 <th>Birthday</th>
 <th>Gender</th>
-<th>Email</th>
+<!-- <th>Email</th> -->
 <th>Phone</th>
-<th>Address</th>
+<!-- <th>Address</th> -->
 <th>EmployeeID</th>
+
 <th>HiredDate</th>
 <th>ExitDate</th>
 <th>Salary</th>
@@ -30,13 +31,14 @@
 <div class="container">
     @foreach ($accounts as $user)
     <tr>
-        <td>{{ $user->name}}</td>
+        <td><a href="{{route('accounts.show', $user->id)}}">{{ $user->name}}</a></td>
         <td>{{ $user->birthday}}</td>
         <td>{{ $user->Gender}}</td>
-        <td>{{ $user->email}}</td>
+        <!-- <td>{{ $user->email}}</td> -->
         <td>{{ $user->phone}}</td>
-        <td>{{ $user->address}}</td>
+        <!-- <td>{{ $user->address}}</td> -->
         <td>{{ $user->employeeID}}</td>
+
         <td>{{ $user->hiredDate}}</td>
         <td>{{ $user->exitDate}}</td>
         <td>{{ $user->salary}}</td>
@@ -45,9 +47,7 @@
 									<a class="btn btn-primary" href="{{ route('accounts.edit', $user->id) }}">Edit</a>
 									{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 									{!! Form::close() !!}
-          <!-- <a href="{{route('accounts.edit', $user->id)}}">edit</a>
-          <form action="{{route('accounts.destroy', $user->id)}}">
-            <button type ="submit" >delete</button> -->
+
           </form>
         </td>
     @endforeach

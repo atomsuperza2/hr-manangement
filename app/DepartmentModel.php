@@ -13,4 +13,9 @@ class DepartmentModel extends Model
     {
         return $this->hasMany('App\DesignationModel');
     }
+    public function accountinfo()
+    {
+        return $this->hasMany('App\AccountInfo');
+    }
+
 }

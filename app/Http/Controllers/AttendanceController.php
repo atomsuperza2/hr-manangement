@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AwardsModel;
-use App\AccountInfo;
+use App\AttendanceModel;
 
-class AwardsController extends Controller
+class AttendanceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class AwardsController extends Controller
      */
     public function index()
     {
-      $awards = AwardsModel::get();
-      return view('awards.index', ['awards' => $awards]);
+      $attendances = AttendanceModel::all();
+      return view('attendance.index', ['attendances' => $attendances]);
     }
 
     /**
@@ -26,7 +25,7 @@ class AwardsController extends Controller
      */
     public function create()
     {
-      return view('awards.add');
+      return view('attendance.add');
     }
 
     /**
@@ -37,33 +36,11 @@ class AwardsController extends Controller
      */
     public function store(Request $request)
     {
-      $awards = new AwardsModel($request->except(['searchname']));
-      $awards->save();
-      return redirect()->route('awards.index')->with('alert-succress','Add new awards success.');
+      $attendance = new AttendanceModel($request->except(['searchname']));
+      $attendance->save();
+      return redirect()->route('attendance.index')->with('alert-succress','Add new attendance success.');
     }
 
-    public function usercreateaward($id)
-    {
-
-      $accounts = AccountInfo::find($id);
-      return view('awards.adduseraward', compact('accounts'));
-    }
-
-    public function storeaward(Request $request, $id){
-      $accounts = AccountInfo::find($id);
-
-      $awards = new AwardsModel();
-      $awards->user_id = $request->user_id;
-      $awards->awardName = $request->awardName;
-      $awards->giftItem = $request->giftItem;
-      $awards->cashPrice = $request->cashPrice;
-      $awards->save();
-
-
-
-      return redirect("/accounts/$id/profile");
-
-    }
     /**
      * Display the specified resource.
      *
@@ -72,7 +49,7 @@ class AwardsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -83,8 +60,8 @@ class AwardsController extends Controller
      */
     public function edit($id)
     {
-      $awards = AwardsModel::find($id);
-      return view('awards.edit', compact('awards'));
+      $attendance = AttendanceModel::find($id);
+      return view('attendance.edit', compact('attendance'));
     }
 
     /**
@@ -96,14 +73,14 @@ class AwardsController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $awards = AwardsModel::find($id);
-      $awards->user_id = $request->user_id;
-      $awards->awardName = $request->awardName;
-      $awards->giftItem = $request->giftItem;
-      $awards->cashPrice = $request->cashPrice;
-      $awards->save();
+      $attendance = AttendanceModel::find($id);
+      $attendance->user_id = $request->user_id;
+      $attendance->date = $request->date;
+      $attendance->timeIn = $request->timeIn;
+      $attendance->timeOut = $request->timeOut;
+      $attendance->save();
       session()->flash('message','Updated Successfully');
-      return redirect('/awards');
+      return redirect('/attendance');
     }
 
     /**
@@ -114,9 +91,9 @@ class AwardsController extends Controller
      */
     public function destroy($id)
     {
-      $awards = AwardsModel::find($id);
-      $awards->delete();
+      $attendance = AttendanceModel::find($id);
+      $attendance->delete();
       session()->flash('message','Delete Successfully');
-      return redirect('/awards');
+      return redirect('/attendance');
     }
 }

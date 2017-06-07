@@ -25,6 +25,9 @@ Route::post('/accounts/add','AccountInfoController@store')->name('account.store'
 Route::get('/accounts/{user}/edit','AccountInfoController@edit')->name('accounts.edit');
 Route::get('/accounts/{accounts}',array('as' => 'accounts.update', 'uses' => 'AccountInfoController@update'));
 Route::delete('/accounts/{user}','AccountInfoController@destroy')->name('accounts.destroy');
+Route::get('/accounts/{accounts}/profile', 'AccountInfoController@show')->name('accounts.show');
+Route::get('/accounts/{accounts}/check', 'AccountInfoController@checkAttendance')->name('accounts.check');
+Route::post('/accounts/{accounts}/check', 'AccountInfoController@submitAttendance')->name('accounts.submitAttendance');
 
 Route::get('/department','DepartmentController@index')->name('department.index');
 Route::get('/department/add','DepartmentController@create')->name('department.create');
@@ -48,6 +51,7 @@ Route::post('/emdesignation/add','EmDesignationController@store')->name('emdesig
 Route::get('/emdesignation/{emdesignation}/edit','EmDesignationController@edit')->name('emdesignation.edit');
 Route::get('/emdesignation/{emdesignation}',array('as' => 'emdesignation.update', 'uses' => 'EmDesignationController@update'));
 Route::delete('/emdesignation/{emdesignation}','EmDesignationController@destroy')->name('emdesignation.destroy');
+
 
 Route::get('/bankaccount','BankaccountController@index')->name('bankaccount.index');
 Route::get('/bankaccount/add', array('as'=>'bankaccount.create','uses'=>'BankaccountController@create'));
@@ -76,6 +80,8 @@ Route::post('/awards/add', 'AwardsController@store')->name('awards.store');
 Route::get('/awards/{award}/edit', 'AwardsController@edit')->name('awards.edit');
 Route::get('/awards/{awards}', array('as' => 'awards.update', 'uses' => 'AwardsController@update'));
 Route::delete('/awards/{award}', 'AwardsController@destroy')->name('awards.destroy');
+Route::get('/awards/{accounts}/usercreateaward', 'AwardsController@usercreateaward')->name('awards.usercreateaward');
+Route::post('/awards/{accounts}', array('as' => 'awards.storeaward', 'uses' => 'AwardsController@storeaward'));
 
 Route::get('/trainingprogram', 'TrainingprogramController@index')->name('trainingprogram.index');
 Route::get('/trainingprogram/add', array('as'=>'trainingprogram.create','uses'=>'TrainingprogramController@create'));
@@ -90,6 +96,50 @@ Route::post('/training/add', 'TrainingController@store')->name('training.store')
 Route::get('/training/{training}/edit', 'TrainingController@edit')->name('training.edit');
 Route::get('/training/{training}', array('as' => 'training.update', 'uses' => 'TrainingController@update'));
 Route::delete('/training/{training}', 'TrainingController@destroy')->name('training.destroy');
+Route::get('/training/{accounts}/usertraining', 'TrainingController@usertraining')->name('training.usertraining');
+Route::post('/training/{accounts}', array('as' => 'training.storetraining', 'uses' => 'TrainingController@storetraining'));
+
+Route::get('/leavestype', 'LeavestypeController@index')->name('leavestype.index');
+Route::get('/leavestype/add', 'LeavestypeController@create')->name('leavestype.create');
+Route::post('/leavestype/add', 'LeavestypeController@store')->name('leavestype.store');
+Route::get('/leavestype/{leavestypes}/edit', 'LeavestypeController@edit')->name('leavestype.edit');
+Route::get('/leavestype/{leavestypes}', array('as' => 'leavestype.update', 'uses' => 'LeavestypeController@update'));
+Route::delete('/leavestype/{leavestypes}', 'LeavestypeController@destroy')->name('leavestype.destroy');
+
+Route::get('/leaves', 'LeavesController@index')->name('leaves.index');
+Route::get('/leaves/add', 'LeavesController@create')->name('leaves.create');
+Route::post('/leaves/add', 'LeavesController@store')->name('leaves.store');
+Route::get('/leaves/{leaves}/edit', 'LeavesController@edit')->name('leaves.edit');
+Route::get('/leaves/{leaves}', array('as' => 'leaves.update', 'uses' => 'LeavesController@update'));
+Route::delete('/leaves/{leaves}', 'LeavesController@destroy')->name('leaves.destroy');
+Route::get('/leaves/{accounts}/userleave', 'LeavesController@userleave')->name('leaves.userleave');
+Route::post('/leaves/{accounts}', array('as' => 'leaves.storeleave', 'uses' => 'LeavesController@storeleave'));
+
+Route::get('/cutoff', 'CutoffController@index')->name('cutoff.index');
+Route::get('/cutoff/add', 'CutoffController@create')->name('cutoff.create');
+Route::post('/cutoff/add', 'CutoffController@store')->name('cutoff.store');
+Route::get('/cutoff/{cutoffs}/edit', 'CutoffController@edit')->name('cutoff.edit');
+Route::get('/cutoff/{cutoffs}', array('as' => 'cutoff.update', 'uses' => 'CutoffController@update'));
+Route::delete('/cutoff/{cutoffs}', 'CutoffController@destroy')->name('cutoff.destroy');
+
+Route::get('/attendance', 'AttendanceController@index')->name('attendance.index');
+Route::get('/attendance/add', 'AttendanceController@create')->name('attendance.create');
+Route::post('/attendance/add', 'AttendanceController@store')->name('attendance.store');
+Route::get('/attendance/{attendance}/edit', 'AttendanceController@edit')->name('attendance.edit');
+Route::get('/attendance/{attendance}', array('as' => 'attendance.update', 'uses' => 'AttendanceController@update'));
+Route::delete('/attendance/{attendance}', 'AttendanceController@destroy')->name('attendance.destroy');
+
+Route::get('/absences', 'AbsencesController@index')->name('absences.index');
+Route::get('/absences/add', 'AbsencesController@create')->name('absences.create');
+Route::post('/absences/add', 'AbsencesController@store')->name('absences.store');
+Route::get('/absences/{absences}/edit', 'AbsencesController@edit')->name('absences.edit');
+Route::get('/absences/{absences}', array('as' => 'absences.update', 'uses' => 'AbsencesController@update'));
+Route::delete('/absences/{absences}', 'AbsencesController@destroy')->name('absences.destroy');
+Route::get('/absences/{accounts}/usercreateabsences', 'AbsencesController@usercreateabsences')->name('absences.usercreateabsences');
+Route::post('/absences/{accounts}', array('as' => 'absences.storeabsences', 'uses' => 'AbsencesController@storeabsences'));
+
+Route::get('daterange', 'API\DaterangeController@dateRange');
+Route::get('select', 'API\DaterangeController@select');
 ////////////////////////////////////////////////////
 
 

@@ -15,22 +15,45 @@ class AccountInfo extends Model
   {
       return $this->hasOne('App\EmDesignationModel');
   }
+
+  public function designation()
+  {
+      return $this->belongsTo('App\DesignationModel','designation_id');
+  }
+
+  public function department()
+  {
+      return $this->belongsTo('App\DepartmentModel');
+  }
+
   public function user()
   {
       return $this->belongsTo('App\User');
   }
   public function bankaccount()
   {
-      return $this->hasOne('App\BankaccountModel');
+      return $this->hasOne('App\BankaccountModel','user_id','id');
   }
 
   public function awards()
   {
-    return $this->hasMany('App\AwardsModel');
+    return $this->hasMany('App\AwardsModel', 'user_id', 'id');
   }
 
   public function training(){
     return $this->hasMany('App\TrainingModel');
+  }
+
+  public function leaves(){
+    return $this->hasMany('App\LeavesModel');
+  }
+
+  public function absences(){
+    return $this->hasMany('App\AbsencesModel', 'user_id', 'id');
+  }
+
+  public function attendance(){
+    return $this->hasMany('App\AttendanceModel','user_id', 'id');
   }
 
   public function scopeFilter($query, $keywords)

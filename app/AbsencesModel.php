@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmDesignationModel extends Model
+class AbsencesModel extends Model
 {
-  protected $table = 'emdesignation';
+  protected $table = 'absences';
   protected $guarded = [ ];
 
-  public function designation()
+  public function leavetype()
   {
-      return $this->belongsTo('App\DesignationModel','designation_id');
+      return $this->belongsTo('App\LeavestypeModel', 'leavetype_id');
   }
 
   public function accountinfo()

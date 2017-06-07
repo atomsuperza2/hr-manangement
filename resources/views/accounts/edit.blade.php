@@ -122,33 +122,33 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group{{ $errors->has('shiftStart') ? ' has-error' : '' }}">
-                            <label for="shiftStart" class="col-md-4 control-label">Shift Start</label>
+                        <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
+                            <label for="department_id" class="col-md-4 control-label">Department</label>
 
                             <div class="col-md-6">
-                                <input id="shiftStart" type="time" class="form-control" name="shiftStart" value="{{ old('shiftStart') }}" required>
+                                {!! Form::select('department_id', $department,  $accounts->department_id, ['placeholder' => 'Select department', 'class'=>'form-control']) !!}
 
-                                @if ($errors->has('shiftStart'))
+                                @if ($errors->has('department_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('shiftStart') }}</strong>
+                                        <strong>{{ $errors->first('department_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('shiftEnd') ? ' has-error' : '' }}">
-                            <label for="shiftEnd" class="col-md-4 control-label">Shift End</label>
+                        <div class="form-group{{ $errors->has('designation_id') ? ' has-error' : '' }}">
+                            <label for="designation_id" class="col-md-4 control-label">Designation</label>
 
                             <div class="col-md-6">
-                                <input id="shiftEnd" type="time" class="form-control" name="shiftEnd" value="{{ old('shiftEnd') }}" required>
+                                  {!! Form::select('designation_id', $designation,  $accounts->designation_id, ['placeholder' => 'Select designation', 'class'=>'form-control']) !!}
 
-                                @if ($errors->has('shiftEnd'))
+                                @if ($errors->has('designation_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('shiftEnd') }}</strong>
+                                        <strong>{{ $errors->first('designation_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="form-group{{ $errors->has('hiredDate') ? ' has-error' : '' }}">
                             <label for="hiredDate" class="col-md-4 control-label">Hired Date</label>

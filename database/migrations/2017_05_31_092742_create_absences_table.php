@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAwardsTable extends Migration
+class CreateAbsencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateAwardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('awards', function (Blueprint $table) {
+        Schema::create('absences', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable();
-            $table->string('awardName')->nullable();
-            $table->string('giftItem')->nullable();
-            $table->string('cashPrice')->nullable();
+            $table->integer('leavetype_id')->nullable();
+            $table->string('reason')->nullable();
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateAwardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('awards');
+        Schema::dropIfExists('absences');
     }
 }

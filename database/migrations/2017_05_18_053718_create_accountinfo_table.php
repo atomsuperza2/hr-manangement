@@ -18,13 +18,13 @@ class CreateAccountinfoTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
-
+            $table->string('avatar')->default('default.jpg');
             $table->date('birthday');
             $table->string('Gender');
             $table->string('email');
             // ->unique();
-            $table->integer('phone');
-            $table->string('address');
+            $table->integer('phone')->nullable();
+            $table->string('address')->nullable();
             $table->integer('employeeID');
             $table->integer('department_id')->nullable();
             $table->integer('designation_id')->nullable();

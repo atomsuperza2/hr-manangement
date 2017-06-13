@@ -149,34 +149,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group{{ $errors->has('shiftStart') ? ' has-error' : '' }}">
-                            <label for="shiftStart" class="col-md-4 control-label">Shift Start</label>
-
-                            <div class="col-md-6">
-                                <input id="shiftStart" type="time" class="form-control" name="shiftStart" value="{{ old('shiftStart') }}" required>
-
-                                @if ($errors->has('shiftStart'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('shiftStart') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('shiftEnd') ? ' has-error' : '' }}">
-                            <label for="shiftEnd" class="col-md-4 control-label">Shift End</label>
-
-                            <div class="col-md-6">
-                                <input id="shiftEnd" type="time" class="form-control" name="shiftEnd" value="{{ old('shiftEnd') }}" required>
-
-                                @if ($errors->has('shiftEnd'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('shiftEnd') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> -->
-
                         <div class="form-group{{ $errors->has('hiredDate') ? ' has-error' : '' }}">
                             <label for="hiredDate" class="col-md-4 control-label">Hired Date</label>
 
@@ -233,6 +205,24 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
+                            <label for="roles" class="col-md-4 control-label">Roles</label>
+
+                            <div class="col-md-6">
+
+                                {!! Form::select('roles[]', $roles, isset($user) ? $user->roles->pluck('id')->toArray() : null,  ['class' => 'form-control', 'multiple']) !!}
+
+                                @if ($errors->has('roles'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('roles') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        @if(isset($user))
+                        @include('shared._permissions', ['closed' => 'true', 'model' => $user ])
+                        @endif
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

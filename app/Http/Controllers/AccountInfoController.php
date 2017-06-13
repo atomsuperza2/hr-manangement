@@ -12,9 +12,17 @@ use App\CutoffModel;
 use Auth;
 use App\AttendanceModel;
 use App\Http\Controllers\Api\DaterangeController;
+use Image;
+use App\Authorizable;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Role;
+use App\Permission;
+
 
 class AccountInfoController extends Controller
 {
+    use Authorizable;
+    use RegistersUsers;
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +31,8 @@ class AccountInfoController extends Controller
     public function index()
     {
         // $accounts = AccountInfo::paginate(15);
-        $accounts = AccountInfo::all();
-       return view('accounts.index', ['accounts' => $accounts]);
+        $accounts = AccountInfo::paginate(10);
+       return view('accounts.index', compact('accounts'));
     }
 
     /**
@@ -34,9 +42,10 @@ class AccountInfoController extends Controller
      */
     public function create()
     {
+          $roles = Role::pluck('name', 'id');
           $designation = DesignationModel::pluck('designationName','id');
           $department = DepartmentModel::pluck('departmentName','id');
-          return view('accounts.add', ['designation' => $designation],['department' => $department]);
+          return view('accounts.add', ['designation' => $designation],['department' => $department], compact('roles'));
     }
 
     /**
@@ -50,8 +59,13 @@ class AccountInfoController extends Controller
       // dd($request->all());
           //  $data = ['birthday' => $request->birthday,
           //            'password' => $request->birthday];
+          // try{
           $user = User::create(['username' => $request -> username,
-                                'password' => $request -> birthday]);
+                                'password' =>  bcrypt($request -> birthday),
+                                'name'=> $request -> name,
+                                'email' => $request -> email,
+                                'roles' => $request -> roles,
+                                ]);
 
           $user->accountinfo = AccountInfo::create([
             'name' => $request -> name,
@@ -67,18 +81,41 @@ class AccountInfoController extends Controller
             'designation_id' => $request -> designation_id,
             'department_id' => $request -> department_id,
             'user_id' => $user->id,
+
           ]);
             $user->accountinfo->bankaccount = BankaccountModel::create([
             'user_id' => $user->accountinfo->id,
           ]);
 
-          // $user->account_info()->create($request->except(['username', 'password']), $data);
+        //   $this->syncPermissions($request, $user);
+        //   flash('User has been created.');
+        //
+        // } catch(\Exception $e){
+        //     flash()->error('Unable to create user.');
+        //   }
 
-
-          // $user->save();
-          // $account->save();
+        // if ( $user = User::create($request->except('roles', 'permissions')) ) {
+        //     $this->syncPermissions($request, $user);
+        //     flash('User has been created.');
+        //     } else {
+        //       flash()->error('Unable to create user.');
+        //     }
 
           return redirect()->route('accounts.index')->with('alert-succress','Add new account success.');
+    }
+
+    public function update_avatar(Request $request, $id){
+
+      if($request->hasFile('avatar')){
+        $avatar = $request->file('avatar');
+        $filename = time() . '.' . $avatar->getClientOriginalExtension();
+        Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatars/' . $filename));
+
+        $user = AccountInfo::find($id);
+        $user->avatar = $filename;
+        $user->save();
+      }
+      return redirect("/accounts/$id/profile");
     }
 
     /**
@@ -154,10 +191,12 @@ class AccountInfoController extends Controller
      */
     public function edit($id)
     {
+      $roles = Role::pluck('name', 'id');
+      $permissions = Permission::all('name', 'id');
       $designation = DesignationModel::pluck('designationName','id');
       $department = DepartmentModel::pluck('departmentName','id');
       $accounts = AccountInfo::find($id);
-      return view('accounts.edit', ['department' => $department, 'designation' => $designation, 'accounts' => $accounts]);
+      return view('accounts.edit', ['department' => $department, 'designation' => $designation, 'accounts' => $accounts], compact('roles', 'permissions'));
     }
 
     /**
@@ -187,6 +226,7 @@ class AccountInfoController extends Controller
         $account->exitDate = $request -> exitDate;
         $account->salary = $request -> salary;
 
+        $this->syncPermissions($request, $user);
         $account->save();
         $user->save();
         session()->flash('message','Updated Successfully');
@@ -206,5 +246,31 @@ class AccountInfoController extends Controller
         $account->delete();
         session()->flash('message','Delete Successfully');
         return redirect('/accounts');
+    }
+    /**
+     * Sync roles and permissions
+     *
+     * @param Request $request
+     * @param $user
+     * @return string
+     */
+    private function syncPermissions(Request $request, $user)
+    {
+        // Get the submitted roles
+        $roles = $request->get('roles', []);
+        $permissions = $request->get('permissions', []);
+        // Get the roles
+        $roles = Role::find($roles);
+        // check for current role changes
+        if( ! $user->hasAllRoles( $roles ) ) {
+            // reset all direct permissions for user
+            $user->permissions()->sync([]);
+        } else {
+            // handle permissions
+            $user->syncPermissions($permissions);
+        }
+        $user->syncRoles($roles);
+
+        return $user;
     }
 }

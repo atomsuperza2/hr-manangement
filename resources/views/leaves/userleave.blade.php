@@ -18,20 +18,15 @@
 
                   <div class="form-group">
 
-
                     <input class="form-control" name="name" type="text" value= "{{$accounts->name}}" disabled>
                     <input name="user_id" type="hidden" value= "{{$accounts->id}}" >
 
                   </div>
 
-
-
-
                   <div class="form-group">
 
                     {!! Form::select('leavetype_id', $leavestypes, null, ['placeholder' => 'Select ', 'class'=>'form-control']) !!}
                   </div>
-
 
                   <input type= "date" class = "form-control" name="dateFrom" placeholder="Date From"><br>
                   <input type= "date" class = "form-control" name="dateTo" placeholder="Date To"><br>

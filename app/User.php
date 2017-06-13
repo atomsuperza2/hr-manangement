@@ -4,10 +4,12 @@ namespace App;
 
 use App\AccountInfo;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use HasRoles;
     use Notifiable;
 
     /**
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'password',
+        'username', 'name', 'email', 'password'
     ];
 
     /**
@@ -42,4 +44,8 @@ class User extends Authenticatable
  {
      return $this->hasOne('App\AccountInfo');
  }
+ public function posts()
+  {
+      return $this->hasMany(Post::class);
+  }
 }

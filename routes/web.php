@@ -18,7 +18,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('roles', 'RoleController');
+Route::resource('posts', 'PostController');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group( ['middleware' => ['auth']], function() {
 Route::get('/accounts','AccountInfoController@index')->name('accounts.index');
 Route::get('/accounts/add','AccountInfoController@create')->name('accounts.create');
 Route::post('/accounts/add','AccountInfoController@store')->name('account.store');
@@ -28,6 +33,8 @@ Route::delete('/accounts/{user}','AccountInfoController@destroy')->name('account
 Route::get('/accounts/{accounts}/profile', 'AccountInfoController@show')->name('accounts.show');
 Route::get('/accounts/{accounts}/check', 'AccountInfoController@checkAttendance')->name('accounts.check');
 Route::post('/accounts/{accounts}/check', 'AccountInfoController@submitAttendance')->name('accounts.submitAttendance');
+Route::post('/profileAV/{accounts}', 'AccountInfoController@update_avatar')->name('accounts.update_avatar');
+});
 
 Route::get('/department','DepartmentController@index')->name('department.index');
 Route::get('/department/add','DepartmentController@create')->name('department.create');

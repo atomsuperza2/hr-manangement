@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 class AccountInfo extends Model
 {
+  use Notifiable, HasRoles;
+
   protected $table = 'accountinfo';
 
   protected $guarded = ['username', 'password'];

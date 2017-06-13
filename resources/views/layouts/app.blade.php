@@ -37,7 +37,17 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                      @if (Auth::check())
+                            @can('view_accounts')
+                                <li class="{{ Request::is('accountinfo*') ? 'active' : '' }}">
+                                    <a href="{{ route('accounts.index') }}">
+                                        <span class="text-info glyphicon glyphicon-user"></span> Account
+                                    </a>
+                                </li>
+                            @endcan
+
+
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -47,6 +57,15 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+
+                        @can('view_roles')
+                           <li class="{{ Request::is('roles*') ? 'active' : '' }}">
+                               <a href="{{ route('roles.index') }}">
+                                   <span class="text-danger glyphicon glyphicon-lock"></span> Roles
+                               </a>
+                           </li>
+                           @endcan
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
                                       <img src="/uploads/avatars/{{Auth::user()->avatar}}" style="width:32px; height:32px; position:absolute; top:10px; border-radius:50%;">
@@ -73,15 +92,30 @@
             </div>
         </nav>
 
-        @yield('content')
-    </div>
+        <div class="container">
+                    <div id="flash-msg">
+                        @include('flash::message')
+                    </div>
+                    @yield('content')
+                </div>
+            </div>
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    @stack('scripts')
+
+    <script>
+        $(function () {
+            // flash auto hide
+            $('#flash-msg .alert').not('.alert-danger, .alert-important').delay(6000).slideUp(500);
+        })
+    </script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <!-- <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
     <script src="http://demo.expertphp.in/js/jquery.js"></script>
-    <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script> -->
+    <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script>-->
       @yield('script')
 </body>
 </html>

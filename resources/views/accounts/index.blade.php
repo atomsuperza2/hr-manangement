@@ -7,7 +7,9 @@
 @endif
 
 <div class="container">
-  <a href="/accounts/add" class="btn btn-primary">New accounts</a>
+  @can('add_accounts')
+  <a href="{{ route('accounts.create') }}" class="btn btn-primary">New accounts</a>
+  @endcan
 <div class="col-md-12">
     <div class="panel panel-default">
     <div class="panel-heading">Account</div>
@@ -26,7 +28,10 @@
 <th>HiredDate</th>
 <th>ExitDate</th>
 <th>Salary</th>
+<th>Role</th>
+@can('edit_accounts', 'delete_accounts')
 <th>Action</th>
+ @endcan
 </tr>
 <div class="container">
     @foreach ($accounts as $user)
@@ -42,6 +47,9 @@
         <td>{{ $user->hiredDate}}</td>
         <td>{{ $user->exitDate}}</td>
         <td>{{ $user->salary}}</td>
+        <td>{{ $user->user->roles->implode('name', ', ') }}</td>
+
+        @can('edit_accounts', 'delete_accounts')
         <td>
           {!! Form::open(['method'=>'DELETE', 'route'=>['accounts.destroy',$user->id]]) !!}
 									<a class="btn btn-primary" href="{{ route('accounts.edit', $user->id) }}">Edit</a>
@@ -50,11 +58,13 @@
 
           </form>
         </td>
+         @endcan
     @endforeach
 
     </tr>
 </div>
 </table>
+{!! $accounts->render() !!}
 </div>
 </div>
 </div>

@@ -23,8 +23,8 @@ class CreateAccountinfoTable extends Migration
             $table->string('Gender');
             $table->string('email');
             // ->unique();
-            $table->integer('phone');
-            $table->string('address');
+            $table->integer('phone')->nullable();
+            $table->string('address')->nullable();
             $table->integer('employeeID');
             $table->integer('department_id')->nullable();
             $table->integer('designation_id')->nullable();

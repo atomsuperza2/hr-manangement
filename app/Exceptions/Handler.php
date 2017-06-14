@@ -43,38 +43,22 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
-    {
-        return parent::render($request, $exception);
-    }
+     public function render($request, Exception $exception)
+   {
+       if ($exception instanceof AuthorizationException) {
+          //  return $this->unauthorized($request, $exception);
+       }
 
-    /**
-     * Convert an authentication exception into an unauthenticated response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-      * @param  \Illuminate\Auth\AuthenticationException  $exception
-      * @return \Illuminate\Http\Response
-      */
-     protected function unauthenticated($request, AuthenticationException $exception)
-     {
-         if ($request->expectsJson()) {
-             return response()->json(['error' => 'Unauthenticated.'], 401);
-         }
-         return redirect()->guest(route('login'));
-     }
-     /**
-      * Handle unauthorized response
-      *
-      * @param $request
-      * @param Exception $exception
-      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-      */
-     private function unauthorized($request, Exception $exception)
-     {
-         if ($request->expectsJson()) {
-             return response()->json(['error' => $exception->getMessage()], 403);
-         }
-         flash()->warning($exception->getMessage());
-         return redirect()->route('home');
-     }
+       return parent::render($request, $exception);
+   }
+
+  //  private function unauthorized($request, Exception $exception)
+  //  {
+  //      if ($request->expectsJson()) {
+  //          return response()->json(['error' => $exception->getMessage()], 403);
+  //      }
+   //
+  //      flash()->warning($exception->getMessage());
+  //      return redirect()->route('home');
+  //  }
  }

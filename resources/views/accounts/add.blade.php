@@ -210,7 +210,7 @@
 
                             <div class="col-md-6">
 
-                                {!! Form::select('roles[]', $roles, isset($user) ? $user->roles->pluck('id')->toArray() : null,  ['class' => 'form-control', 'multiple']) !!}
+                                {!! Form::select('roles[]', $roles, isset($user) ? $user->roles->pluck('id')->toArray() : null,  ['class' => 'form-control']) !!}
 
                                 @if ($errors->has('roles'))
                                     <span class="help-block">
@@ -221,8 +221,11 @@
                         </div>
 
                         @if(isset($user))
-                        @include('shared._permissions', ['closed' => 'true', 'model' => $user ])
+
+                          @include('shared._permissions', ['closed' => 'true', 'model' => $user ])
+
                         @endif
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

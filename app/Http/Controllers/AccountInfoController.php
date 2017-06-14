@@ -21,7 +21,7 @@ use App\Permission;
 
 class AccountInfoController extends Controller
 {
-    use Authorizable;
+    // use Authorizable;
     use RegistersUsers;
     /**
      * Display a listing of the resource.
@@ -45,7 +45,7 @@ class AccountInfoController extends Controller
           $roles = Role::pluck('name', 'id');
           $designation = DesignationModel::pluck('designationName','id');
           $department = DepartmentModel::pluck('departmentName','id');
-          return view('accounts.add', ['designation' => $designation],['department' => $department], compact('roles'));
+          return view('accounts.add', ['designation' => $designation, 'department' => $department], compact('roles'));
     }
 
     /**
@@ -59,7 +59,8 @@ class AccountInfoController extends Controller
       // dd($request->all());
           //  $data = ['birthday' => $request->birthday,
           //            'password' => $request->birthday];
-          // try{
+        //  try{
+        // if($user = USer::create($request->except(['roles', 'permissions'])))
           $user = User::create(['username' => $request -> username,
                                 'password' =>  bcrypt($request -> birthday),
                                 'name'=> $request -> name,
@@ -86,13 +87,13 @@ class AccountInfoController extends Controller
             $user->accountinfo->bankaccount = BankaccountModel::create([
             'user_id' => $user->accountinfo->id,
           ]);
+          $this->syncPermissions($request, $user);
 
-        //   $this->syncPermissions($request, $user);
-        //   flash('User has been created.');
+        //    flash('User has been created.');
         //
-        // } catch(\Exception $e){
-        //     flash()->error('Unable to create user.');
-        //   }
+        //  } catch(Exception $e){
+        //    flash()->error('Unable to create user.');
+        //  }
 
         // if ( $user = User::create($request->except('roles', 'permissions')) ) {
         //     $this->syncPermissions($request, $user);
@@ -101,7 +102,7 @@ class AccountInfoController extends Controller
         //       flash()->error('Unable to create user.');
         //     }
 
-          return redirect()->route('accounts.index')->with('alert-succress','Add new account success.');
+          return redirect()->route('accounts.index');
     }
 
     public function update_avatar(Request $request, $id){

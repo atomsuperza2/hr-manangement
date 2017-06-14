@@ -8,7 +8,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 class AccountInfo extends Model
 {
-  use Notifiable, HasRoles;
+  use Notifiable;
+  use HasRoles;
 
   protected $table = 'accountinfo';
 

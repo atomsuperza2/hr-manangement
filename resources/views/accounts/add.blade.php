@@ -107,6 +107,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('nationality_id') ? ' has-error' : '' }}">
+                            <label for="nationality_id" class="col-md-4 control-label">Nationality</label>
+
+                            <div class="col-md-6">
+                                {!! Form::select('nationality_id', $nationality, null, ['placeholder' => 'Select nationality', 'class'=>'form-control']) !!}
+
+                                @if ($errors->has('nationality_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('nationality_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('employeeID') ? ' has-error' : '' }}">
                             <label for="employeeID" class="col-md-4 control-label">EmployeeID</label>
 

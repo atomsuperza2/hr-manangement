@@ -25,6 +25,11 @@ class AccountInfo extends Model
       return $this->belongsTo('App\DesignationModel','designation_id');
   }
 
+  public function nationality()
+  {
+      return $this->belongsTo('App\NationalityModel','nationality_id');
+  }
+
   public function department()
   {
       return $this->belongsTo('App\DepartmentModel');
@@ -42,6 +47,11 @@ class AccountInfo extends Model
   public function awards()
   {
     return $this->hasMany('App\AwardsModel', 'user_id', 'id');
+  }
+
+  public function pay()
+  {
+    return $this->hasMany('App\PayModel', 'user_id', 'id');
   }
 
   public function training(){

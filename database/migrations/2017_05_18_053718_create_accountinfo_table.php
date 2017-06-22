@@ -21,6 +21,7 @@ class CreateAccountinfoTable extends Migration
             $table->string('avatar')->default('default.jpg');
             $table->date('birthday');
             $table->string('Gender');
+            $table->integer('nationality_id')->nullable();
             $table->string('email');
             // ->unique();
             $table->integer('phone')->nullable();
@@ -28,8 +29,9 @@ class CreateAccountinfoTable extends Migration
             $table->integer('employeeID');
             $table->integer('department_id')->nullable();
             $table->integer('designation_id')->nullable();
-            // $table->time('shiftStart');
-            // $table->time('shiftEnd');
+            $table->time('shiftStart')->nullable();
+            $table->time('shiftEnd')->nullable();
+
             $table->date('hiredDate');
             $table->date('exitDate');
             $table->double('salary');

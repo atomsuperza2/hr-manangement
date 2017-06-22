@@ -10,6 +10,7 @@
         <a class="btn btn-primary" href="{{route('absences.usercreateabsences', $accounts->id) }}">Absences</a>
         <a class="btn btn-primary" href="{{ route('bankaccount.edit', $accounts->id) }}">Bank account</a>
         <a class="btn btn-primary" href="{{ route('awards.usercreateaward', $accounts->id)}}">Awards</a>
+        <a class="btn btn-primary" href="{{ route('pay.usercreatepay', $accounts->id)}}">Pay</a>
         <a class="btn btn-primary" href="{{ route('training.usertraining', $accounts->id)}}">Training</a>
         <a class="btn btn-primary" href="{{ route('leaves.userleave', $accounts->id)}}">Leave</a>
         <img src="/uploads/avatars/{{$accounts->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">

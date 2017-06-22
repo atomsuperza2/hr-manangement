@@ -38,18 +38,13 @@
                 <div class="container">
                   @foreach ($ranges as $key => $value)
                   <tr>
-
-
-                      <td><input class="form-control" name="daterange" value="{{$value}}" disabled/>
+                    
+                  <td><input class="form-control" name="daterange" value="{{$value}}" disabled/>
                       <input class="form-control" name="date[]" value="{{$value}}" type="hidden"/></td>
 
                              <td><input class="form-control" name="timeIn[]" type="time" value=""/></td>
                              <td><input class="form-control" name="timeOut[]" type="time" value=""/></td>
                              <!-- <td><input class="form-control" name="a_id" type="text" value="{{ isset($accounts->attendance[$key])? $accounts->attendance[$key]->id:'null' }}"/></td> -->
-
-
-
-
                     </tr>
                     @endforeach
 

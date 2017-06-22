@@ -237,6 +237,7 @@ class AccountInfoController extends Controller
         $user->save();
         session()->flash('message','Updated Successfully');
         return redirect('/accounts');
+        //
 
     }
 

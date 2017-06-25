@@ -82,6 +82,8 @@ class AccountInfoController extends Controller
             'hiredDate' => $request -> hiredDate,
             'exitDate' => $request -> exitDate,
             'salary' => $request -> salary,
+            'shiftStart' => $request -> shiftStart,
+            'shiftEnd' => $request -> shiftEnd,
             'designation_id' => $request -> designation_id,
             'department_id' => $request -> department_id,
             'user_id' => $user->id,
@@ -230,6 +232,8 @@ class AccountInfoController extends Controller
         $account->designation_id = $request -> designation_id;
         $account->hiredDate = $request -> hiredDate;
         $account->exitDate = $request -> exitDate;
+        $account->shiftStart = $request -> shiftStart;
+        $account->shiftEnd = $request -> shiftEnd;
         $account->salary = $request -> salary;
 
         $this->syncPermissions($request, $user);

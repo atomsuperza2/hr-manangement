@@ -70,6 +70,18 @@ class AccountInfo extends Model
     return $this->hasMany('App\AttendanceModel','user_id', 'id');
   }
 
+  public function getAttendanceByDate($date) {
+
+    $attendances = $this->attendance->where('date','=',$date)->first();
+    return $attendances;
+    // foreach ($attendances as $attendance) {
+    //   if ( $attendance->date == $date ) {
+  	// 		return $attendace;
+    //   }
+    //   return "Attendace not found!";
+  	// }
+  }
+
   public function scopeFilter($query, $keywords)
   {
   if ($keywords->name) {

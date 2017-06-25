@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AttendanceModel extends Model
 {
   protected $table = 'attendance';
-  protected $guarded = [ ];
+  protected $guarded = [];
 
   public function accountinfo()
   {

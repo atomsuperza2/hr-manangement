@@ -31,7 +31,6 @@ class CreateAccountinfoTable extends Migration
             $table->integer('designation_id')->nullable();
             $table->time('shiftStart')->nullable();
             $table->time('shiftEnd')->nullable();
-
             $table->date('hiredDate');
             $table->date('exitDate');
             $table->double('salary');

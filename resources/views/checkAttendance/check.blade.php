@@ -55,7 +55,7 @@
                              <td><input class="form-control" name="timeIn[]" type="time" value="{{ $attend->timeIn}}"/></td>
                              <td><input class="form-control" name="timeOut[]" type="time" value="{{ $attend->timeOut}}"/></td>
                            @endif<!-- <td><input class="form-control" name="a_id" type="text" value="{{ isset($accounts->attendance[$date])? $accounts->attendance[$date]->id:'null' }}"/></td> -->
-                           <td><input class="form-control" name="a_id" type="text" value="{{ $attend->id}}"/></td>
+                           <td><input class="form-control" name="a_id[]" type="hidden" value="{{ $attend->id}}" /></td>
                     </tr>
                     @endforeach
 

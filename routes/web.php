@@ -162,7 +162,7 @@ Route::group( ['middleware' => ['auth']], function() {
   Route::post('/absences/{accounts}', array('as' => 'absences.storeabsences', 'uses' => 'AbsencesController@storeabsences'));
 
   Route::get('/checkAttendance/{accounts}/check', 'CheckAttendanceController@checkAttendance')->name('checkAttendance.check');
-  Route::put('/checkAttendance/{accounts}/check', 'CheckAttendanceController@submitAttendance')->name('checkAttendance.submitAttendance');
+  Route::get('/checkAttendance/{accounts}', array('as' => 'checkAttendance.submitAttendance', 'uses' => 'CheckAttendanceController@submitAttendance'));
 });
 Route::get('daterange', 'API\DaterangeController@dateRange');
 Route::get('select', 'API\DaterangeController@select');

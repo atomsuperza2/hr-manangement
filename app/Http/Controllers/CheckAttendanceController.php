@@ -40,25 +40,17 @@ class CheckAttendanceController extends Controller
     // dd($cutoff);
     return view('checkAttendance.check', ['cutoff' => $cutoff, 'ranges' => $ranges], compact('accounts'));
   }
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
+
   public function submitAttendance(Request $request, $id){
 
-       foreach ($request->date as $key => $value) {
-
-           $attendance = AttendanceModel::find($request->a_id)->update([
-             'user_id'=> $request -> user_id,
-             'date' => $request -> date,
-             'timeIn'=> $request -> timeIn[$key],
-             'timeOut' => $request -> timeOut[$key],
-           ]);
-
-        }
+    for ($i=0; $i < count($request->date); $i++) {
+          AttendanceModel::find($request->a_id[$i])->update([
+           'user_id'=> $request->user_id,
+           'date'=> $request->date[$i],
+           'timeIn'=> $request->timeIn[$i],
+           'timeOut'=> $request->timeOut[$i],
+         ]);
+    }
         return redirect("/accounts/$id/profile");
       }
 }

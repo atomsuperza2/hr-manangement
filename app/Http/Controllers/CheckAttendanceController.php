@@ -7,7 +7,7 @@ use App\AttendanceModel;
 use App\Http\Controllers\Api\DaterangeController;
 use App\AccountInfo;
 use App\CutoffModel;
-
+use Carbon\Carbon;
 class CheckAttendanceController extends Controller
 {
 
@@ -44,12 +44,21 @@ class CheckAttendanceController extends Controller
   public function submitAttendance(Request $request, $id){
 
     for ($i=0; $i < count($request->date); $i++) {
+
+      $TimeIn = Carbon::parse($request->timeIn[$i]);
+      $TimeOut = Carbon::parse($request->timeOut[$i]);
+      $hoursWorked = $TimeOut->diffInSeconds($TimeIn);
+      $Hresult = gmdate('H:i:s', $hoursWorked);
+
           AttendanceModel::find($request->a_id[$i])->update([
-           'user_id'=> $request->user_id,
+
            'date'=> $request->date[$i],
            'timeIn'=> $request->timeIn[$i],
            'timeOut'=> $request->timeOut[$i],
-         ]);
+           'hoursWorked' => $Hresult
+          //  'tardiness' => $request->shiftStart - $request->timeIn[$i],
+          //  'overtime' => $request->shiftEnd - $request->timeOut[$i],
+        ]);
     }
         return redirect("/accounts/$id/profile");
       }

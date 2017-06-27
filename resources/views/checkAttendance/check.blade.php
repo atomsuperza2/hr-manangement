@@ -27,6 +27,8 @@
                       <div class="col-md-6">
                       <input class="form-control" name="daterangeEnd" type="text" value= "{{$cutoff->dateEnd}}" disabled>
                       </div>
+                      <input class="form-control" name="shiftStart" type="text" value= "{{$accounts->shiftStart}}" >
+                      <input class="form-control" name="shiftEnd" type="text" value= "{{$accounts->shiftEnd}}">
 
               <table class="table table-striped">
 
@@ -34,6 +36,7 @@
                   <th>Date</th>
                   <th>Time In</th>
                   <th>Time Out</th>
+                  <th>Hours Worked</th>
                 </tr>
                 <div class="container">
                   @foreach ($ranges as $date => $value)
@@ -55,7 +58,9 @@
                              <td><input class="form-control" name="timeIn[]" type="time" value="{{ $attend->timeIn}}"/></td>
                              <td><input class="form-control" name="timeOut[]" type="time" value="{{ $attend->timeOut}}"/></td>
                            @endif<!-- <td><input class="form-control" name="a_id" type="text" value="{{ isset($accounts->attendance[$date])? $accounts->attendance[$date]->id:'null' }}"/></td> -->
+                           <td><input class="form-control" name="hoursWorked[]" type="time" value="{{ $attend->hoursWorked}}" disabled/></td>
                            <td><input class="form-control" name="a_id[]" type="hidden" value="{{ $attend->id}}" /></td>
+
                     </tr>
                     @endforeach
 

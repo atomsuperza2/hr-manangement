@@ -17,6 +17,7 @@ use App\Authorizable;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Role;
 use App\Permission;
+use App\NationalityModel;
 
 
 class AccountInfoController extends Controller
@@ -44,8 +45,9 @@ class AccountInfoController extends Controller
     {
           $roles = Role::pluck('name', 'id');
           $designation = DesignationModel::pluck('designationName','id');
+          $nationality = NationalityModel::pluck('nationality_name', 'id');
           $department = DepartmentModel::pluck('departmentName','id');
-          return view('accounts.add', ['designation' => $designation, 'department' => $department], compact('roles'));
+          return view('accounts.add', ['designation' => $designation, 'department' => $department, 'nationality' => $nationality], compact('roles'));
     }
 
     /**
@@ -75,10 +77,13 @@ class AccountInfoController extends Controller
             'email' => $request -> email,
             'phone' => $request -> phone,
             'address' => $request -> address,
+            'nationality_id' => $request -> nationality_id,
             'employeeID' => $request -> employeeID,
             'hiredDate' => $request -> hiredDate,
             'exitDate' => $request -> exitDate,
             'salary' => $request -> salary,
+            'shiftStart' => $request -> shiftStart,
+            'shiftEnd' => $request -> shiftEnd,
             'designation_id' => $request -> designation_id,
             'department_id' => $request -> department_id,
             'user_id' => $user->id,
@@ -196,8 +201,9 @@ class AccountInfoController extends Controller
       $permissions = Permission::all('name', 'id');
       $designation = DesignationModel::pluck('designationName','id');
       $department = DepartmentModel::pluck('departmentName','id');
+      $nationality = NationalityModel::pluck('nationality_name', 'id');
       $accounts = AccountInfo::find($id);
-      return view('accounts.edit', ['department' => $department, 'designation' => $designation, 'accounts' => $accounts], compact('roles', 'permissions'));
+      return view('accounts.edit', ['department' => $department, 'designation' => $designation, 'accounts' => $accounts, 'nationality' => $nationality], compact('roles', 'permissions'));
     }
 
     /**
@@ -221,10 +227,13 @@ class AccountInfoController extends Controller
         $account->phone = $request -> phone;
         $account->address = $request -> address;
         $account->employeeID = $request -> employeeID;
+        $account->nationality_id = $request -> nationality_id;
         $account->department_id = $request -> department_id;
         $account->designation_id = $request -> designation_id;
         $account->hiredDate = $request -> hiredDate;
         $account->exitDate = $request -> exitDate;
+        $account->shiftStart = $request -> shiftStart;
+        $account->shiftEnd = $request -> shiftEnd;
         $account->salary = $request -> salary;
 
         $this->syncPermissions($request, $user);
@@ -232,6 +241,7 @@ class AccountInfoController extends Controller
         $user->save();
         session()->flash('message','Updated Successfully');
         return redirect('/accounts');
+        //
 
     }
 

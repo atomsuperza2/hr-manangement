@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
+  // return view('/home');
     return view('auth/login');
 });
 
@@ -89,6 +90,15 @@ Route::group( ['middleware' => ['auth']], function() {
   Route::get('/awards/{accounts}/usercreateaward', 'AwardsController@usercreateaward')->name('awards.usercreateaward');
   Route::post('/awards/{accounts}', array('as' => 'awards.storeaward', 'uses' => 'AwardsController@storeaward'));
 
+  Route::get('/pay', 'PayController@index')->name('pay.index');
+  Route::get('/pay/add', array('as'=>'pay.create','uses'=>'PayController@create'));
+  Route::post('/pay/add', 'PayController@store')->name('pay.store');
+  Route::get('/pay/{award}/edit', 'PayController@edit')->name('pay.edit');
+  Route::get('/pay/{awards}', array('as' => 'pay.update', 'uses' => 'PayController@update'));
+  Route::delete('/pay/{award}', 'PayController@destroy')->name('pay.destroy');
+  Route::get('/pay/{accounts}/usercreatepay', 'PayController@usercreatepay')->name('pay.usercreatepay');
+  Route::post('/pay/{accounts}', array('as' => 'pay.storepay', 'uses' => 'PayController@storepay'));
+
   Route::get('/trainingprogram', 'TrainingprogramController@index')->name('trainingprogram.index');
   Route::get('/trainingprogram/add', array('as'=>'trainingprogram.create','uses'=>'TrainingprogramController@create'));
   Route::post('/trainingprogram/add', 'TrainingprogramController@store')->name('trainingprogram.store');
@@ -111,6 +121,13 @@ Route::group( ['middleware' => ['auth']], function() {
   Route::get('/leavestype/{leavestypes}/edit', 'LeavestypeController@edit')->name('leavestype.edit');
   Route::get('/leavestype/{leavestypes}', array('as' => 'leavestype.update', 'uses' => 'LeavestypeController@update'));
   Route::delete('/leavestype/{leavestypes}', 'LeavestypeController@destroy')->name('leavestype.destroy');
+
+  Route::get('/nationality', 'NationalityController@index')->name('nationality.index');
+  Route::get('/nationality/add', 'NationalityController@create')->name('nationality.create');
+  Route::post('/nationality/add', 'NationalityController@store')->name('nationality.store');
+  Route::get('/nationality/{nationalitys}/edit', 'NationalityController@edit')->name('nationality.edit');
+  Route::get('/nationality/{nationalitys}', array('as' => 'nationality.update', 'uses' => 'NationalityController@update'));
+  Route::delete('/nationality/{nationalitys}', 'NationalityController@destroy')->name('nationality.destroy');
 
   Route::get('/leaves', 'LeavesController@index')->name('leaves.index');
   Route::get('/leaves/add', 'LeavesController@create')->name('leaves.create');
@@ -143,6 +160,9 @@ Route::group( ['middleware' => ['auth']], function() {
   Route::delete('/absences/{absences}', 'AbsencesController@destroy')->name('absences.destroy');
   Route::get('/absences/{accounts}/usercreateabsences', 'AbsencesController@usercreateabsences')->name('absences.usercreateabsences');
   Route::post('/absences/{accounts}', array('as' => 'absences.storeabsences', 'uses' => 'AbsencesController@storeabsences'));
+
+  Route::get('/checkAttendance/{accounts}/check', 'CheckAttendanceController@checkAttendance')->name('checkAttendance.check');
+  Route::get('/checkAttendance/{accounts}', array('as' => 'checkAttendance.submitAttendance', 'uses' => 'CheckAttendanceController@submitAttendance'));
 });
 Route::get('daterange', 'API\DaterangeController@dateRange');
 Route::get('select', 'API\DaterangeController@select');

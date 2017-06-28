@@ -25,6 +25,11 @@ class AccountInfo extends Model
       return $this->belongsTo('App\DesignationModel','designation_id');
   }
 
+  public function nationality()
+  {
+      return $this->belongsTo('App\NationalityModel','nationality_id');
+  }
+
   public function department()
   {
       return $this->belongsTo('App\DepartmentModel');
@@ -44,6 +49,11 @@ class AccountInfo extends Model
     return $this->hasMany('App\AwardsModel', 'user_id', 'id');
   }
 
+  public function pay()
+  {
+    return $this->hasMany('App\PayModel', 'user_id', 'id');
+  }
+
   public function training(){
     return $this->hasMany('App\TrainingModel');
   }
@@ -58,6 +68,18 @@ class AccountInfo extends Model
 
   public function attendance(){
     return $this->hasMany('App\AttendanceModel','user_id', 'id');
+  }
+
+  public function getAttendanceByDate($date) {
+
+    $attendances = $this->attendance->where('date','=',$date)->first();
+    return $attendances;
+    // foreach ($attendances as $attendance) {
+    //   if ( $attendance->date == $date ) {
+  	// 		return $attendace;
+    //   }
+    //   return "Attendace not found!";
+  	// }
   }
 
   public function scopeFilter($query, $keywords)

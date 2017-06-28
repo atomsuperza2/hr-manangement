@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AttendanceModel;
+use App\AccountInfo;
 
 class AttendanceController extends Controller
 {
@@ -36,7 +37,9 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
+
       $attendance = new AttendanceModel($request->except(['searchname']));
+      $attendance->calhoursWorked();
       $attendance->save();
       return redirect()->route('attendance.index')->with('alert-succress','Add new attendance success.');
     }
@@ -64,6 +67,37 @@ class AttendanceController extends Controller
       return view('attendance.edit', compact('attendance'));
     }
 
+    public function calhoursWorked()
+    {
+      $attendance = new AttendanceModel;
+      $timeIn =  $attendance -> timeIn;
+      $timeOut = $attendance -> timeOut;
+      $diff = $timeIn->diffInHours($timeOut);
+      return ($attendance->hoursWorked = $diff);
+
+    }
+
+    // public function caltardiness()
+    // {
+    //
+    //   $attendance = new AttendanceModel;
+    //   $shiftStart =  $attendance->accountinfo-> shiftStart;
+    //   $timeIn = $attendance -> timeIn;
+    //   $diff = $shiftStart->diffInHours($timeIn);
+    //   $attendance->tardiness = $diff;
+    //   $attendance->save();
+    // }
+    //
+    // public function calovertime($id)
+    // {
+    //   $user = AccountInfo::find($id);
+    //   $attendance = new AttendanceModel;
+    //   $shiftEnd =  $attendance->accountinfo->shiftEnd;
+    //   $timeOut = $attendance -> timeOut;
+    //   $diff = $shiftEnd->diffInHours($timeOut);
+    //   $attendance->overtime = $diff;
+    //   $attendance->save();
+    // }
     /**
      * Update the specified resource in storage.
      *

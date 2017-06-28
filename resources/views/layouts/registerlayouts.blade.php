@@ -13,116 +13,55 @@
     <!-- Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://use.fontawesome.com/bec5115d64.js"></script>
     @yield('style')
 </head>
 <body>
-
-<div id="wrapper">
-  <div class="overlay"></div>
-    <!-- sidebar -->
-    <div class="sidebar-page">
-      <ul class="nav sidebar-nav">
-
-          @if (Auth::check())
-                @can('view_accounts')
-                    <li class="{{ Request::is('accountinfo*') ? 'active' : '' }}">
-                        <a href="{{ route('accounts.index') }}">
-                             Account <span class="fa fa-id-card-o" style="text-align: right;"></span>
-                        </a>
-                    </li>
-                @endcan
-
-
-            @endif
-        <li>
-          <a href="#">Attendance</a>
-        </li>
-        <li>
-          <a href="#">Abscen</a>
-        </li>
-        <li>
-          <a href="#">Bank Accounts</a>
-        </li>
-        <li>
-          <a href="#">Dependence</a>
-        </li>
-        <li>
-          <a href="#">Events</a>
-        </li>
-        <li>
-          <a href="#">Holidays</a>
-        </li>
-        <li>
-          <a href="#">Leaves</a>
-        </li>
-        <li>
-          <a href="#">Roles</a>
-        </li>
-        <li>
-          <a href="#">T</a>
-        </li>
-        <li>
-          <a href="#">Awards</a>
-        </li>
-        <li>
-          <a href="#">Expenses</a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-header">Dropdown heading</li>
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-
-      </ul>
-    </div>
-  <div class="content-page-warpper">
+   <div id="wrapper">
+     <section class="register-container">
     <div class="nav nav-header navbar-static-top ">
       <div class="container-fluid box">
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-                      <span class="hamb-top"></span>
-                      <span class="hamb-middle"></span>
-                      <span class="hamb-bottom"></span>
-                    </button>
 
-
-                    <!-- <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="header-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
-                    </a> -->
+                    </a>
 
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                      @if (Auth::check())
+                            @can('view_accounts')
+                                <li class="{{ Request::is('accountinfo*') ? 'active' : '' }}">
+                                    <a href="{{ route('accounts.index') }}">
+                                        <span class="text-info glyphicon glyphicon-user"></span> Account
+                                    </a>
+                                </li>
+                            @endcan
 
+
+                        @endif
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li class="nav-login"><a href="{{ route('login') }}">Login</a></li>
-
+                            <li class="nav-login"><a>|</a></li>
                             <li class="nav-login"><a href="{{ route('register') }}">Register</a></li>
                         @else
 
                         @can('view_roles')
                            <li class="{{ Request::is('roles*') ? 'active' : '' }}">
                                <a href="{{ route('roles.index') }}">
-                                   <span class="fa fa-users"></span> Roles
+                                   <span class="text-danger glyphicon glyphicon-lock"></span> Roles
                                </a>
                            </li>
-                             <li class="nav-login"><a>|</a></li>
                            @endcan
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative;">
-                                      <!-- <img src="/uploads/avatars/{{Auth::user()->avatar}}" style="width:32px; height:32px; position:absolute; top:10px; border-radius:50%;"> -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
+                                      <img src="/uploads/avatars/{{Auth::user()->avatar}}" style="width:32px; height:32px; position:absolute; top:10px; border-radius:50%;">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -145,22 +84,17 @@
                 </div>
                 </div>
             </div>
-            <div class="container form-container">
-                        <div id="flash-msg">
-                            @include('flash::message')
-                        </div>
-                        @yield('content')
+
+                    <div id="flash-msg">
+                        @include('flash::message')
                     </div>
-        </div>
-</div>
-
-
-
+                    @yield('content')
+                  </section>
+              </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/customjs.js') }}"></script>
-
     @stack('scripts')
 
     <script>
@@ -172,7 +106,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <!-- <link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
     <script src="http://demo.expertphp.in/js/jquery.js"></script>
-    <script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script>-->
+    <script src="{{ asset('js/custom.css') }}"></script>-->
       @yield('script')
 </body>
 </html>

@@ -12,9 +12,9 @@
                       <div class="panel-header">Login</div>
                         {{ csrf_field() }}
                         <div class="group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <input id="username" type="text"  name="username" value="{{ old('username') }}" required autofocus>
+                                <input id="username" class="idna" type="text"  name="username" value="{{ old('username') }}" required autofocus>
                                 <span class="highlight"></span><span class="bar"></span>
-                                <label>Username</label>
+                                <label class="text-login">Username</label>
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -22,9 +22,9 @@
                                 @endif
                         </div>
                           <div class="group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="password" type="password"  name="password" required>
+                                <input id="password" class="idna"  type="password"  name="password" required>
                                 <span class="highlight"></span><span class="bar"></span>
-                                <label>Password</label>
+                                <label class="text-login">Password</label>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>

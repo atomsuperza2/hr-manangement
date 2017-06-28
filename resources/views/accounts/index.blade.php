@@ -48,20 +48,23 @@
         <td>{{ $user->exitDate}}</td>
         <td>{{ $user->salary}}</td>
         <td>{{ $user->user->roles->implode('name', ', ') }}</td>
-
         @can('edit_accounts', 'delete_accounts')
         <td>
+          @if( $user->user->roles->implode('name', ', ') === 'Admin')
+
+									<a class="btn btn-primary" href="#" disabled>Edit</a>
+                  <a class="btn btn-danger" href="#" disabled>Delete</a>
+          @else
           {!! Form::open(['method'=>'DELETE', 'route'=>['accounts.destroy',$user->id]]) !!}
 									<a class="btn btn-primary" href="{{ route('accounts.edit', $user->id) }}">Edit</a>
 									{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 									{!! Form::close() !!}
-
-          </form>
+          @endif
         </td>
          @endcan
+           </tr>
     @endforeach
 
-    </tr>
 </div>
 </table>
 {!! $accounts->render() !!}

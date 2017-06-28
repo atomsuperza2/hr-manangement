@@ -23,7 +23,6 @@
     <!-- sidebar -->
     <div class="sidebar-page">
       <ul class="nav sidebar-nav">
-
           @if (Auth::check())
                 @can('view_accounts')
                     <li class="{{ Request::is('accountinfo*') ? 'active' : '' }}">
@@ -34,52 +33,134 @@
                 @endcan
 
 
-            @endif
-        <li>
-          <a href="#">Attendance</a>
-        </li>
-        <li>
-          <a href="#">Abscen</a>
-        </li>
-        <li>
-          <a href="#">Bank Accounts</a>
-        </li>
-        <li>
-          <a href="#">Dependence</a>
-        </li>
-        <li>
-          <a href="#">Events</a>
-        </li>
-        <li>
-          <a href="#">Holidays</a>
-        </li>
-        <li>
-          <a href="#">Leaves</a>
-        </li>
-        <li>
-          <a href="#">Roles</a>
-        </li>
-        <li>
-          <a href="#">T</a>
-        </li>
-        <li>
-          <a href="#">Awards</a>
-        </li>
-        <li>
-          <a href="#">Expenses</a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-header">Dropdown heading</li>
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+                @can('view_attendance')
+                <li class="{{ Request::is('attendance*') ? 'active' : '' }}">
+                    <a href="{{ route('attendance.index') }}">
+                        Attendance<span class="fa fa-users"  style="text-align: right;"></span>
+                    </a>
+                </li>
+                @endcan
 
+                @can('view_cutoff')
+                <li class="{{ Request::is('cutoff*') ? 'active' : '' }}">
+                    <a href="{{ route('cutoff.index') }}">
+                        Cutoff<span class="fa fa-users"  style="text-align: right;"></span>
+                    </a>
+                </li>
+                @endcan
+
+                @can('view_absences')
+                <li class="{{ Request::is('absences*') ? 'active' : '' }}">
+                    <a href="{{ route('absences.index') }}">
+                        Absences<span class="fa fa-users"  style="text-align: right;"></span>
+                    </a>
+                </li>
+                @endcan
+
+                @can('view_bankaccount')
+                <li class="{{ Request::is('bankaccount*') ? 'active' : '' }}">
+                    <a href="{{ route('bankaccount.index') }}">
+                        Bankaccount<span class="fa fa-users"  style="text-align: right;"></span>
+                    </a>
+                </li>
+                @endcan
+
+                @can('view_pay')
+                <li class="{{ Request::is('pay*') ? 'active' : '' }}">
+                    <a href="{{ route('pay.index') }}">
+                        Pay for employee<span class="fa fa-users"  style="text-align: right;"></span>
+                    </a>
+                </li>
+
+              @can('view_department')
+              <li class="{{ Request::is('department*') ? 'active' : '' }}">
+                  <a href="{{ route('department.index') }}">
+                      Department<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_designation')
+              <li class="{{ Request::is('designation*') ? 'active' : '' }}">
+                  <a href="{{ route('designation.index') }}">
+                      Department<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_events')
+              <li class="{{ Request::is('events*') ? 'active' : '' }}">
+                  <a href="{{ route('events.index') }}">
+                      Event<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_holidays')
+              <li class="{{ Request::is('holidays*') ? 'active' : '' }}">
+                  <a href="{{ route('holidays.index') }}">
+                      Holidays<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_trainingprogram')
+              <li class="{{ Request::is('trainingprogram*') ? 'active' : '' }}">
+                  <a href="{{ route('trainingprogram.index') }}">
+                      Trainingprogram<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_training')
+              <li class="{{ Request::is('training*') ? 'active' : '' }}">
+                  <a href="{{ route('training.index') }}">
+                      Trainingprogram<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_awards')
+              <li class="{{ Request::is('awards*') ? 'active' : '' }}">
+                  <a href="{{ route('awards.index') }}">
+                      Awards<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_leavestype')
+              <li class="{{ Request::is('leavestype*') ? 'active' : '' }}">
+                  <a href="{{ route('leavestype.index') }}">
+                      Leavestype<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_leaves')
+              <li class="{{ Request::is('leaves*') ? 'active' : '' }}">
+                  <a href="{{ route('leaves.index') }}">
+                      Leavestype<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_nationality')
+              <li class="{{ Request::is('nationality*') ? 'active' : '' }}">
+                  <a href="{{ route('nationality.index') }}">
+                      Nationality<span class="fa fa-users"  style="text-align: right;"></span>
+                  </a>
+              </li>
+              @endcan
+
+              @can('view_roles')
+                  <li class="{{ Request::is('roles*') ? 'active' : '' }}">
+                      <a href="{{ route('roles.index') }}">
+                          Roles<span class="fa fa-users"  style="text-align: right;"></span>
+                      </a>
+                  </li>
+              @endcan
+              @endif
+          @endif
       </ul>
     </div>
   <div class="content-page-warpper">

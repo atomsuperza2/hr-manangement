@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
+  // return view('/home');
     return view('auth/login');
 });
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 @include('accounts.selectCutoff')
 @section('content')
 <div class="container">

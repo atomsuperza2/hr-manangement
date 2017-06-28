@@ -49,15 +49,22 @@ class CheckAttendanceController extends Controller
       $TimeOut = Carbon::parse($request->timeOut[$i]);
       $hoursWorked = $TimeOut->diffInSeconds($TimeIn);
       $Hresult = gmdate('H:i:s', $hoursWorked);
+      $shiftStart = Carbon::parse($request->shiftStart);
+      $tardiness = $shiftStart->diffInSeconds($TimeIn);
+      $Tresult = gmdate('H:i:s', $tardiness);
+      $shiftEnd = Carbon::parse($request->shiftEnd);
+      $overTime = $shiftEnd->diffInSeconds($TimeOut);
+      $Oresult = gmdate('H:i:s', $overTime);
+
 
           AttendanceModel::find($request->a_id[$i])->update([
 
            'date'=> $request->date[$i],
            'timeIn'=> $request->timeIn[$i],
            'timeOut'=> $request->timeOut[$i],
-           'hoursWorked' => $Hresult
-          //  'tardiness' => $request->shiftStart - $request->timeIn[$i],
-          //  'overtime' => $request->shiftEnd - $request->timeOut[$i],
+           'hoursWorked' => $Hresult,
+           'tardiness' => $Tresult,
+           'overtime' => $Oresult
         ]);
     }
         return redirect("/accounts/$id/profile");

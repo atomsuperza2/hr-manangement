@@ -42,6 +42,10 @@ class CheckAttendanceController extends Controller
   }
 
   public function submitAttendance(Request $request, $id){
+    $account = AccountInfo::find($id);
+    $TStart = Carbon::parse($account->shiftStart);
+    $TEnd = Carbon::parse($account->shiftEnd);
+    $defaultTime = Carbon::parse('00:00');
 
     for ($i=0; $i < count($request->date); $i++) {
 
@@ -49,13 +53,23 @@ class CheckAttendanceController extends Controller
       $TimeOut = Carbon::parse($request->timeOut[$i]);
       $hoursWorked = $TimeOut->diffInSeconds($TimeIn);
       $Hresult = gmdate('H:i:s', $hoursWorked);
-      $shiftStart = Carbon::parse($request->shiftStart);
-      $tardiness = $shiftStart->diffInSeconds($TimeIn);
-      $Tresult = gmdate('H:i:s', $tardiness);
-      $shiftEnd = Carbon::parse($request->shiftEnd);
-      $overTime = $shiftEnd->diffInSeconds($TimeOut);
-      $Oresult = gmdate('H:i:s', $overTime);
 
+      if($TStart<$TimeIn){
+      $TimeIn2 = Carbon::parse($request->timeIn[$i]);
+      $tardiness = $TimeIn2->diffInSeconds($TStart);
+      $Tresult = gmdate('H:i:s', $tardiness);
+      $request->tardiness = $Tresult;
+    }else {
+      $request->tardiness = $defaultTime;
+    }
+    if($TEnd<$TimeOut){
+      $TimeOut2 = Carbon::parse($request->timeOut[$i]);
+      $overTime = $TimeOut2->diffInSeconds($TEnd);
+      $Oresult = gmdate('H:i:s', $overTime);
+      $request->overtime = $Oresult;
+    }else {
+      $request->overtime = $defaultTime;
+    }
 
           AttendanceModel::find($request->a_id[$i])->update([
 
@@ -63,8 +77,8 @@ class CheckAttendanceController extends Controller
            'timeIn'=> $request->timeIn[$i],
            'timeOut'=> $request->timeOut[$i],
            'hoursWorked' => $Hresult,
-           'tardiness' => $Tresult,
-           'overtime' => $Oresult
+           'tardiness' => $request->tardiness,
+           'overtime' => $request->overtime,
         ]);
     }
         return redirect("/accounts/$id/profile");

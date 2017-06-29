@@ -15,7 +15,7 @@
                       <label for="Employee" class="col-md-4 control-label">Employee::</label>
                       <div class="col-md-6">
                       <input class="form-control" name="name" type="text" value= "{{$accounts->name}}" disabled>
-                      <input class = "form-control" name="user_id" value= "{{$accounts->id}}" type="text">
+                      <input class = "form-control" name="user_id" value= "{{$accounts->id}}" type="hidden">
                       </div>
 
                       <label for="dateStart" class="col-md-4 control-label">Date Start::</label>
@@ -27,16 +27,18 @@
                       <div class="col-md-6">
                       <input class="form-control" name="daterangeEnd" type="text" value= "{{$cutoff->dateEnd}}" disabled>
                       </div>
-                      <input class="form-control" name="shiftStart" type="text" value= "{{$accounts->shiftStart}}" >
-                      <input class="form-control" name="shiftEnd" type="text" value= "{{$accounts->shiftEnd}}">
+                      <input class="form-control" name="shiftStart" type="hidden" value= "{{$accounts->shiftStart}}" >
+                      <input class="form-control" name="shiftEnd" type="hidden" value= "{{$accounts->shiftEnd}}">
 
               <table class="table table-striped">
 
                 <tr>
                   <th>Date</th>
-                  <th>Time In</th>
-                  <th>Time Out</th>
-                  <th>Hours Worked</th>
+                  <th>TimeIn</th>
+                  <th>TimeOut</th>
+                  <th>HoursWorked</th>
+                  <th>Late</th>
+                  <th>Overtime</th>
                 </tr>
                 <div class="container">
                   @foreach ($ranges as $date => $value)
@@ -59,6 +61,8 @@
                              <td><input class="form-control" name="timeOut[]" type="time" value="{{ $attend->timeOut}}"/></td>
                            @endif<!-- <td><input class="form-control" name="a_id" type="text" value="{{ isset($accounts->attendance[$date])? $accounts->attendance[$date]->id:'null' }}"/></td> -->
                            <td><input class="form-control" name="hoursWorked[]" type="time" value="{{ $attend->hoursWorked}}" disabled/></td>
+                           <td><input class="form-control" name="tardiness[]" type="time" value="{{ $attend->tardiness}}" disabled/></td>
+                           <td><input class="form-control" name="overtime[]" type="time" value="{{ $attend->overtime}}" disabled/></td>
                            <td><input class="form-control" name="a_id[]" type="hidden" value="{{ $attend->id}}" /></td>
 
                     </tr>

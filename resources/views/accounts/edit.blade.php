@@ -122,7 +122,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('employeeID') ? ' has-error' : '' }}">
+                        <!-- <div class="form-group{{ $errors->has('employeeID') ? ' has-error' : '' }}">
                             <label for="employeeID" class="col-md-4 control-label">EmployeeID</label>
 
                             <div class="col-md-6">
@@ -134,7 +134,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
                             <label for="department_id" class="col-md-4 control-label">Department</label>

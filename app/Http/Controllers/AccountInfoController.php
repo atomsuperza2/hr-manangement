@@ -79,7 +79,7 @@ class AccountInfoController extends Controller
             'phone' => $request -> phone,
             'address' => $request -> address,
             'nationality_id' => $request -> nationality_id,
-            'employeeID' => $request -> employeeID,
+            // 'employeeID' => $request -> employeeID,
             'hiredDate' => $request -> hiredDate,
             'exitDate' => $request -> exitDate,
             'salary' => $request -> salary,

@@ -64,7 +64,8 @@ class AccountInfoController extends Controller
         //  try{
         // if($user = USer::create($request->except(['roles', 'permissions'])))
           $user = User::create(['username' => $request -> username,
-                                'password' =>  bcrypt($request -> birthday),
+                                'password' => bcrypt(date('Ymd', strtotime($request -> birthday))),
+                                // bcrypt($request -> birthday),
                                 'name'=> $request -> name,
                                 'email' => $request -> email,
                                 'roles' => $request -> roles,

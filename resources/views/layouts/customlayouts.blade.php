@@ -22,37 +22,47 @@
   <div class="overlay"></div>
     <!-- sidebar -->
     <div class="sidebar-page">
-      <ul class="nav sidebar-nav">
+      <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+             <a href="#">
+                HR-Management
+             </a>
+         </li>
           @if (Auth::check())
                 @can('view_accounts')
                     <li class="{{ Request::is('accountinfo*') ? 'active' : '' }}">
                         <a href="{{ route('accounts.index') }}">
-                             Account <span class="fa fa-id-card-o" style="text-align: right;"></span>
+                             Account
                         </a>
                     </li>
                 @endcan
 
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Attendance <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Dropdown heading</li>
+                        @can('view_attendance')
+                        <li class="{{ Request::is('attendance*') ? 'active' : '' }}">
+                            <a href="{{ route('attendance.index') }}">
+                                Attendance</span>
+                            </a>
+                        </li>
+                          @endcan
 
-                @can('view_attendance')
-                <li class="{{ Request::is('attendance*') ? 'active' : '' }}">
-                    <a href="{{ route('attendance.index') }}">
-                        Attendance<span class="fa fa-users"  style="text-align: right;"></span>
-                    </a>
-                </li>
-                @endcan
-
-                @can('view_cutoff')
-                <li class="{{ Request::is('cutoff*') ? 'active' : '' }}">
-                    <a href="{{ route('cutoff.index') }}">
-                        Cutoff<span class="fa fa-users"  style="text-align: right;"></span>
-                    </a>
-                </li>
-                @endcan
+                          @can('view_cutoff')
+                          <li class="{{ Request::is('cutoff*') ? 'active' : '' }}">
+                              <a href="{{ route('cutoff.index') }}">
+                                  Cutoff
+                              </a>
+                          </li>
+                          @endcan
+                      </ul>
+                  </li>
 
                 @can('view_absences')
                 <li class="{{ Request::is('absences*') ? 'active' : '' }}">
                     <a href="{{ route('absences.index') }}">
-                        Absences<span class="fa fa-users"  style="text-align: right;"></span>
+                        Absences
                     </a>
                 </li>
                 @endcan
@@ -60,7 +70,7 @@
                 @can('view_bankaccount')
                 <li class="{{ Request::is('bankaccount*') ? 'active' : '' }}">
                     <a href="{{ route('bankaccount.index') }}">
-                        Bankaccount<span class="fa fa-users"  style="text-align: right;"></span>
+                        Bankaccount
                     </a>
                 </li>
                 @endcan
@@ -68,30 +78,35 @@
                 @can('view_pay')
                 <li class="{{ Request::is('pay*') ? 'active' : '' }}">
                     <a href="{{ route('pay.index') }}">
-                        Pay for employee<span class="fa fa-users"  style="text-align: right;"></span>
+                        Pay for employee
                     </a>
                 </li>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Department <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li class="dropdown-header">Dropdown heading</li>
+                          @can('view_department')
+                          <li class="{{ Request::is('department*') ? 'active' : '' }}">
+                              <a href="{{ route('department.index') }}">
+                                  Department
+                              </a>
+                          </li>
+                          @endcan
 
-              @can('view_department')
-              <li class="{{ Request::is('department*') ? 'active' : '' }}">
-                  <a href="{{ route('department.index') }}">
-                      Department<span class="fa fa-users"  style="text-align: right;"></span>
-                  </a>
-              </li>
-              @endcan
-
-              @can('view_designation')
-              <li class="{{ Request::is('designation*') ? 'active' : '' }}">
-                  <a href="{{ route('designation.index') }}">
-                      Department<span class="fa fa-users"  style="text-align: right;"></span>
-                  </a>
-              </li>
-              @endcan
+                          @can('view_designation')
+                          <li class="{{ Request::is('designation*') ? 'active' : '' }}">
+                              <a href="{{ route('designation.index') }}">
+                                  designation
+                              </a>
+                          </li>
+                          @endcan
+                        </ul>
+                      </li>
 
               @can('view_events')
               <li class="{{ Request::is('events*') ? 'active' : '' }}">
                   <a href="{{ route('events.index') }}">
-                      Event<span class="fa fa-users"  style="text-align: right;"></span>
+                      Event
                   </a>
               </li>
               @endcan
@@ -99,55 +114,67 @@
               @can('view_holidays')
               <li class="{{ Request::is('holidays*') ? 'active' : '' }}">
                   <a href="{{ route('holidays.index') }}">
-                      Holidays<span class="fa fa-users"  style="text-align: right;"></span>
+                      Holidays
                   </a>
               </li>
               @endcan
+              <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trainingprogram <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Dropdown heading</li>
+                        @can('view_trainingprogram')
+                        <li class="{{ Request::is('trainingprogram*') ? 'active' : '' }}">
+                            <a href="{{ route('trainingprogram.index') }}">
+                                Trainingprogram
+                            </a>
+                        </li>
+                        @endcan
 
-              @can('view_trainingprogram')
-              <li class="{{ Request::is('trainingprogram*') ? 'active' : '' }}">
-                  <a href="{{ route('trainingprogram.index') }}">
-                      Trainingprogram<span class="fa fa-users"  style="text-align: right;"></span>
-                  </a>
-              </li>
-              @endcan
-
-              @can('view_training')
-              <li class="{{ Request::is('training*') ? 'active' : '' }}">
-                  <a href="{{ route('training.index') }}">
-                      Trainingprogram<span class="fa fa-users"  style="text-align: right;"></span>
-                  </a>
-              </li>
-              @endcan
+                        @can('view_training')
+                        <li class="{{ Request::is('training*') ? 'active' : '' }}">
+                            <a href="{{ route('training.index') }}">
+                                Training
+                            </a>
+                        </li>
+                        @endcan
+                      </ul>
+                    </li>
 
               @can('view_awards')
               <li class="{{ Request::is('awards*') ? 'active' : '' }}">
                   <a href="{{ route('awards.index') }}">
-                      Awards<span class="fa fa-users"  style="text-align: right;"></span>
+                      Awards
                   </a>
               </li>
               @endcan
 
-              @can('view_leavestype')
-              <li class="{{ Request::is('leavestype*') ? 'active' : '' }}">
-                  <a href="{{ route('leavestype.index') }}">
-                      Leavestype<span class="fa fa-users"  style="text-align: right;"></span>
-                  </a>
-              </li>
-              @endcan
+              <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Dropdown heading</li>
+                        @can('view_leavestype')
+                        <li class="{{ Request::is('leavestype*') ? 'active' : '' }}">
+                            <a href="{{ route('leavestype.index') }}">
+                                Leavestype
+                            </a>
+                        </li>
+                        @endcan
 
-              @can('view_leaves')
-              <li class="{{ Request::is('leaves*') ? 'active' : '' }}">
-                  <a href="{{ route('leaves.index') }}">
-                      Leavestype<span class="fa fa-users"  style="text-align: right;"></span>
-                  </a>
-              </li>
-              @endcan
+                        @can('view_leaves')
+                        <li class="{{ Request::is('leaves*') ? 'active' : '' }}">
+                            <a href="{{ route('leaves.index') }}">
+                                Leaves
+                            </a>
+                        </li>
+                        @endcan
+                      </ul>
+                    </li>
+
 
               @can('view_nationality')
               <li class="{{ Request::is('nationality*') ? 'active' : '' }}">
                   <a href="{{ route('nationality.index') }}">
-                      Nationality<span class="fa fa-users"  style="text-align: right;"></span>
+                      Nationality
                   </a>
               </li>
               @endcan
@@ -155,7 +182,7 @@
               @can('view_roles')
                   <li class="{{ Request::is('roles*') ? 'active' : '' }}">
                       <a href="{{ route('roles.index') }}">
-                          Roles<span class="fa fa-users"  style="text-align: right;"></span>
+                          Roles
                       </a>
                   </li>
               @endcan
@@ -193,12 +220,8 @@
                         @else
 
                         @can('view_roles')
-                           <li class="{{ Request::is('roles*') ? 'active' : '' }}">
-                               <a href="{{ route('roles.index') }}">
-                                   <span class="fa fa-users"></span> Roles
-                               </a>
-                           </li>
-                             <li class="nav-login"><a>|</a></li>
+
+
                            @endcan
 
                             <li class="dropdown">

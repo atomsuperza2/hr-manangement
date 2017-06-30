@@ -1,37 +1,52 @@
 @extends('layouts.customlayouts')
 @include('accounts.selectCutoff')
 @section('content')
-<div class="container">
-  <div class="col-md-12 col-md-offset-2">
-  <div class="form-group">
-      <div class="col-md-2 ">
-        <a class="btn btn-primary" href="{{ route('accounts.edit', $accounts->id) }}">Edit profile</a>
-        <a class="btn btn-primary" id="selectCutoff">Attendance</a>
-        <a class="btn btn-primary" href="{{route('absences.usercreateabsences', $accounts->id) }}">Absences</a>
-        <a class="btn btn-primary" href="{{ route('bankaccount.edit', $accounts->id) }}">Bank account</a>
-        <a class="btn btn-primary" href="{{ route('awards.usercreateaward', $accounts->id)}}">Awards</a>
-        <a class="btn btn-primary" href="{{ route('pay.usercreatepay', $accounts->id)}}">Pay</a>
-        <a class="btn btn-primary" href="{{ route('training.usertraining', $accounts->id)}}">Training</a>
-        <a class="btn btn-primary" href="{{ route('leaves.userleave', $accounts->id)}}">Leave</a>
-        <img src="/uploads/avatars/{{$accounts->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
-        <form enctype="multipart/form-data" action="{{ route('accounts.update_avatar', $accounts->id) }} " method="POST">
-          <label>Update Profile Image</label>
-            <input type="file" name="avatar">
-            <input type="hidden" name="_token" value="{{csrf_token() }}">
-            <input type="submit" class="pull-right btn btn-sm btn-primary">
-        </form>
-      </div>
-  </div>
 
-  </div>
+  <div class="row">
+  <div class="col-md-12 ">
+  <div class="form-group">
+
+        <div class="panel-regis">
+            <div class="heading">Profile</div>
+            <div class="panel-body">
+
+              <div class="col-md-2">
+                  <img src="/uploads/avatars/{{$accounts->avatar}}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px;">
+              </div>
+              <div class="col-md-10">
+                <div class="btn-group" role="group" aria-label="...">
+                <a class="btn btn-primary" href="{{ route('accounts.edit', $accounts->id) }}">Edit profile</a>
+                <a class="btn btn-primary" id="selectCutoff">Attendance</a>
+                <a class="btn btn-primary" href="{{route('absences.usercreateabsences', $accounts->id) }}">Absences</a>
+                <a class="btn btn-primary" href="{{ route('bankaccount.edit', $accounts->id) }}">Bank account</a>
+                <a class="btn btn-primary" href="{{ route('awards.usercreateaward', $accounts->id)}}">Awards</a>
+                <a class="btn btn-primary" href="{{ route('pay.usercreatepay', $accounts->id)}}">Pay</a>
+                <a class="btn btn-primary" href="{{ route('training.usertraining', $accounts->id)}}">Training</a>
+                <a class="btn btn-primary" href="{{ route('leaves.userleave', $accounts->id)}}">Leave</a>
+              </div>
+              <hr />
+              <form enctype="multipart/form-data" action="{{ route('accounts.update_avatar', $accounts->id) }} " method="POST">
+                <label>Update Profile Image</label>
+                <input type="file" name="avatar">
+                <input type="hidden" name="_token" value="{{csrf_token() }}">
+                <br />
+                <input type="submit" class="btn btn-sm btn-primary">
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <br>
 
+<div class="container form-container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-md-4">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Personal Detail</div>
+            <div class="panel-profile">
+                <div class="heading">Personal Detail</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="get" action="{{ route('accounts.show', $accounts->id) }}">
@@ -61,13 +76,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-md-4">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Company Detail</div>
+            <div class="panel-profile">
+                <div class="heading">Company Detail</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="get" action="{{ route('accounts.show', $accounts->id) }}">
@@ -102,20 +115,15 @@
                             <label for="salary" class="col-md-5 control-label">Salary :</label>
                             <label for="salary" class="col-md-7 control-label">{{$accounts->salary}}</label>
 
-
-
-
                     </form>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-md-4">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Bank Account</div>
+            <div class="panel-profile">
+                <div class="heading">Bank Account</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="get" action="{{ route('accounts.show', $accounts->id) }}">
@@ -148,15 +156,12 @@
                             @endif
 
 
-
-
-
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
 
+
+</div>
 </div>
 @endsection
 @section('script')

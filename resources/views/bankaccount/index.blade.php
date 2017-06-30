@@ -1,6 +1,6 @@
 
 
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
@@ -8,11 +8,11 @@
 <h2 class ="alert alert-succress">{{session()->get('message')}}</h2>
 @endif
 
-<div class="container">
-  <a href="/bankaccount/add" class="btn btn-primary">New bank accounts</a>
+<div class="container form-container">
+
 <div class="col-md-12">
-    <div class="panel panel-default">
-    <div class="panel-heading">Bank Account</div>
+    <div class="panel-regis">
+    <div class="heading">Bank Account<a href="/bankaccount/add" class="btn btn-primary "style="float:right;">New bank accounts</a></div>
     <div class="panel-body">
 <table class="table table-striped">
 

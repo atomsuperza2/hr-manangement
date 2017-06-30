@@ -15,8 +15,9 @@
   // height: 64px;
   line-height: inherit;
   font-size: 18px;
-  color: #FFF;
+  // color: #FFF;
   padding: 0;
+	margin-left: 25px;
 
 }
 .dropdown-menu>li>a:hover,
@@ -50,6 +51,7 @@
 }
 .navbar-nav>li>.dropdown-menu {
 	border-radius: 0px;
+	color: #3C4254;
 }
 .header-brand {
 	float: left;

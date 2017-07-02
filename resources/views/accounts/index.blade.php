@@ -25,7 +25,7 @@
 <!-- <th>Email</th> -->
 <th>Phone</th>
 <!-- <th>Address</th> -->
-<th>EmployeeID</th>
+<!-- <th>EmployeeID</th> -->
 
 <th>HiredDate</th>
 <th>ExitDate</th>
@@ -44,7 +44,7 @@
         <!-- <td>{{ $user->email}}</td> -->
         <td>{{ $user->phone}}</td>
         <!-- <td>{{ $user->address}}</td> -->
-        <td>{{ $user->employeeID}}</td>
+        <!-- <td>{{ $user->employeeID}}</td> -->
 
         <td>{{ $user->hiredDate}}</td>
         <td>{{ $user->exitDate}}</td>

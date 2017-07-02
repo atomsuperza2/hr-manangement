@@ -57,14 +57,19 @@
             @can('edit_roles')
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
             @endcan
-            @can('delete_roles')
-              {!! Form::open(['method'=>'DELETE', 'route'=>['roles.destroy', $role->id]]) !!}
-              {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-              {!! Form::close() !!}
-            @endcan
+
         @endif
 
         {!! Form::close() !!}
+        @if($role->name === 'Admin')
+
+        @else
+        @can('delete_roles')
+          {!! Form::open(['method'=>'DELETE', 'route'=>['roles.destroy', $role->id]]) !!}
+          {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+          {!! Form::close() !!}
+        @endcan
+        @endif
 
     @empty
         <p>No Roles defined, please run <code>php artisan db:seed</code> to seed some dummy data.</p>

@@ -122,7 +122,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('employeeID') ? ' has-error' : '' }}">
+                        <!-- <div class="form-group{{ $errors->has('employeeID') ? ' has-error' : '' }}">
                             <label for="employeeID" class="col-md-4 control-label">EmployeeID</label>
 
                             <div class="col-md-6">
@@ -134,7 +134,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
                             <label for="department_id" class="col-md-4 control-label">Department</label>
@@ -247,6 +247,27 @@
                                 @endif
                             </div>
                         </div>
+                        @can('edit_roles')
+                        <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
+                            <label for="roles" class="col-md-4 control-label">Roles</label>
+
+                            <div class="col-md-6">
+
+                                {!! Form::select('roles[]', $roles, isset($user) ? $user->roles->pluck('id')->toArray() : null,  ['class' => 'form-control']) !!}
+
+                                @if ($errors->has('roles'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('roles') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        @endcan
+                        @if(isset($user))
+
+                          @include('shared._permissions', ['closed' => 'true', 'model' => $user ])
+
+                        @endif
 
 
                         <div class="form-group">

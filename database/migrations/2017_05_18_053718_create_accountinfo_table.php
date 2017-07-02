@@ -26,7 +26,7 @@ class CreateAccountinfoTable extends Migration
             // ->unique();
             $table->integer('phone')->nullable();
             $table->string('address')->nullable();
-            $table->integer('employeeID');
+            $table->integer('employeeID')->nullable();
             $table->integer('department_id')->nullable();
             $table->integer('designation_id')->nullable();
             $table->time('shiftStart')->nullable();

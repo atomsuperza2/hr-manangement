@@ -39,7 +39,7 @@ class AttendanceController extends Controller
     {
 
       $attendance = new AttendanceModel($request->except(['searchname']));
-      $attendance->calhoursWorked();
+    
       $attendance->save();
       return redirect()->route('attendance.index')->with('alert-succress','Add new attendance success.');
     }

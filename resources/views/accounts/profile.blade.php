@@ -12,6 +12,7 @@
 
               <div class="col-md-2">
                   <img src="/uploads/avatars/{{$accounts->avatar}}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px;">
+
               </div>
               <div class="col-md-10">
                 <div class="btn-group" role="group" aria-label="...">
@@ -61,13 +62,22 @@
 
                             <label for="email" class="col-md-4 control-label">E-Mail :</label>
                             <label for="email" class="col-md-8 control-label">{{$accounts->email}}</label>
-
+                            @if ($accounts->phone == null)
+                            <label for="departmentName" class="col-md-5 control-label">Phone :</label>
+                            <label for="departmentName" class="col-md-7 control-label"> a/n </label>
+                            @endif
+                            @if ($accounts->phone != null)
                             <label for="phone" class="col-md-4 control-label">Phone :</label>
                             <label for="phone" class="col-md-8 control-label">{{$accounts->phone}}</label>
-
+                            @endif
+                            @if ($accounts->address == null)
+                            <label for="departmentName" class="col-md-5 control-label">Address :</label>
+                            <label for="departmentName" class="col-md-7 control-label"> a/n </label>
+                            @endif
+                            @if ($accounts->address != null)
                             <label for="address" class="col-md-4 control-label">Address :</label>
                             <label for="address" class="col-md-8 control-label">{{$accounts->address}}</label>
-
+                            @endif
                             <label for="username" class="col-md-4 control-label">ID card :</label>
                             <label for="username" class="col-md-8 control-label">{{ $accounts->user->username }}</label>
 
@@ -86,18 +96,18 @@
                     <form class="form-horizontal" role="form" method="get" action="{{ route('accounts.show', $accounts->id) }}">
 
                         {{ csrf_field() }}
-
+<!--
                             <label for="employeeID" class="col-md-5 control-label" >EmployeeID :</label>
-                            <label for="employeeID" class="col-md-7 control-label" >{{$accounts->employeeID}}</label>
+                            <label for="employeeID" class="col-md-7 control-label" >{{$accounts->employeeID}}</label> -->
 
                             @if ($accounts->department_id == null)
                             <label for="departmentName" class="col-md-5 control-label">Department :</label>
-                            <label for="departmentName" class="col-md-7 control-label"> null </label>
+                            <label for="departmentName" class="col-md-7 control-label"> a/n </label>
                             @endif
 
                             @if ($accounts->designation_id == null)
                             <label for="designationName" class="col-md-5 control-label">Designation :</label>
-                            <label for="designationName" class="col-md-7 control-label"> null </label>
+                            <label for="designationName" class="col-md-7 control-label"> a/n </label>
                             @endif
 
                             @if ($accounts->department_id != null)
@@ -131,15 +141,15 @@
 
                           @if ($accounts->bankaccount->account_name == null)
                           <label for="account_name" class="col-md-6 control-label" >Account Name :</label>
-                          <label for="account_name" class="col-md-6 control-label" >null</label>
+                          <label for="account_name" class="col-md-6 control-label" >a/n</label>
                           @endif
                           @if ($accounts->bankaccount->account_number == null)
                           <label for="account_number" class="col-md-6 control-label">Account Number :</label>
-                          <label for="Genaccount_numberder" class="col-md-6 control-label">null</label>
+                          <label for="Genaccount_numberder" class="col-md-6 control-label">a/n</label>
                           @endif
                           @if ($accounts->bankaccount->bank_name == null)
                           <label for="bank_name" class="col-md-6 control-label">Bank Name :</label>
-                          <label for="bank_name" class="col-md-6 control-label">null</label>
+                          <label for="bank_name" class="col-md-6 control-label">a/n</label>
                           @endif
 
                             @if ($accounts->bankaccount->account_name != null)

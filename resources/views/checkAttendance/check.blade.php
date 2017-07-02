@@ -27,8 +27,8 @@
                       <div class="col-md-6">
                       <input class="form-control" name="daterangeEnd" type="text" value= "{{$cutoff->dateEnd}}" disabled>
                       </div>
-                      <input class="form-control" name="shiftStart" type="hidden" value= "{{$accounts->shiftStart}}" >
-                      <input class="form-control" name="shiftEnd" type="hidden" value= "{{$accounts->shiftEnd}}">
+                      <input class="form-control" name="shiftStart" type="text" value= "{{$accounts->shiftStart}}" >
+                      <input class="form-control" name="shiftEnd" type="text" value= "{{$accounts->shiftEnd}}">
 
               <table class="table table-striped">
 

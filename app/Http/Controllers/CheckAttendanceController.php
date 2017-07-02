@@ -42,6 +42,7 @@ class CheckAttendanceController extends Controller
   }
 
   public function submitAttendance(Request $request, $id){
+
     $account = AccountInfo::find($id);
     $TStart = Carbon::parse($account->shiftStart);
     $TEnd = Carbon::parse($account->shiftEnd);
@@ -59,17 +60,17 @@ class CheckAttendanceController extends Controller
       $tardiness = $TimeIn2->diffInSeconds($TStart);
       $Tresult = gmdate('H:i:s', $tardiness);
       $request->tardiness = $Tresult;
-    }else {
+    }else if($TStart>=$TimeIn) {
       $request->tardiness = $defaultTime;
-    }
-    if($TEnd<$TimeOut){
+      }
+      if($TEnd<$TimeOut){
       $TimeOut2 = Carbon::parse($request->timeOut[$i]);
       $overTime = $TimeOut2->diffInSeconds($TEnd);
       $Oresult = gmdate('H:i:s', $overTime);
       $request->overtime = $Oresult;
-    }else {
+    }else if($TEnd>=$TimeOut) {
       $request->overtime = $defaultTime;
-    }
+      }
 
           AttendanceModel::find($request->a_id[$i])->update([
 

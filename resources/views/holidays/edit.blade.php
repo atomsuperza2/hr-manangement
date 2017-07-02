@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
 
 
-<div class="container">
+<div class="container form-container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Edit holidays</div>
+            <div class="panel-regis">
+                <div class="heading">Edit holidays</div>
 
                 <div class = "panel-body">
                 <form class = "" method = "GET" action = "{{route('holidays.update', $holidays->id)}}">

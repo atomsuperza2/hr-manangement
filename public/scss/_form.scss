@@ -40,6 +40,7 @@ margin-bottom: 30px;
 	border-bottom: 1px solid #757575;
 }
 
+
 .idna:focus { outline: none; }
 
 
@@ -224,7 +225,8 @@ input:focus ~ .highlight {
   }
 }
 .form-container {
-	margin-top: 60px;
+	margin-top: 40px;
+	margin-bottom: 30px;
 }
 .panel-regis {
 	background: #ffffff;
@@ -232,10 +234,24 @@ input:focus ~ .highlight {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 
 }
+.panel-profile {
+	background: #ffffff;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+	min-height: 260px;
+}
 .heading {
 	padding: 10px 15px;
 	border-bottom: 1px solid transparent;
 	background: #3c4254;
 	font-size: 2rem;
 	color: white;
+}
+.login-field {
+	width: 100%;
+	position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 6px;
+
 }

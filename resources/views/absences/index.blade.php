@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
@@ -6,11 +6,11 @@
 <h2 class ="alert alert-succress">{{session()->get('message')}}</h2>
 @endif
 
-<div class="container">
-  <a href="/absences/add" class="btn btn-primary">New absences</a>
+<div class="container form-container">
+
 <div class="col-md-12">
-    <div class="panel panel-default">
-    <div class="panel-heading">Absences</div>
+    <div class="panel-regis">
+    <div class="heading">Absences<a href="/absences/add" class="btn btn-primary "style="float:right;">New absences</a></div>
     <div class="panel-body">
 <table class="table table-striped">
 
@@ -22,7 +22,7 @@
 <th>Reason</th>
 <th>Action</th>
 </tr>
-<div class="container">
+<div class="container form-container">
     @foreach ($absencess as $absences)
     <tr>
         <td>{{$absences->id}}</td>

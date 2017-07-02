@@ -12,9 +12,9 @@
                       <div class="panel-header">Login</div>
                         {{ csrf_field() }}
                         <div class="group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <input id="username" class="idna" type="text"  name="username" value="{{ old('username') }}" required autofocus>
-                                <span class="highlight"></span><span class="bar"></span>
-                                <label class="text-login">Username</label>
+                                <input id="username" class="login-field" type="text"  name="username" value="{{ old('username') }}" placeholder="Username" required>
+
+
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -22,9 +22,8 @@
                                 @endif
                         </div>
                           <div class="group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="password" class="idna"  type="password"  name="password" required>
-                                <span class="highlight"></span><span class="bar"></span>
-                                <label class="text-login">Password</label>
+                                <input id="password" class="login-field"  type="password"  name="password" placeholder="Password" required>
+
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -36,7 +35,7 @@
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                     </label>
                                 </div> -->
-                            <button type="submit" class="button buttonBlue">Submit
+                            <button type="submit" class="button buttonBlue">Login
                                 <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                               </button>
                                 <!-- <a class="btn btn-link" href="{{ route('password.request') }}">

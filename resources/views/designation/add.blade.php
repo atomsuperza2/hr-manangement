@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
 
 
-<div class="container">
+<div class="container form-container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">New Designation</div>
+            <div class="panel-regis">
+                <div class="heading">New Designation</div>
 
                 <div class = "panel-body">
                 <form class = "" method = "POST" action = "{{URL('/designation/add')}}">
@@ -20,7 +20,7 @@
 
                   <input type= "text" class = "form-control" name="designationName" placeholder="Designation"><br>
 
-                    
+
                 <button type="submit" class="btn btn-primary">Add</button>
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
             </div>

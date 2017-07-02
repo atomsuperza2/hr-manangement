@@ -2,7 +2,7 @@
 
 
 .login-container {
-    background: transparent url(https://wallpaperscraft.com/image/shapes_lines_colorful_abstract_104775_2560x1600.jpg) center center;
+    background: transparent url('/img/shapes_lines_colorful_abstract_104775_2560x1600.jpg') center center;
     background-size: cover;
     min-height: 100vh;
     // padding-top: 60px;
@@ -14,7 +14,7 @@
     content: "";
     height: 100%;
     left: 0px;
-    position: absolute;
+    position: fixed;
     top: 0px;
     width: 100%;
 }

@@ -48,8 +48,8 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li class="nav-login"><a href="{{ route('login') }}">Login</a></li>
-                            <li class="nav-login"><a>|</a></li>
-                            <li class="nav-login"><a href="{{ route('register') }}">Register</a></li>
+                            <!-- <li class="nav-login"><a>|</a></li>
+                            <li class="nav-login"><a href="{{ route('register') }}">Register</a></li> -->
                         @else
 
                         @can('view_roles')

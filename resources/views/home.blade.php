@@ -3,11 +3,20 @@
 @section('content')
 <div class="container form-container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="col-md-12 col-md-offset-2">
+        <div class="col-md-12 ">
+
+            <div class="panel-regis">
+                <div class="heading">Authentication Details</div>
+
+                <div class="panel-body">
+
+
+
+          <div class="col-md-12">
           <div class="form-group">
-              <div class="col-md-2 ">
+              <div class="col-md-2 text-center">
                 <img src="/uploads/avatars/{{Auth::user()->account_info->avatar}}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+{{Auth::user()->account_info->name}}
 
 
 
@@ -16,13 +25,17 @@
 
           </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
           <br>
-
+<div class="container form-container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-4">
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Personal Detail</div>
+                    <div class="panel-profile">
+                        <div class="heading"> Personal Detail</div>
 
                         <div class="panel-body">
 
@@ -61,13 +74,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4 col-md-offset-2">
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Company Detail</div>
+
+                <div class="col-md-4">
+
+                    <div class="panel-profile">
+                        <div class="heading">Company Detail</div>
 
                         <div class="panel-body">
 
@@ -108,13 +121,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4 col-md-offset-2">
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Bank Account</div>
+                <div class="col-md-4">
+
+                    <div class="panel-profile">
+                        <div class="heading">Bank Account</div>
 
                         <div class="panel-body">
 
@@ -154,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-</div>
-</div>
+                  </div>
+          </div>
+
 @endsection

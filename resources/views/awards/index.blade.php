@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
@@ -6,11 +6,11 @@
 <h2 class ="alert alert-succress">{{session()->get('message')}}</h2>
 @endif
 
-<div class="container">
-  <a href="/awards/add" class="btn btn-primary">New awards</a>
+<div class="container form-container">
+
 <div class="col-md-12">
-    <div class="panel panel-default">
-    <div class="panel-heading">Awards</div>
+    <div class="panel-regis">
+    <div class="heading">Awards<a href="/awards/add" class="btn btn-primary "style="float:right;">New awards</a></div>
     <div class="panel-body">
 <table class="table table-striped">
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
@@ -6,12 +6,12 @@
 <h2 class ="alert alert-succress">{{session()->get('message')}}</h2>
 @endif
 
-<div class="container">
-  <a href="/department/add" class="btn btn-primary">New department</a>
+<div class="container form-container">
+
 <div class="col-md-12">
-    <div class="panel panel-default">
-    <div class="panel-heading">Department</div>
-    <div class="panel-body">
+    <div class="panel-regis">
+    <div class="heading">Department <a href="/department/add" class="btn btn-primary "style="float:right;">New department</a></div>
+    <div class="body">
 <table class="table table-striped">
 
   <tr>

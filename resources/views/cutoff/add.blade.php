@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
 
 
-<div class="container">
+<div class="container form-container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">New Cut-Off</div>
+            <div class="panel-regis">
+                <div class="heading">New Cut-Off</div>
 
                 <div class = "panel-body">
                 <form class = "" method = "POST" action = "{{URL('/cutoff/add')}}">

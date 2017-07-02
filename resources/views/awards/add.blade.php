@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 
 
@@ -7,11 +7,11 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
 
-<div class="container">
+<div class="container form-container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Add awards</div>
+            <div class="panel-regis">
+                <div class="heading">Add awards</div>
 
                 <div class = "panel-body">
                 <form class = "" method = "POST" action = "{{route('awards.store')}}">

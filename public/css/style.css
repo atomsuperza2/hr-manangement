@@ -12,8 +12,8 @@
   -webkit-transition: all 1s;
   line-height: inherit;
   font-size: 18px;
-  color: #FFF;
   padding: 0;
+  margin-left: 25px;
 }
 
 .dropdown-menu > li > a:hover,
@@ -53,6 +53,7 @@
 
 .navbar-nav > li > .dropdown-menu {
   border-radius: 0px;
+  color: #3C4254;
 }
 
 .header-brand {
@@ -440,7 +441,7 @@ body {
 }
 
 .sidebar-nav li:first-child a {
-  background-color: #383445;
+  background-color: transparent;
   color: #ffffff;
 }
 
@@ -474,6 +475,42 @@ body {
 
 .sidebar-nav li:nth-child(9):before {
   background-color: #987dbf;
+}
+
+.sidebar-nav li:nth-child(10):before {
+  background-color: #8a6cb6;
+}
+
+.sidebar-nav li:nth-child(11):before {
+  background-color: #7c5aae;
+}
+
+.sidebar-nav li:nth-child(12):before {
+  background-color: #704fa0;
+}
+
+.sidebar-nav li:nth-child(13):before {
+  background-color: #64468f;
+}
+
+.sidebar-nav li:nth-child(14):before {
+  background-color: #583e7e;
+}
+
+.sidebar-nav li:nth-child(15):before {
+  background-color: #4c366d;
+}
+
+.sidebar-nav li:nth-child(16):before {
+  background-color: #402d5c;
+}
+
+.sidebar-nav li:nth-child(17):before {
+  background-color: #4c366d;
+}
+
+.sidebar-nav li:nth-child(18):before {
+  background-color: #583e7e;
 }
 
 .sidebar-nav li:hover:before {
@@ -522,12 +559,12 @@ body {
 
 .sidebar-nav > .sidebar-brand {
   font-size: 20px;
-  height: 78px;
-  line-height: 58px;
+  height: 65px;
+  line-height: 42px;
 }
 
 .login-container {
-  background: transparent url(https://wallpaperscraft.com/image/shapes_lines_colorful_abstract_104775_2560x1600.jpg) center center;
+  background: transparent url("/img/shapes_lines_colorful_abstract_104775_2560x1600.jpg") center center;
   background-size: cover;
   min-height: 100vh;
   width: 100%;
@@ -539,7 +576,7 @@ body {
   content: "";
   height: 100%;
   left: 0px;
-  position: absolute;
+  position: fixed;
   top: 0px;
   width: 100%;
 }
@@ -817,7 +854,8 @@ input:focus ~ .highlight {
 }
 
 .form-container {
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-bottom: 30px;
 }
 
 .panel-regis {
@@ -827,10 +865,26 @@ input:focus ~ .highlight {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
+.panel-profile {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  min-height: 260px;
+}
+
 .heading {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
   background: #3c4254;
   font-size: 2rem;
   color: white;
+}
+
+.login-field {
+  width: 100%;
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 6px;
 }

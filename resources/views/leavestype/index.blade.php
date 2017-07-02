@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customlayouts')
 
 @section('content')
 
@@ -6,11 +6,11 @@
 <h2 class ="alert alert-succress">{{session()->get('message')}}</h2>
 @endif
 
-<div class="container">
-  <a href="/leavestype/add" class="btn btn-primary">New Leave type</a>
+<div class="container form-container">
+
 <div class="col-md-12">
-    <div class="panel panel-default">
-    <div class="panel-heading">Leave Type</div>
+    <div class="panel-regis">
+    <div class="heading">Leave Type <a href="/leavestype/add" class="btn btn-primary "style="float:right;">New Leave type</a></div>
     <div class="panel-body">
 <table class="table table-striped">
 

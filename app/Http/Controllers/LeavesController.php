@@ -66,8 +66,6 @@ class LeavesController extends Controller
       $leaves->save();
 
 
-
-
       return redirect("/accounts/$id/profile");
 
     }

@@ -16,7 +16,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th>Employee</th>
 <th>Designation</th>
 <th>Date Start</th>
@@ -28,7 +28,7 @@
 <div class="container">
   @foreach ($emdesignations as $emdesignation)
     <tr>
-      <td>{{ $emdesignation->id }}</td>
+      
         <td> {{ $emdesignation->accountinfo->name}}</td>
         <td>{{ $emdesignation->designation->designationName}}</td>
         <td>{{ $emdesignation->dateStart}}</td>

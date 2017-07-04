@@ -15,7 +15,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th>Event Name</th>
 <th>Event Description</th>
 <th>Event Start</th>
@@ -25,7 +25,7 @@
 <div class="container">
     @foreach ($events as $event)
     <tr>
-      <td>{{ $event->id}}</td>
+  
         <td>{{ $event->event_name}}</td>
         <td>{{$event->event_description}}</td>
         <td>{{$event->eventStart}}</td>

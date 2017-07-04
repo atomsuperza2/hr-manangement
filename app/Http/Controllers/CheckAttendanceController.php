@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\DaterangeController;
 use App\AccountInfo;
 use App\CutoffModel;
 use Carbon\Carbon;
+use Excel;
+
 class CheckAttendanceController extends Controller
 {
 
@@ -47,33 +49,28 @@ class CheckAttendanceController extends Controller
     $TStart = Carbon::parse($account->shiftStart);
     $TEnd = Carbon::parse($account->shiftEnd);
     $defaultTime = Carbon::parse('00:00');
-
     for ($i=0; $i < count($request->date); $i++) {
-
       $TimeIn = Carbon::parse($request->timeIn[$i]);
       $TimeOut = Carbon::parse($request->timeOut[$i]);
       $hoursWorked = $TimeOut->diffInSeconds($TimeIn);
       $Hresult = gmdate('H:i:s', $hoursWorked);
-
       if($TStart<$TimeIn){
       $TimeIn2 = Carbon::parse($request->timeIn[$i]);
       $tardiness = $TimeIn2->diffInSeconds($TStart);
       $Tresult = gmdate('H:i:s', $tardiness);
       $request->tardiness = $Tresult;
-    }else if($TStart>=$TimeIn) {
+    }else {
       $request->tardiness = $defaultTime;
-      }
-      if($TEnd<$TimeOut){
+    }
+    if($TEnd<$TimeOut){
       $TimeOut2 = Carbon::parse($request->timeOut[$i]);
       $overTime = $TimeOut2->diffInSeconds($TEnd);
       $Oresult = gmdate('H:i:s', $overTime);
       $request->overtime = $Oresult;
-    }else if($TEnd>=$TimeOut) {
+    }else {
       $request->overtime = $defaultTime;
-      }
-
+    }
           AttendanceModel::find($request->a_id[$i])->update([
-
            'date'=> $request->date[$i],
            'timeIn'=> $request->timeIn[$i],
            'timeOut'=> $request->timeOut[$i],
@@ -83,5 +80,22 @@ class CheckAttendanceController extends Controller
         ]);
     }
         return redirect("/accounts/$id/profile");
+      }
+
+
+      public function exportExcel(Request $request, $id){
+        $export = AttendanceModel::where('user_id','=',$id)
+                                  ->where('tardiness','!=',null)
+                                  ->where('overtime','!=',null)
+                                  ->select('user_id','date','timeIn','timeOut','hoursWorked','tardiness','overTime')->get();
+        //  dd($export);
+        Excel::create('export data', function($excel) use($export){
+          $excel->setTitle('รายงานการเข้างานของพนักงาน');
+          $excel->sheet('Sheet 1', function($sheet) use($export){
+            $sheet->fromArray($export);
+
+          });
+        })->export('xlsx');
+
       }
 }

@@ -16,7 +16,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th>Employee</th>
 <th>Leave Type</th>
 <th>Date From</th>
@@ -28,7 +28,7 @@
 <div class="container">
   @foreach ($leave as $leaves)
     <tr>
-      <td>{{ $leaves->id }}</td>
+
         <td>{{ $leaves->accountinfo->name}}</td>
         <td>{{ $leaves->leavestype->leavestype}}</td>
         <td>{{ $leaves->dateFrom}}</td>

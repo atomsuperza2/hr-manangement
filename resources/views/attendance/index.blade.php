@@ -16,7 +16,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th>Employee</th>
 <th>Date</th>
 <th>Time In</th>
@@ -26,7 +26,7 @@
 <div class="container">
     @foreach ($attendances as $attendance)
     <tr>
-      <td>{{ $attendance->id}}</td>
+      
         <td>{{$attendance->accountinfo->name}}</td>
         <td>{{$attendance->date}}</td>
         <td>{{$attendance->timeIn}}</td>

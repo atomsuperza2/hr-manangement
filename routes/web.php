@@ -164,6 +164,8 @@ Route::group( ['middleware' => ['auth']], function() {
 
   Route::get('/checkAttendance/{accounts}/check', 'CheckAttendanceController@checkAttendance')->name('checkAttendance.check');
   Route::get('/checkAttendance/{accounts}', array('as' => 'checkAttendance.submitAttendance', 'uses' => 'CheckAttendanceController@submitAttendance'));
+
+  Route::get('/export/{accounts}', 'CheckAttendanceController@exportExcel')->name('export');
 });
 Route::get('daterange', 'API\DaterangeController@dateRange');
 Route::get('select', 'API\DaterangeController@select');

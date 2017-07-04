@@ -15,7 +15,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th>Employee</th>
 <th>title</th>
 <th>Amount</th>
@@ -25,7 +25,7 @@
 <div class="container">
     @foreach ($pays as $pay)
     <tr>
-        <td>{{$pay->id}}</td>
+    
         <td>{{$pay->accountinfo->name}}</td>
         <td>{{$pay->title}}</td>
         <td>{{$pay->amount}}</td>

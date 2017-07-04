@@ -9,8 +9,11 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel-regis">
                 <div class="heading">Check Attendance</div>
+
                 <div class = "panel-body">
-                  <form action="{{ route('checkAttendance.submitAttendance', $accounts->id) }}" method="get">
+                  <form name = "content" action="{{ route('checkAttendance.submitAttendance', $accounts->id) }}" method="get">
+
+                      <a id = "buttonEx" class="btn btn-primary" href="{{route('export', $accounts->id) }}">Export</a>
 
                       <label for="Employee" class="col-md-4 control-label">Employee::</label>
                       <div class="col-md-6">
@@ -27,8 +30,17 @@
                       <div class="col-md-6">
                       <input class="form-control" name="daterangeEnd" type="text" value= "{{$cutoff->dateEnd}}" disabled>
                       </div>
-                      <input class="form-control" name="shiftStart" type="text" value= "{{$accounts->shiftStart}}" >
-                      <input class="form-control" name="shiftEnd" type="text" value= "{{$accounts->shiftEnd}}">
+                      <label for="dateEnd" class="col-md-4 control-label">Shift Start::</label>
+                      <div class="col-md-6">
+                      <input class="form-control" name="shiftStart" type="hidden" value= "{{$accounts->shiftStart}}" >
+                      <input class="form-control" name="Sstart" type="text" value= "{{$accounts->shiftStart}}" disabled>
+                      </div>
+                      <label for="dateEnd" class="col-md-4 control-label">Shift End::</label>
+                      <div class="col-md-6">
+                      <input class="form-control" name="shiftEnd" type="hidden" value= "{{$accounts->shiftEnd}}">
+                      <input class="form-control" name="SEnd" type="text" value= "{{$accounts->shiftEnd}}" disabled>
+                      </div>
+
 
               <table class="table table-striped">
 

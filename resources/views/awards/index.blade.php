@@ -15,7 +15,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th>Employee</th>
 <th>Awards name</th>
 <th>Gift item</th>
@@ -25,7 +25,7 @@
 <div class="container">
     @foreach ($awards as $award)
     <tr>
-        <td>{{$award->id}}</td>
+        
         <td>{{$award->accountinfo->name}}</td>
         <td>{{$award->awardName}}</td>
         <td>{{$award->giftItem}}</td>

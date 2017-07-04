@@ -15,7 +15,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th>Employee</th>
 <th>Leave Type</th>
 <th>Date</th>
@@ -25,7 +25,7 @@
 <div class="container form-container">
     @foreach ($absencess as $absences)
     <tr>
-        <td>{{$absences->id}}</td>
+      
         <td>{{$absences->accountinfo->name}}</td>
         <td>{{$absences->leavetype->leavestype}}</td>
         <td>{{$absences->date}}</td>

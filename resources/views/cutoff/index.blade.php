@@ -15,7 +15,7 @@
 <table class="table table-striped">
 
   <tr>
-    <th>ID</th>
+
 <th> Date Start</th>
 <th>Date End</th>
 <th>Action</th>
@@ -23,7 +23,7 @@
 <div class="container">
     @foreach ($cutoff as $cutoffs)
     <tr>
-      <td>{{ $cutoffs->id}}</td>
+    
         <td>{{$cutoffs->dateStart}}</td>
         <td>{{$cutoffs->dateEnd}}</td>
 

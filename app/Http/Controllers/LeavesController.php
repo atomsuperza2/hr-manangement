@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\LeavesModel;
 use App\LeavestypeModel;
 use App\AccountInfo;
+use App\DepartmentModel;
+use App\DesignationModel;
 
 class LeavesController extends Controller
 {
@@ -28,7 +30,9 @@ class LeavesController extends Controller
     public function create()
     {
       $leavestypes = LeavestypeModel::pluck('leavestype','id');
-      return view('leaves.add', ['leavestypes' => $leavestypes]);
+      $designation = DesignationModel::pluck('designationName','id');
+      $department = DepartmentModel::pluck('departmentName','id');
+      return view('leaves.add', ['leavestypes' => $leavestypes, 'designation' => $designation, 'department' => $department]);
     }
 
     /**
@@ -59,6 +63,12 @@ class LeavesController extends Controller
       $leaves = new LeavesModel();
       $leaves->user_id = $request->user_id;
       $leaves->leavetype_id = $request->leavetype_id;
+      $leaves->department = $request->department;
+      $leaves->designation = $request->designation;
+      $leaves->time = $request->time;
+      $leaves->writeAt = $request->writeAt;
+      $leaves->dear = $request->dear;
+      $leaves->phone = $request->phone;
       $leaves->dateFrom = $request->dateFrom;
       $leaves->dateTo = $request->dateTo;
       $leaves->dateApplied = $request->dateApplied;
@@ -89,8 +99,10 @@ class LeavesController extends Controller
     public function edit($id)
     {
       $leavestypes = LeavestypeModel::pluck('leavestype','id');
+      $designation = DesignationModel::pluck('designationName','id');
+      $department = DepartmentModel::pluck('departmentName','id');
       $leaves = LeavesModel::find($id);
-      return view('leaves.edit', ['leavestypes' => $leavestypes] ,compact('leaves'));
+      return view('leaves.edit', ['leavestypes' => $leavestypes,'designation' => $designation, 'department' => $department] ,compact('leaves'));
     }
 
     /**
@@ -105,6 +117,12 @@ class LeavesController extends Controller
         $leaves = LeavesModel::find($id);
         $leaves->user_id = $request->user_id;
         $leaves->leavetype_id = $request->leavetype_id;
+        $leaves->department = $request->department;
+        $leaves->designation = $request->designation;
+        $leaves->time = $request->time;
+        $leaves->writeAt = $request->writeAt;
+        $leaves->dear = $request->dear;
+        $leaves->phone = $request->phone;
         $leaves->dateFrom = $request->dateFrom;
         $leaves->dateTo = $request->dateTo;
         $leaves->dateApplied = $request->dateApplied;

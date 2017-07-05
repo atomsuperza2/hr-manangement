@@ -10,11 +10,15 @@
             <div class="heading">Profile</div>
             <div class="panel-body">
 
-              <div class="col-md-2">
-                  <img src="/uploads/avatars/{{$accounts->avatar}}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px;">
-
+              <div class="col-md-4">
+                  <img src="/uploads/avatars/{{$accounts->avatar}}" style="width:150px; height:150px; float:center; border-radius:50%;">
+                  <br><br>
+                  <label for="name">Employee :</label>
+                  <label for="name">{{$accounts->name}}</label><br>
+                  <label for="id">ID :</label>
+                  <label for="id">{{$accounts->id}}</label>
               </div>
-              <div class="col-md-10">
+              <div class="col-md-8">
                 <div class="btn-group" role="group" aria-label="...">
                 <a class="btn btn-primary" href="{{ route('accounts.edit', $accounts->id) }}">Edit profile</a>
                 <a class="btn btn-primary" id="selectCutoff">Attendance</a>

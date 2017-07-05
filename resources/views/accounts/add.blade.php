@@ -4,6 +4,10 @@
 <div class="container form-container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          <ol class="breadcrumb">
+            <li><a href="/accounts">Accounts</a></li>
+            <li class="active">Add new account</li>
+          </ol>
             <div class="panel-regis">
                 <div class="heading">Add new account</div>
                 <div class="panel-body">
@@ -44,7 +48,12 @@
                             <label for="Gender" class="col-md-4 control-label">Gender</label>
 
                             <div class="col-md-6">
-                                <input id="Gender" type="text" class="form-control" name="Gender" value="{{ old('Gender') }}" required autofocus>
+                              <div class="checkbox">
+                                <label><input type="checkbox" name="Gender" value="male">male</label>
+                              </div>
+                              <div class="checkbox">
+                                <label><input type="checkbox" name="Gender" value="female">female</label>
+                              </div>
 
                                 @if ($errors->has('Gender'))
                                     <span class="help-block">
@@ -271,9 +280,10 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Add
+                                <button type="submit" class="btn btn-success">
+                                    Save
                                 </button>
+                                  <button onclick="goBack()" class="btn btn-danger">Canceled</button>
                             </div>
                         </div>
                     </form>
@@ -282,4 +292,16 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+
+
+
+<script type="text/javascript">
+
+  function goBack() {
+    window.history.back();
+}
+
+   </script>
 @endsection

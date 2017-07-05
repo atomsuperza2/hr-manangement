@@ -149,7 +149,7 @@
               @endcan
 
               <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leave <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Dropdown heading</li>
                         @can('view_leavestype')

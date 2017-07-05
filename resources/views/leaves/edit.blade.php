@@ -10,34 +10,96 @@
 <div class="container form-container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          <ol class="breadcrumb">
+            <li><a href="/leaves">leaves</a></li>
+            <li class="active">Edit leave</li>
+          </ol>
             <div class="panel-regis">
                 <div class="heading">Edit leave</div>
 
                 <div class = "panel-body">
                 <form class = "" method = "GET" action = "{{route('leaves.update', $leaves->id)}}">
 
-                  <div class="form-group">
-
-                  	<input class="form-control" name="name" type="text" value= "{{$leaves->accountinfo->name}}" disabled>
-                  	<input class = "form-control" name="user_id" value= "{{$leaves->user_id}}" type="hidden">
-
+                  <label for="dateEnd" class="col-md-4 control-label">เขียนที่</label>
+                  <div class="col-md-6">
+                    <input type= "text" class = "form-control" name="writeAt" value="{{$leaves->writeAt}}"><br>
                   </div>
 
-
-
-
+                  <label for="dateEnd" class="col-md-4 control-label">เรื่อง</label>
+                  <div class="col-md-6">
                   <div class="form-group">
 
-                    {!! Form::select('leavetype_id', $leavestypes, $leaves->leavetype_id, ['placeholder' => 'Select', 'class'=>'form-control']) !!}
+                    {!! Form::select('leavetype_id', $leavestypes, $leaves->leavetype_id, ['placeholder' => 'Select ', 'class'=>'form-control']) !!}
+                  </div>
                   </div>
 
+                  <label for="dateEnd" class="col-md-4 control-label">เนื่องจาก</label>
+                  <div class="col-md-6">
+                  <textarea name="reason" rows="5" cols="50" class = "form-control" >{{$leaves->writeAt}}</textarea><br>
+                </div>
 
-                  <input type= "date" class = "form-control" name="dateFrom" value = "{{$leaves->dateFrom}}" placeholder="Date From"><br>
-                  <input type= "date" class = "form-control" name="dateTo" value = "{{$leaves->dateTo}}" placeholder="Date To"><br>
-                  <input type= "date" class = "form-control" name="dateApplied" value = "{{$leaves->dateApplied}}" placeholder="Date Applied"><br>
-                  <input type= "text" class = "form-control" name="reason" value = "{{$leaves->reason}}" placeholder="Reason"><br>
+                <label for="dateEnd" class="col-md-4 control-label">เรียน</label>
+                <div class="col-md-6">
+                  <input type= "text" class = "form-control" name="dear" value="{{$leaves->dear}}"><br>
+                </div>
 
-                <button type="submit" class="btn btn-primary">Edit</button>
+                  <label for="dateEnd" class="col-md-4 control-label">ข้าพเจ้า</label>
+                  <div class="col-md-6">
+                  <div class="form-group">
+
+                    	<input class="form-control" name="name" type="text" value= "{{$leaves->accountinfo->name}}" disabled>
+                    	<input class = "form-control" name="user_id" value= "{{$leaves->user_id}}" type="hidden">
+
+                  </div>
+                  </div>
+
+                  <label for="dateEnd" class="col-md-4 control-label">ตำแหน่งงาน</label>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                    {!! Form::select('designation', $designation, $leaves->accountinfo->designation_id, ['placeholder' => 'Select ', 'class'=>'form-control']) !!}
+                    </div>
+                  </div>
+
+                  <label for="dateEnd" class="col-md-4 control-label">สังกัดแผนก</label>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {!! Form::select('department', $department, $leaves->accountinfo->department_id, ['placeholder' => 'Select ', 'class'=>'form-control']) !!}
+                    </div>
+                  </div>
+
+                  <label for="dateEnd" class="col-md-4 control-label">ต้องการลาภายในช่วงเวลา</label>
+                  <div class="col-md-6">
+                    <select class="form-control" name="time">
+                      <option>เต็มวัน</option>
+                      <option>ครึ่งวันเช้า</option>
+                      <option>ครึ่งวันบ่าย</option>
+                    </select><br>
+                  </div>
+
+                <label for="dateEnd" class="col-md-4 control-label">ตั้งแต่วันที่</label>
+                <div class="col-md-6">
+                  <input type= "date" class = "form-control" name="dateFrom"  value="{{$leaves->dateFrom}}"><br>
+                </div>
+
+                <label for="dateEnd" class="col-md-4 control-label">ถึงวันที่</label>
+                <div class="col-md-6">
+                  <input type= "date" class = "form-control" name="dateTo" value="{{$leaves->dateTo}}" ><br>
+                </div>
+
+                <label for="dateEnd" class="col-md-4 control-label">Date Applied</label>
+                <div class="col-md-6">
+                  <input type= "date" class = "form-control" name="dateApplied" value="{{$leaves->dateApplied}}"><br>
+                </div>
+
+                <label for="dateEnd" class="col-md-4 control-label">โทร</label>
+                <div class="col-md-6">
+                  <input type= "text" class = "form-control" name="phone" value="{{$leaves->phone}}" ><br>
+                </div>
+                <label for="action" class="col-md-4 control-label"></label>
+                <div class="col-md-6">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button onclick="goBack()" class="btn btn-danger">Canceled</button>
+              </div>
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
               </form>
             </div>
@@ -48,23 +110,12 @@
 
 @endsection
 
-<!-- @section('script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.js" charset="utf-8"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-
+@section('script')
 
 <script type="text/javascript">
-  		$(function () {
-          $('#searchname').autocomplete({
-            source : '{!!URL::route('autocomplete')!!}',
-            minLength:1,
-
-            select:function(e,ui){
-              $('#user_id').val(ui.item.id);
-              $('#name').val(ui.item.value);
-            }
-          });
-  });
+  function goBack() {
+    window.history.back();
+}
 
    </script>
-@endsection -->
+@endsection

@@ -13,7 +13,14 @@ class LeavesModel extends Model
   {
       return $this->belongsTo('App\LeavestypeModel', 'leavetype_id');
   }
-
+  public function designation()
+  {
+      return $this->belongsTo('App\DesignationModel', 'designation');
+  }
+  public function department()
+  {
+      return $this->belongsTo('App\DepartmentModel', 'department');
+  }
   public function accountinfo()
   {
       return $this->belongsTo('App\AccountInfo', 'user_id');

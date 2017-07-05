@@ -17,5 +17,9 @@ class DepartmentModel extends Model
     {
         return $this->hasMany('App\AccountInfo');
     }
+    public function leaves()
+    {
+        return $this->hasMany('App\LeavesModel');
+    }
 
 }

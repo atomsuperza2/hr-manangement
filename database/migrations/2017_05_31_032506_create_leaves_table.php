@@ -17,9 +17,15 @@ class CreateLeavesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('leavetype_id');
+            $table->integer('designation')->nullable();
+            $table->integer('department')->nullable();
+            $table->string('time')->nullable();
+            $table->string('writeAt');
+            $table->string('dear');
             $table->date('dateFrom');
             $table->date('dateTo');
-            $table->date('dateApplied');
+            $table->date('dateApplied')->nullable();
+            $table->integer('phone')->nullable();
             $table->string('reason')->nullable();
             $table->timestamps();
         });

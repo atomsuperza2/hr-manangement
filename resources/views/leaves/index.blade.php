@@ -10,6 +10,9 @@
 <div class="container form-container">
 
 <div class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="active">leave</li>
+  </ol>
     <div class="panel-regis">
     <div class="heading">Leaves <a href="/leaves/add" class="btn btn-primary "style="float:right;">New leaves</a></div>
     <div class="panel-body">

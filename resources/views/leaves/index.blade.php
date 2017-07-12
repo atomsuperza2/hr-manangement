@@ -25,8 +25,8 @@
 <th>Date From</th>
 <th>Date To</th>
 <th>Date Applied</th>
-<th>Reason</th>
-<th>Action</th>
+<th>Phone</th>
+<th></th>
 </tr>
 <div class="container">
   @foreach ($leave as $leaves)
@@ -37,11 +37,12 @@
         <td>{{ $leaves->dateFrom}}</td>
         <td>{{ $leaves->dateTo}}</td>
         <td>{{ $leaves->dateApplied}}</td>
-        <td>{{ $leaves->reason}}</td>
+        <td>{{ $leaves->phone}}</td>
         <td>
           {!! Form::open(['method'=>'DELETE', 'route'=>['leaves.destroy', $leaves->id]]) !!}
-									<a class="btn btn-primary" href="{{ route('leaves.edit', $leaves->id) }}">Edit</a>
+									<a class="btn btn-warning" href="{{ route('leaves.edit', $leaves->id) }}">Edit</a>
 									{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    <a class="btn btn-info" href="{{ route('leaves.show', $leaves->id) }}">Info</a>
 									{!! Form::close() !!}
 
           </form>

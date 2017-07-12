@@ -9,8 +9,11 @@
 <div class="container form-container">
 
 <div class="col-md-12">
+  <ol class="breadcrumb">
+    <li class="active">Accounts</li>
+  </ol>
     <div class="panel-regis">
-    <div class="heading">Account
+    <div class="heading">Accounts
       @can('add_accounts')
       <a href="{{ route('accounts.create') }}" class="btn btn-primary "style="float:right;">New accounts</a>
       @endcan
@@ -32,7 +35,7 @@
 <th>Salary</th>
 <th>Role</th>
 @can('edit_accounts', 'delete_accounts')
-<th>Action</th>
+<th></th>
  @endcan
 </tr>
 <div class="container">
@@ -60,7 +63,8 @@
           {!! Form::open(['method'=>'DELETE', 'route'=>['accounts.destroy',$user->id]]) !!}
 									<a class="btn btn-warning" href="{{ route('accounts.edit', $user->id) }}">Edit</a>
 									{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-									{!! Form::close() !!}
+
+                  {!! Form::close() !!}
           @endif
         </td>
          @endcan

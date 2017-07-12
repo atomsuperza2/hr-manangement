@@ -59,9 +59,11 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Added only default user role.');
         }
         // now lets seed some posts for demo
-        factory(\App\Post::class, 30)->create();
-        $this->command->info('Some Posts data seeded.');
-        $this->command->warn('All done :)');
+        // factory(\App\Post::class, 30)->create();
+        // $this->command->info('Some Posts data seeded.');
+        // $this->command->warn('All done :)');
+
+        $this->call('StatusTableSeeder');
     }
     /**
      * Create a user with given role

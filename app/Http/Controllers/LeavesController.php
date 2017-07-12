@@ -87,7 +87,8 @@ class LeavesController extends Controller
      */
     public function show($id)
     {
-        //
+        $leaves = LeavesModel::find($id);
+        return view('leaves.show');
     }
 
     /**

@@ -5,7 +5,10 @@
   <div class="row">
   <div class="col-md-12 ">
   <div class="form-group">
-
+    <ol class="breadcrumb">
+      <li><a href="/accounts">Accounts</a></li>
+      <li class="active">Account profile</li>
+    </ol>
         <div class="panel-regis">
             <div class="heading">Profile</div>
             <div class="panel-body">

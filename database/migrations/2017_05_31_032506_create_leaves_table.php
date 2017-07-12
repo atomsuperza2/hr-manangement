@@ -17,6 +17,7 @@ class CreateLeavesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('leavetype_id');
+            $table->integer('status_id')->default('1');
             $table->integer('designation')->nullable();
             $table->integer('department')->nullable();
             $table->string('time')->nullable();

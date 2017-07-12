@@ -138,6 +138,7 @@ Route::group( ['middleware' => ['auth']], function() {
   Route::delete('/leaves/{leaves}', 'LeavesController@destroy')->name('leaves.destroy');
   Route::get('/leaves/{accounts}/userleave', 'LeavesController@userleave')->name('leaves.userleave');
   Route::post('/leaves/{accounts}', array('as' => 'leaves.storeleave', 'uses' => 'LeavesController@storeleave'));
+  Route::get('/leaves/{leaves}/show', 'LeavesController@show')->name('leaves.show');
 
   Route::get('/cutoff', 'CutoffController@index')->name('cutoff.index');
   Route::get('/cutoff/add', 'CutoffController@create')->name('cutoff.create');

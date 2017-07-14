@@ -54,7 +54,7 @@
           {!! Form::open(['method'=>'DELETE', 'route'=>['leaves.destroy', $leaves->id]]) !!}
 									<a class="btn btn-warning" href="{{ route('leaves.edit', $leaves->id) }}">Edit</a>
 									{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    <a class="btn btn-info" href="{{ route('leaves.show', $leaves->id) }}">Info</a>
+                    <!-- <a class="btn btn-info" href="{{ route('leaves.show', $leaves->id) }}">Info</a> -->
 									{!! Form::close() !!}
 
           </form>

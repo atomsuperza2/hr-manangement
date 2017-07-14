@@ -113,12 +113,13 @@
                 </div>
 
                 <label for="status" class="col-md-4 control-label">เช็คการอนุมัติ</label>
-
-                  <select class="col-md-6" name="status_id">
+                <div class="col-md-6">
+                  <select class="form-control" name="status_id">
                     <option value="{{$leaves->status->status_id}}  1">Waiting</option>
                     <option value="{{$leaves->status->status_id}}  2">Approved</option>
                     <option value="{{$leaves->status->status_id}}  3">Disapproved</option>
-                  </select>
+                  </select>  <br></br>
+                </div>
 
                 <label for="action" class="col-md-4 control-label"></label>
                 <div class="col-md-6">

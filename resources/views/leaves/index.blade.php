@@ -20,13 +20,14 @@
 
   <tr>
 
-<th>Employee</th>
-<th>Leave Type</th>
-<th>Date From</th>
-<th>Date To</th>
-<th>Date Applied</th>
-<th>Phone</th>
-<th></th>
+<th><center>Employee</center></th>
+<th><center>Leave Type</center></th>
+<th><center>Date From</center></th>
+<th><center>Date To</center></th>
+<!-- <th><center>Date Applied</center></th> -->
+<th><center>Phone</center></th>
+<th><center>Status</center></th>
+<th> </th>
 </tr>
 <div class="container">
   @foreach ($leave as $leaves)
@@ -36,8 +37,19 @@
         <td>{{ $leaves->leavestype->leavestype}}</td>
         <td>{{ $leaves->dateFrom}}</td>
         <td>{{ $leaves->dateTo}}</td>
-        <td>{{ $leaves->dateApplied}}</td>
+        <!-- <td>{{ $leaves->dateApplied}}</td> -->
         <td>{{ $leaves->phone}}</td>
+        <td>
+          <?php if ($leaves->status_id == 1): ?>
+            <center><a class="btn btn-warning" style="width:150px;" disabled>waiting</a></center>
+          <?php endif; ?>
+          <?php if ($leaves->status_id == 2): ?>
+          <center>  <a class="btn btn-success" style="width:150px;" disabled>approved</a></center></center>
+          <?php endif; ?>
+          <?php if ($leaves->status_id == 3): ?>
+          <center>  <a class="btn btn-danger" style="width:150px;" disabled>disapproved</a></center>
+          <?php endif; ?>
+        </td>
         <td>
           {!! Form::open(['method'=>'DELETE', 'route'=>['leaves.destroy', $leaves->id]]) !!}
 									<a class="btn btn-warning" href="{{ route('leaves.edit', $leaves->id) }}">Edit</a>

@@ -105,18 +105,14 @@
                   <input type= "date" class = "form-control" name="dateTo" ><br>
                 </div>
 
-                <label for="dateEnd" class="col-md-4 control-label">Date Applied</label>
-                <div class="col-md-6">
-                  <input type= "date" class = "form-control" name="dateApplied" ><br>
-                </div>
 
                 <label for="dateEnd" class="col-md-4 control-label">โทร</label>
                 <div class="col-md-6">
-                  @if($accounts->department_id !== null)
+                  @if($accounts->phone !== null)
                     <input class="form-control" name="nphone" type="text" value= "{{$accounts->phone}}" disabled>
                     <input name="phone" type="hidden" value= "{{$accounts->phone}}" >
                     @endif
-                    @if($accounts->department_id == null)
+                    @if($accounts->phone == null)
                     <input class="form-control" name="nphone" type="text" value= "" disabled>
                     <input class = "form-control" name="phone" value= "" type="hidden">
                     @endif<br>

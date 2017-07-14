@@ -53,17 +53,33 @@
                   </div>
                   </div>
 
-                  <label for="dateEnd" class="col-md-4 control-label">ตำแหน่งงาน</label>
+                  <label for="designation" class="col-md-4 control-label">ตำแหน่งงาน</label>
                   <div class="col-md-6">
                     <div class="form-group">
-                    {!! Form::select('designation', $designation, $leaves->accountinfo->designation_id, ['placeholder' => 'Select ', 'class'=>'form-control']) !!}
+                      @if($leaves->designation !== null)
+                      <input class="form-control" name="ndesignation" type="text" value= "{{$leaves->designation->designationName}}" disabled>
+                      <input name="designation" type="hidden" value= "{{$leaves->designation}}" >
+                      @endif
+                      @if($leaves->designation == null)
+                      <input class="form-control" name="ndesignation" type="text" value= "" disabled>
+                      <input class = "form-control" name="designation" value= "" type="hidden">
+                      @endif
+
                     </div>
                   </div>
 
-                  <label for="dateEnd" class="col-md-4 control-label">สังกัดแผนก</label>
+                  <label for="department" class="col-md-4 control-label">สังกัดแผนก</label>
                   <div class="col-md-6">
                     <div class="form-group">
-                      {!! Form::select('department', $department, $leaves->accountinfo->department_id, ['placeholder' => 'Select ', 'class'=>'form-control']) !!}
+                      @if($leaves->department !== null)
+                      <input class="form-control" name="ndepartment" type="text" value= "{{$leaves->department->departmentName}}" disabled>
+                      <input name="department" type="hidden" value= "{{$leaves->department}}" >
+                      @endif
+                      @if($leaves->department == null)
+                      <input class="form-control" name="ndepartment" type="text" value= "" disabled>
+                      <input class = "form-control" name="department" value= "" type="hidden">
+                      @endif
+
                     </div>
                   </div>
 
@@ -86,15 +102,24 @@
                   <input type= "date" class = "form-control" name="dateTo" value="{{$leaves->dateTo}}" ><br>
                 </div>
 
-                <label for="dateEnd" class="col-md-4 control-label">Date Applied</label>
+                <!-- <label for="dateEnd" class="col-md-4 control-label">Date Applied</label>
                 <div class="col-md-6">
                   <input type= "date" class = "form-control" name="dateApplied" value="{{$leaves->dateApplied}}"><br>
-                </div>
+                </div> -->
 
-                <label for="dateEnd" class="col-md-4 control-label">โทร</label>
+                <label for="phone" class="col-md-4 control-label">โทร</label>
                 <div class="col-md-6">
                   <input type= "text" class = "form-control" name="phone" value="{{$leaves->phone}}" ><br>
                 </div>
+
+                <label for="status" class="col-md-4 control-label">เช็คการอนุมัติ</label>
+
+                  <select class="col-md-6" name="status_id">
+                    <option value="{{$leaves->status->status_id}}  1">Waiting</option>
+                    <option value="{{$leaves->status->status_id}}  2">Approved</option>
+                    <option value="{{$leaves->status->status_id}}  3">Disapproved</option>
+                  </select>
+
                 <label for="action" class="col-md-4 control-label"></label>
                 <div class="col-md-6">
                 <button type="submit" class="btn btn-success">Save</button>

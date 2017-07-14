@@ -1,6 +1,7 @@
 <?php
 use App\AccountInfo;
 use Illuminate\Http\Request;
+use App\LeavesModel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -167,7 +168,15 @@ Route::group( ['middleware' => ['auth']], function() {
   Route::get('/checkAttendance/{accounts}', array('as' => 'checkAttendance.submitAttendance', 'uses' => 'CheckAttendanceController@submitAttendance'));
 
   Route::get('/export/{accounts}', 'CheckAttendanceController@exportExcel')->name('export');
+
 });
+
+  // Route::get('/leaves/{leaves}/show', function($id){
+  // $leaves = LeavesModel::find($id);
+  // $pdf = PDF::loadView('leaves.show', ['leaves' => $leaves]);
+  // return $pdf->download('doc.pdf');
+  // })->name('leaves.show');
+
 Route::get('daterange', 'API\DaterangeController@dateRange');
 Route::get('select', 'API\DaterangeController@select');
 ////////////////////////////////////////////////////

@@ -25,4 +25,8 @@ class LeavesModel extends Model
   {
       return $this->belongsTo('App\AccountInfo', 'user_id');
   }
+  public function status()
+  {
+    return $this->belongsTo('App\Status', 'status_id');
+  }
 }

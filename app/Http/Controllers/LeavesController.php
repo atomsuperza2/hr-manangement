@@ -8,6 +8,8 @@ use App\LeavestypeModel;
 use App\AccountInfo;
 use App\DepartmentModel;
 use App\DesignationModel;
+use PDF;
+use Carbon\Carbon;
 
 class LeavesController extends Controller
 {
@@ -88,7 +90,9 @@ class LeavesController extends Controller
     public function show($id)
     {
         $leaves = LeavesModel::find($id);
-        return view('leaves.show');
+        // $pdf = PDF::loadView('leaves.show', ['leaves'=>$leaves]);
+        return view('leaves.show', compact('leaves'));
+        // return $pdf->download('doc.pdf');
     }
 
     /**
@@ -115,6 +119,7 @@ class LeavesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $dateA = Carbon::today();
         $leaves = LeavesModel::find($id);
         $leaves->user_id = $request->user_id;
         $leaves->leavetype_id = $request->leavetype_id;
@@ -126,8 +131,9 @@ class LeavesController extends Controller
         $leaves->phone = $request->phone;
         $leaves->dateFrom = $request->dateFrom;
         $leaves->dateTo = $request->dateTo;
-        $leaves->dateApplied = $request->dateApplied;
+        // $leaves->dateApplied = $dateA;
         $leaves->reason = $request->reason;
+        $leaves->status_id = $request->status_id;
         $leaves->save();
         session()->flash('message','Updated Successfully');
         return redirect('/leaves');

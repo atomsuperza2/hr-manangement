@@ -14,18 +14,22 @@
     <li class="active">leave</li>
   </ol>
     <div class="panel-regis">
-    <div class="heading">Leaves <a href="/leaves/add" class="btn btn-primary "style="float:right;">New leaves</a></div>
+    <div class="heading">Leaves &nbsp&nbsp&nbsp
+      <a class="btn btn-warning" style="width:50px;" >1</a>
+      <a class="btn btn-success" style="width:50px;" >1</a>
+      <a class="btn btn-danger" style="width:50px;" >1</a>
+      <a href="/leaves/add" class="btn btn-primary "style="float:right;">New leaves</a></div>
     <div class="panel-body">
 <table class="table table-striped">
 
   <tr>
 
-<th><center>Employee</center></th>
-<th><center>Leave Type</center></th>
-<th><center>Date From</center></th>
-<th><center>Date To</center></th>
+<th>Employee</th>
+<th>Leave Type</th>
+<th>Date From</th>
+<th>Date To</th>
 <!-- <th><center>Date Applied</center></th> -->
-<th><center>Phone</center></th>
+<th>Phone</th>
 <th><center>Status</center></th>
 <th> </th>
 </tr>
@@ -44,7 +48,7 @@
             <center><a class="btn btn-warning" style="width:150px;" disabled>waiting</a></center>
           <?php endif; ?>
           <?php if ($leaves->status_id == 2): ?>
-          <center>  <a class="btn btn-success" style="width:150px;" disabled>approved</a></center></center>
+          <center>  <a class="btn btn-success" style="width:150px;" disabled>approved</a></center>
           <?php endif; ?>
           <?php if ($leaves->status_id == 3): ?>
           <center>  <a class="btn btn-danger" style="width:150px;" disabled>disapproved</a></center>
